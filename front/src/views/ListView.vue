@@ -1,10 +1,15 @@
-
 <template>
   <h2></h2>
+
+ <ViewList/>
+
 </template>
 
 <script>
-export default {};
+import ViewList from '@/components/ListStudent.vue'
+export default {
+  components : { ViewList },
+};
 </script>
 
 <style scoped>
