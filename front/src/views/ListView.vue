@@ -1,4 +1,3 @@
-
 <template>
   <h2>Hello list view</h2>
 </template>
