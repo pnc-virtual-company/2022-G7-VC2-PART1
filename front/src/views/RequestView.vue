@@ -1,4 +1,5 @@
 <template>
+<navbar-view/>
   <FormView/>
 </template>
 

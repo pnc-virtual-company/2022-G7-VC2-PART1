@@ -1,14 +1,17 @@
 <template>
   <div class="form-group d-flex justify-content-center mt-5">
     <select class="form-control">
-      <option value="" disabled>Choose</option>
-      <option>Show all</option>
-      <option>Accept</option>
-      <option>Reject</option>
-      <option>Cancel</option>
+      <option value="Accept">Accept</option>
+      <option value="Reject">Reject</option>
+      <option value="Cencel">Cencel</option>
     </select>
+    
   <div class="d-flex w-50 ml-2">
-    <input type="text" placeholder="Search" class="form-control">
+     <select class="form-control">
+      <option value="Sick leave">Sick leave</option>
+      <option value="Family's Event">Family's Event</option>'
+      <option value="Headache">Headache</option>
+    </select>
     <button class="btn btn-info ml-1">Search</button>
   </div>
 </div>
@@ -72,7 +75,7 @@ tr:hover {
 }
 .form-group {
   width: 55%;
-  margin: auto;
+  margin: 0 auto;
 }
 .form-control {
   width: 100%;

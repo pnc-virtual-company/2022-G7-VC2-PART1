@@ -1,12 +1,17 @@
 <template>
   <div class="student">
-    <navbar-view />
-    <main><router-view /></main>
+    <listView/>
   </div>
-</template>
 
+</template>
 <script>
-export default {};
+import listView  from './ListView.vue'
+
+export default {
+  components:{
+    listView,
+}
+}
 </script>
 
 <style>
