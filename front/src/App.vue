@@ -1,17 +1,18 @@
 
 <template>
 <nav class="flex justify-between align-center">
-    <div class="logo my-auto">
-      <h2 class="flex justify-items-stretch ml-3" items-center>SLMS</h2>
+    <div class="logo my-auto flex">
+      <img :src="require('./assets/logo.png')" alt="" class="w-1/6 ml-2">
+      <h2 class="flex items-center ml-2 font-bold text-white " items-center>SLMS</h2>
     </div>
         <div class="flex justify-start align-center">
-          <router-link class="m-3 text-lg text-white text-bold" to="/">List All Leave</router-link>
+          <router-link class="m-3 text-lg text-white text-bold " to="/">List All Leave</router-link>
           <router-link class="m-3 text-lg text-white text-bold" to="/request">New Request</router-link>
         </div>
 
       <div class="flex justify-between align-center p-2">
-        <h2 class="m-2">Rady Y</h2>
-        <h2 class="m-2">Sign out</h2>
+        <h2 class="m-2 ml-2 font-bold text-white text-lg">Rady Y</h2>
+        <h2 class="m-2 ml-2 text-bold text-white text-lg">Sign out</h2>
     </div>
 </nav>
 <main><router-view/></main>
@@ -33,12 +34,6 @@ nav{
     background: #45b6fe;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
-.content-nav{
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
 
 nav a.router-link-exact-active{
   background:
@@ -48,8 +43,8 @@ nav a.router-link-exact-active{
 }
 
 nav a{
-  
   border:none; 
   text-decoration: none;
 }
+
 </style>

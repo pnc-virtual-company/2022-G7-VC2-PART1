@@ -1,3 +1,3 @@
 <template>
- <h2>Welcome to Rquest page</h2>
+ <h2></h2>
 </template>
