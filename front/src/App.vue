@@ -1,7 +1,5 @@
 <template>
 <div class="app">
-
-
   <router-link to="/"/>
   <main>
     <router-view/>
@@ -20,6 +18,7 @@ body{
   margin: 0;
   padding: 0;
 }
+
 nav{
   width: 100%;
     background: #45b6fe;
@@ -48,4 +47,5 @@ nav a{
   color: #FFAD5C;
   cursor: pointer;
 }
+
 </style>

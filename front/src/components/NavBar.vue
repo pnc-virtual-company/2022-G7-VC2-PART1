@@ -13,6 +13,7 @@
         <h2 class="m-2">Sign out</h2>
     </div>
 </nav>
+
 </template>
 
 <script>
