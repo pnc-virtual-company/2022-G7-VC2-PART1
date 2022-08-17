@@ -1,10 +1,9 @@
-
 <template>
 <div class="app">
   <router-link to="/list"/>
-
 </div>
 <main><router-view/></main>
+
 </template>
 <script>
 export default {

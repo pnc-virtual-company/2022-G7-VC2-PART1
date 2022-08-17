@@ -1,4 +1,5 @@
 <template>
+
 <form @submit.prevent="onLog">
     <div>
         <h1>log In</h1>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -29,7 +31,8 @@ export default {
   methods: {
       onLog() {
           if (this.email != '' && this.password!='' ) {
-              this.$router.push({ name: "student", params: { id: 1 } });
+            localStorage.setItem('user', 1)
+            this.$router.push({ name: "student", params: { id: 1 } });
         }
     },
   },
