@@ -12,8 +12,8 @@
 
         <img :src="require('/src/assets/profile.png')" width="60">
         <h2 class="m-2 ml-2 font-bold text-white text-lg">Rady Y</h2>
-        <h2 class="m-2 ml-2 text-bold text-white text-lg"><a @click="logout" href="#">Sign out</a></h2>
-        <li class="fa fa-sign-out"></li>
+        <h2 class="m-2 ml-2 text-bold text-white text-lg"><a @click="logout" href="#"><li class="fa fa-sign-out">Sign out</li></a></h2>
+      
 
     </div>
 </nav>
