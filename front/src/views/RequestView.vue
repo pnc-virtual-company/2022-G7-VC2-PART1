@@ -1,3 +1,16 @@
 <template>
- <h2>Welcome to Rquest page</h2>
+  <FormView/>
 </template>
+
+<script>
+import FormView from "@/components/FormRequest.vue";
+export default {
+    components: {
+        FormView
+    }
+}
+</script>
+
+<style>
+
+</style>

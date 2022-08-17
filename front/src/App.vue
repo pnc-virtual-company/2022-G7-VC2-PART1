@@ -10,8 +10,10 @@
         </div>
 
       <div class="flex justify-between align-center p-2">
-        <h2 class="m-2">Rady Y</h2>
+        <img :src="require('/src/assets/profile.png')" width="70">
+        <h2 class="m-1">Rady Y</h2>
         <h2 class="m-2">Sign out</h2>
+        <li class="fa fa-sign-out"></li>
     </div>
 </nav>
 <main><router-view/></main>
@@ -46,10 +48,14 @@ nav a.router-link-exact-active{
   border-radius: 5px;
   padding: 5px;
 }
-
 nav a{
   
   border:none; 
   text-decoration: none;
+}
+.fa-sign-out {
+  font-size: 25px;
+  color: #FFAD5C;
+  cursor: pointer;
 }
 </style>

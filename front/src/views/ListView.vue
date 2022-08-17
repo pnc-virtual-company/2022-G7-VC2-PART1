@@ -1,18 +1,13 @@
-
 <template>
-  <h2>Hello list view</h2>
+ <ViewList/>
 </template>
 
 <script>
-export default {};
+import ViewList from '@/components/ListStudent.vue'
+export default {
+  components : { ViewList },
+};
 </script>
 
 <style scoped>
-.main {
-  width: 70%;
-  margin: auto;
-}
-.card {
-  width: 80%;
-}
 </style>
