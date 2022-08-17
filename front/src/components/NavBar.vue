@@ -10,14 +10,18 @@
 
       <div class="flex justify-between align-center p-2">
         <h2 class="m-2">Rady Y</h2>
-        <h2 class="m-2">Sign out</h2>
+        <a @click="logout" href="#">Sign out</a>
     </div>
 </nav>
 </template>
-
 <script>
 export default {
-
+  methods:{
+    logout(){
+       localStorage.removeItem('user')
+        this.$router.push({name:"FormLogIn"})
+    }
+  }
 }
 </script>
 

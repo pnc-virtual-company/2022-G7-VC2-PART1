@@ -3,9 +3,7 @@ import ListView from '../views/ListView.vue'
 import RquestView from '../views/RequestView.vue';
 import StudentView from '../views/StudentView.vue';
 import AdminView from '../views/AdminView.vue';
-import FormloginView from '../components/FormLogIn.vue';
-
-
+import FormLogIn from '../components/FormLogIn.vue';
 
 const routes = [
   {
@@ -17,13 +15,7 @@ const routes = [
   {
     path: '/request',
     name: 'request',
-   
     component:RquestView
-  },
-  {
-    path: '/',
-    name: 'form',
-    component: FormloginView
   },
   
   {
@@ -37,6 +29,11 @@ const routes = [
     name: 'admin',
     component: AdminView,
     props:true
+  },
+  {
+    path: '/',
+    name: 'FormLogIn',
+    component: FormLogIn
   },
 ]
 
