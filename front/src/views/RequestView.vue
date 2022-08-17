@@ -1,9 +1,6 @@
 <template>
-
- <h2></h2>
-
+<navbar-view/>
   <FormView/>
-
 </template>
 
 <script>
