@@ -1,23 +1,12 @@
-
 <template>
 <div class="app">
 
-<<<<<<< HEAD
+
   <router-link to="/"/>
   <main>
     <router-view/>
   </main>
 </div>
-=======
-      <div class="flex justify-between align-center p-2">
-        <img :src="require('/src/assets/profile.png')" width="70">
-        <h2 class="m-1">Rady Y</h2>
-        <h2 class="m-2">Sign out</h2>
-        <li class="fa fa-sign-out"></li>
-    </div>
-</nav>
-<main><router-view/></main>
->>>>>>> 4b4333ea21da65d1e57f095b20e74c456fff3f70
 </template>
 <script>
 
