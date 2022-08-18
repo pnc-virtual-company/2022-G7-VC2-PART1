@@ -1,18 +1,24 @@
 <template>
-  <div class="form-group d-flex justify-content-center mt-5">
-    <select class="form-control">
-      <option value="" disabled>Choose</option>
-      <option>Show all</option>
-      <option>Accept</option>
-      <option>Reject</option>
-      <option>Cancel</option>
-    </select>
-  <div class="d-flex w-50 ml-2">
-    <input type="text" placeholder="Search" class="form-control">
-    <button class="btn btn-info ml-1">Search</button>
-  </div>
+  <div class="w-4/5 flex justify-between ml-4 mt-5">
+    <div class="w-1/4 flex justify-evenly m-2 ">
+      <select class="w-1/2 bg-blue-500 text-center rounded-md outline-none text-white">
+        <option value="" disabled>Choose</option>
+        <option>Sick</option>
+        <option>Go home</option>
+        <option>Shoping</option>
+      </select>
+      <select class="w-1/2 bg-orange ml-4 text-center p-2 rounded-md text-white outline-none" v-model="onChoose">
+        <option value="" disabled>Choose</option>
+        <option>Accept</option>
+        <option>Reject</option>
+        <option>Cancel</option>
+      </select>
+    </div>
+    <div class="w-1/5">
+      <h1 class="text-center text-white bg-blue-500 mt-4 w-1/2 p-2.5 rounded-md">Table</h1>
+    </div>
 </div>
-<div class="mt-5 d-flex justify-content-center">
+<div class="mt-4 d-flex w-4/5 ml-4">
   <table>
     <thead class="text-center">
       <tr>
@@ -51,7 +57,16 @@
 
 <script>
 export default {
-
+  data(){
+    return{
+      onChoose:'Accept',
+    }
+  },
+  computed(){
+    // dataStatus(){
+    //   if(this.)
+    // }
+  }
 }
 </script>
 

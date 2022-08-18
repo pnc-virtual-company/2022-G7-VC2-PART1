@@ -21,15 +21,14 @@ body{
 nav{
   width: 100%;
   background: #45b6fe;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  border-radius: 5px;
+  height: 10vh;
 }
 
 nav a.router-link-exact-active{
   background:
 #FFAD5C;
   border-radius: 5px;
-  padding: 5px;
+  padding: 2px;
 }
 nav a{
   border:none; 
@@ -38,7 +37,7 @@ nav a{
 
 .fa-sign-out {
   font-size: 25px;
-  color: #FFAD5C;
+  color:#5579c6;
   cursor: pointer;
 }
 </style>
