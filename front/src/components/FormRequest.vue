@@ -96,6 +96,7 @@ export default {
       axios.post(this.url,date).then(response => {
         return response.data
       })
+      
     }
   },
   computed: {
