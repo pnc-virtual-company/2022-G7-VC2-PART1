@@ -31,6 +31,7 @@ class RequestController extends Controller
         $offer->End_date = $request->End_date;
         $offer->Leave_Type = $request->Leave_Type;
         $offer->Status = $request->Status;
+        $offer->Reason = $request->Reason;
         $offer->student_id = $request->student_id;
 
         $offer->save();
@@ -63,6 +64,7 @@ class RequestController extends Controller
         $offer->End_date = $request->End_date;
         $offer->Leave_Type = $request->Leave_Type;
         $offer->Status = $request->Status;
+        $offer->Reason = $request->Reason;
         $offer->student_id = $request->student_id;
 
         $offer->save();
