@@ -14,9 +14,15 @@ class Requests extends Model
         'End_date',
         'Leave_Type',
         'Status',
-        'Reason'
+        'Reason',
+        'student_id'
     ];
 
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
+    
     public function Student(){
         return $this->belongsTo(Student::class);
     } 
