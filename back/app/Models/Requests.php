@@ -14,6 +14,7 @@ class Requests extends Model
         'End_date',
         'Leave_Type',
         'Status',
+        'Reason'
     ];
 
     public function Student(){

@@ -18,7 +18,13 @@ body{
   margin: 0;
   padding: 0;
 }
+  #app {
+    background: rgb(118, 109, 109);
+  }
 nav{
+
+  position: sticky;
+  top: 0;
   width: 100%;
   background: #45b6fe;
   height: 10vh;
