@@ -3,7 +3,7 @@
     <form @submit.prevent="newRequest" class="w-50 p-4">
       <h1 class="text-center p-1">Request to Trainer</h1>
       <hr />
-      <div class="form-group ml-2">
+      <div class="form-group">
         <label>Leave type</label>
         <select class="form-control" v-model="leave_type">
           <option disabled value="">Choose</option>
