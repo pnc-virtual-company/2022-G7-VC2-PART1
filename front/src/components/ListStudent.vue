@@ -25,27 +25,16 @@
         <th>Duration</th>
         <th>Leave type</th>
         <th>Status</th>
-        <th>Request Date</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Germany</td>
-      </tr>
-      <tr>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Alfreds Futterkiste</td>
-        <td>Maria Anders</td>
-        <td>Germany</td>
-        <td>Germany</td>
+      <tr v-for="list of lists" :key="list">
+        <td>{{list.Start_date}}</td>
+        <td>{{list.End_date}}</td>
+        <td>{{list.leave_Type}}</td>
+        <td>{{list.Status}}</td>
+        <td>{{list.Reason}}</td>
+        <td>{{list.Status}}</td>
       </tr>
     </tbody>
   </table>
@@ -53,8 +42,24 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
-
+  data() {
+    return {
+      URL: "http://127.0.0.1:8000/api/request",
+      lists: []
+    }
+  },
+  methods: {
+    getData() {
+      axios.get(this.URL).then((res) => {
+        this.lists = res.data
+      })
+    }
+  },
+  mounted() {
+    return this.getData();
+  }
 }
 </script>
 
