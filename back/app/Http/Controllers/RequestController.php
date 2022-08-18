@@ -29,7 +29,7 @@ class RequestController extends Controller
         $offer = $request->validate([
           'Start_date' => 'required|Date',
           'End_date' => 'required|Date',
-          'Leave_Type' => 'required|string',
+          'leave_Type' => 'required|string',
           'Status' => 'required|string',
           'Reason' => 'required|string',
           'student_id' => 'required|integer',

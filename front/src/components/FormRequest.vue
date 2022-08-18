@@ -92,7 +92,7 @@ export default {
   },
   methods:{
     newRequest(){
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,Leave_Type:this.leave_type,student_id:this.studentid,Status:this.Padding}
+      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,student_id:this.studentid,Status:this.Padding}
       axios.post(this.url,date).then(response => {
         return response.data
       })

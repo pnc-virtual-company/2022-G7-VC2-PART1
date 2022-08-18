@@ -12,7 +12,7 @@ class Requests extends Model
     protected $fillable =[
         'Start_date',
         'End_date',
-        'Leave_Type',
+        'leave_Type',
         'Status',
         'Reason',
         'student_id'
