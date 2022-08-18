@@ -12,9 +12,10 @@
       <option value="Family's Event">Family's Event</option>'
       <option value="Headache">Headache</option>
     </select>
-    <button class="btn btn-info ml-1">Search</button>
+    <button class="btn btn-primary ml-1">Search</button>
   </div>
 </div>
+
 <div class="mt-5 d-flex justify-content-center">
   <table>
     <thead class="text-center">
@@ -66,12 +67,12 @@ table {
   border:2px solid rgb(176, 167, 167);
   padding: 10px;
 }
-.table, th {
+/* .table, th {
   background: #2a2ab9;
   color: #fff;
-}
+} */
 tr:hover {
-  background: #45b6fe;
+  background: #fafcff;
 }
 .form-group {
   width: 55%;

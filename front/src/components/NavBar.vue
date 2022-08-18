@@ -5,8 +5,8 @@
       <h2 class="flex items-center ml-2 font-bold text-white " items-center>SLMS</h2>
     </div>
       <div class="flex justify-start align-center">
-        <router-link class="m-3 text-lg text-white text-bold " to="/list">List All Leave</router-link>
-        <router-link class="m-3 text-lg text-white text-bold" to="/request">New Request</router-link>
+        <router-link class="font-mono m-3 text-lg text-white text-bold " to="/list">List All Leave</router-link>
+        <router-link class="font-mono m-3 text-lg text-white text-bold" to="/request">New Request</router-link>
       </div>
       <div class="flex justify-between align-center p-2">
 

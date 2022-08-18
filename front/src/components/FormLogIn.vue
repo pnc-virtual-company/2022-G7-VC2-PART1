@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="form-login">
     <form @submit.prevent="onLog">
       <div>
@@ -53,26 +52,8 @@
       <button class="w-full">LogIn</button>
     </form>
   </div>
-=======
 
-<form @submit.prevent="onLog">
-    <div>
-        <h1>log In</h1>
-    </div>
-    <input  class="w-full border px-3 py-2 rounded-sm shadow-sm foucse:outline-none" type="text" placeholder="Email address" v-model="email">
-    <p v-if="email.length==0" class="sms color-red">invalid</p>
-    <input class="w-full border px-3 py-2 rounded-sm shadow-sm foucse:outline-none" type="password" placeholder="Password" v-model="password">
-        <p v-if="password.length==0" class="sms color-red">invalid</p>
-        <select name="" class="w-full border px-3 py-2 rounded-sm shadow-sm foucse:outline-none">
-            <option value="social affiar">social affiar</option>
-            <option value="student">student</option>
-        </select>
-    <div>
-        <a>do you forgot password?</a>
-    </div>
-    <button>LogIn</button>
-</form>
->>>>>>> b4de71584578b0e1c56bccc2b031844f7530dbdc
+
 </template>
 
 <script>
@@ -85,22 +66,15 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
     onLog() {
       if (this.email != "" && this.password != "") {
         localStorage.setItem("user", { id: 1 });
         this.$router.push({ name: "student", params: { id: 1 } });
       }
-=======
-      onLog() {
-          if (this.email != '' && this.password!='' ) {
-            localStorage.setItem('user', 1)
-            this.$router.push({ name: "student", params: { id: 1 } });
-        }
->>>>>>> b4de71584578b0e1c56bccc2b031844f7530dbdc
-    },
-  },
-};
+
+    }
+  }
+}
 </script>
 
 <style scoped>
