@@ -41,6 +41,8 @@
             class="form-control"
             v-model="end"
           />
+          <p class="text-red-600 mt-1" v-if="validateDate=='true'">corrected</p>
+          <p class="text-red-600 mt-1" v-else-if="validateDate=='false'">start date isn't greater than and end date</p>
         </div>
 
         <div class="form-group w-100 ml-2">
@@ -60,13 +62,12 @@
 
       <label>Cause(Reason)</label>
       <div class="form-group w-100">
-        <!-- <input type="text" placeholder="Input data" class="form-control"> -->
         <textarea id="w3review" name="w3review" rows="2" cols="71" v-model="cause" ></textarea>
       </div>
 
       <div class="form-group d-flex card-btn ml-2">
-        <button class="btn btn-info" type="submit">Submit</button>
-        <button class="btn btn-danger ml-2">Cancel</button>
+        <button class=" btn bg-green-600 text-slate-50 " :disabled="validateDate=='false'"  type="submit" >Submit</button>
+        <button class="btn bg-rose-700 text-slate-50 ml-2">Cancel</button>
       </div>
 
     </form>
@@ -79,13 +80,14 @@ import axios from "axios";
 export default {
   data() {
     return {
-      start: null,
-      end: null,
-      SpecificStartTime: null,
-      SpecificEndTime: null,
-      leave_type:null,
-      cause: null,
+      start: "",
+      end:"",
+      SpecificStartTime: '',
+      SpecificEndTime: '',
+      leave_type:'',
+      cause: "",
       studentid:1,
+      isPast:0,
       Padding:"Approve",
       url:'http://127.0.0.1:800/api/request'
     };
@@ -96,36 +98,52 @@ export default {
       axios.post(this.url,date).then(response => {
         return response.data
       })
-      
+
     }
   },
   computed: {
     differentDate() {
-        let notEmpty = this.start !=null && this.end !=null ;
-        let isStart = this.start == this.end && this.start !=null && this.end !=null ;
+        let notEmpty = this.start !="" && this.end !="" ;
+        let isStart = this.start == this.end && this.start !="" && this.end !="" ;
         let fullDay =(this.SpecificStartTime ==this.SpecificEndTime);
-        let halfDate = (this.SpecificStartTime !=null && this.SpecificEndTime != null)
+        let halfDate = (this.SpecificStartTime !="" && this.SpecificEndTime != "")
         let dateforLeave = moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"));
         let dateTime = 0;
+        // console.log(dateforLeave)
+        
         if(dateforLeave <0 || dateforLeave == 0){
-          if ((this.start !=null  && this.end !=null ) && (halfDate)) {
+          
+          if ((notEmpty ) && (halfDate)) {
             dateTime = Math.abs(moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"),"days"));
-            } 
-            if(isStart && fullDay && halfDate){
-              dateTime += 0.5;
-            }
-            else if(fullDay && notEmpty && halfDate){
-              dateTime +=0.5
-            }
-            else if(!fullDay && halfDate) {
-              dateTime +=1
-            }
+              } 
+              if(isStart && fullDay && halfDate){
+                dateTime += 0.5;
+              }
+              else if(fullDay && notEmpty && halfDate){
+                dateTime +=0.5
+              }
+              else if(!fullDay && halfDate) {
+                dateTime +=1
+              }
         }
+       
         console.log(dateforLeave);
         return dateTime;
-      }
     },
-  
+    validateDate(){
+      let isValid = 'false';
+       let dateforLeave = moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"));
+       if(isNaN(dateforLeave)){
+         isValid = 'not completed';
+       }
+
+       if(dateforLeave<=0){
+        isValid = 'true'
+       }
+    
+   return isValid;
+    }
+  },
 };
 </script>
 
@@ -148,14 +166,10 @@ h1 {
   margin: 0 auto;
   margin-top: 15px;
 }
-input,
-select {
-  border: none;
-  background: rgb(210, 207, 207);
-}
-textarea {
-  border: 1px solid gray;
-  background: rgb(210, 207, 207);
+
+textarea,select,input {
+  border: 3px solid rgb(123, 140, 233);
+  background: rgb(240, 240, 240);
   border-radius: 5px;
 }
 </style>
