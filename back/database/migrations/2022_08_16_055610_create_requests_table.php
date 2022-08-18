@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('leave_Type');
             $table->string('Status');
             $table->string('Reason');
+            $table->string('Duration');
             $table->foreignId('student_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });

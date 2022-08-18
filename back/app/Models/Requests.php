@@ -15,6 +15,7 @@ class Requests extends Model
         'leave_Type',
         'Status',
         'Reason',
+        'Duration',
         'student_id'
     ];
 

@@ -32,6 +32,7 @@ class RequestController extends Controller
           'leave_Type' => 'required|string',
           'Status' => 'required|string',
           'Reason' => 'required|string',
+          'Duration'=> 'required|integer',
           'student_id' => 'required|integer',
         ]);
         
