@@ -1,17 +1,18 @@
 <template>
   <div class="container mt-5 d-flex justify-content-center">
-    <form action="#" class="w-50 p-4">
+    <form @submit.prevent="newRequest" class="w-50 p-4">
       <h1 class="text-center p-1">Request to Trainer</h1>
       <hr />
       <div class="form-group">
         <label>Leave type</label>
-        <select class="form-control">
+        <select class="form-control" v-model="leave_type">
           <option disabled value="">Choose</option>
-          <option value="">Sick</option>
-          <option>Go home</option>
-          <option>Busy</option>
+          <option value="Sick">Sick</option>
+          <option value="Go Home">Go home</option>
+          <option value="Busy">Busy</option>
         </select>
       </div>
+
       <label class="mt-1">StartData</label>
       <div class="w-100 d-flex">
         <div class="form-group w-100">
@@ -22,6 +23,7 @@
             v-model="start"
           />
         </div>
+
         <div class="form-group w-100 ml-2">
           <select class="form-control" v-model="SpecificStartTime">
             <option value="Morning">Morning</option>
@@ -29,6 +31,7 @@
           </select>
         </div>
       </div>
+
       <label>EndData</label>
       <div class="w-100 d-flex">
         <div class="form-group w-100">
@@ -39,6 +42,7 @@
             v-model="end"
           />
         </div>
+
         <div class="form-group w-100 ml-2">
           <select class="form-control" v-model="SpecificEndTime">
             <option value="Morning">Morning</option>
@@ -46,6 +50,7 @@
           </select>
         </div>
       </div>
+
       <div class="w-100 d-flex">
         <div class="form-group w-100 mt-4">
           <label>Duration: </label>
@@ -56,52 +61,70 @@
       <label>Cause(Reason)</label>
       <div class="form-group w-100">
         <!-- <input type="text" placeholder="Input data" class="form-control"> -->
-        <textarea id="w3review" name="w3review" rows="2" cols="71"></textarea>
+        <textarea id="w3review" name="w3review" rows="2" cols="71" v-model="cause" ></textarea>
       </div>
 
       <div class="form-group d-flex card-btn ml-2">
-        <button class="btn btn-info">Submit</button>
+        <button class="btn btn-info" type="submit">Submit</button>
         <button class="btn btn-danger ml-2">Cancel</button>
       </div>
+
     </form>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import axios from "axios";
 export default {
   data() {
     return {
-      start: "",
-      end: "",
-      SpecificStartTime: "",
-      SpecificEndTime: "",
+      start: null,
+      end: null,
+      SpecificStartTime: null,
+      SpecificEndTime: null,
+      leave_type:null,
+      cause: null,
+      studentid:1,
+      Padding:"Approve",
+      url:'http://127.0.0.1:800/api/request'
     };
+  },
+  methods:{
+    newRequest(){
+      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,student_id:this.studentid,Status:this.Padding}
+      axios.post(this.url,date).then(response => {
+        return response.data
+      })
+    }
   },
   computed: {
     differentDate() {
-        let isStart =
-        this.start == this.end && this.start != "" && this.end != "";
+        let notEmpty = this.start !=null && this.end !=null ;
+        let isStart = this.start == this.end && this.start !=null && this.end !=null ;
         let fullDay =(this.SpecificStartTime ==this.SpecificEndTime);
+        let halfDate = (this.SpecificStartTime !=null && this.SpecificEndTime != null)
+        let dateforLeave = moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"));
         let dateTime = 0;
-      if (this.start != "" && this.end != "") {
-        dateTime = Math.abs(
-          moment(this.start, "YYYY.MM.DD HH:mm").diff(
-            moment(this.end, "YYYY.MM.DD HH:mm"),
-            "days"
-          )
-        );
+        if(dateforLeave <0 || dateforLeave == 0){
+          if ((this.start !=null  && this.end !=null ) && (halfDate)) {
+            dateTime = Math.abs(moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"),"days"));
+            } 
+            if(isStart && fullDay && halfDate){
+              dateTime += 0.5;
+            }
+            else if(fullDay && notEmpty && halfDate){
+              dateTime +=0.5
+            }
+            else if(!fullDay && halfDate) {
+              dateTime +=1
+            }
+        }
+        console.log(dateforLeave);
+        return dateTime;
       }
-      if (
-        !fullDay
-      ) {
-        dateTime += 0.5;
-      }
-      console.log( isStart,fullDay);
-   
-      return dateTime;
     },
-  },
+  
 };
 </script>
 

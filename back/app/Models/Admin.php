@@ -16,6 +16,10 @@ class Admin extends Model
         'Email',
         'Password'
     ];
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
     public function Student(){
         return $this->hasmany(Student::class);
     }

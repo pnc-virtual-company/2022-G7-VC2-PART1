@@ -12,6 +12,10 @@ class Classes extends Model
     protected $fillable =[   
         'Class',
     ];
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
     public function Student(){
         return $this->hasmany(Student::class);
     }
