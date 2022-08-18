@@ -12,10 +12,17 @@ class Requests extends Model
     protected $fillable =[
         'Start_date',
         'End_date',
-        'Leave_Type',
+        'leave_Type',
         'Status',
+        'Reason',
+        'student_id'
     ];
 
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
+    
     public function Student(){
         return $this->belongsTo(Student::class);
     } 

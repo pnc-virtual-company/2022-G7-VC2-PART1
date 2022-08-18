@@ -18,7 +18,8 @@ return new class extends Migration
             $table->date('Start_date');
             $table->date('End_date');
             $table->string('leave_Type');
-            $table->boolean('Status');
+            $table->string('Status');
+            $table->string('Reason');
             $table->foreignId('student_id')->constrained()->onDelete('CASCADE');
             $table->timestamps();
         });

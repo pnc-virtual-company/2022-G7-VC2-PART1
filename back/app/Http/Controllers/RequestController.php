@@ -25,15 +25,17 @@ class RequestController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $offer = new Requests();
-        $offer->Start_date = $request->Start_date;
-        $offer->End_date = $request->End_date;
-        $offer->Leave_Type = $request->Leave_Type;
-        $offer->Status = $request->Status;
-        $offer->student_id = $request->student_id;
-
-        $offer->save();
+    {   
+        $offer = $request->validate([
+          'Start_date' => 'required|Date',
+          'End_date' => 'required|Date',
+          'leave_Type' => 'required|string',
+          'Status' => 'required|string',
+          'Reason' => 'required|string',
+          'student_id' => 'required|integer',
+        ]);
+        
+        Requests::create($offer);
         return response()->Json(['messsage'=>'Scuccfully for create Request']);
         
     }
@@ -59,12 +61,7 @@ class RequestController extends Controller
     public function update(Request $request,$id)
     {
         $offer = Requests::findOrFail($id);
-        $offer->Start_date = $request->Start_date;
-        $offer->End_date = $request->End_date;
-        $offer->Leave_Type = $request->Leave_Type;
         $offer->Status = $request->Status;
-        $offer->student_id = $request->student_id;
-
         $offer->save();
         return response()->Json(['messsage'=>'Scuccfully for create Request']);
     }
