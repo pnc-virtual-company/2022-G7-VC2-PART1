@@ -17,6 +17,10 @@ class Student extends Model
         'Password',
         'Phone_number',
     ];
+    protected $hidden =[
+        'updated_at',
+        'created_at'
+    ];
     public function Class(){
         return $this->belongsTo(Classes::class);
     }
