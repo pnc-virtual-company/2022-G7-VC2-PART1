@@ -67,7 +67,7 @@
 
       <div class="form-group d-flex card-btn ml-2">
         <button class=" btn bg-green-600 text-slate-50 " :disabled="validateDate=='false'"  type="submit" >Submit</button>
-        <button class="btn bg-rose-700 text-slate-50 ml-2">Cancel</button>
+        <button class="btn bg-rose-700 text-slate-50 ml-2" @click="cencelRequest">Cancel</button>
       </div>
 
     </form>
@@ -95,12 +95,21 @@ export default {
   },
   methods:{
     newRequest(){
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,student_id:this.studentid,Status:this.Padding,Duration:this.duration}
+      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,
+      student_id:this.studentid,Status:this.Padding,Duration:this.differentDate}
       axios.post(this.url,date).then(response => {
         return response.data
       })
-
+    },
+    cencelRequest(){
+      this.start='',
+      this.end='',
+      this.cause='',
+      this.leave_Type='',
+      this.SpecificStartTime='',
+      this.SpecificEndTime=''
     }
+
   },
   computed: {
     differentDate() {
