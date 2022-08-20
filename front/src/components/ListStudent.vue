@@ -37,7 +37,7 @@
         <td>{{list.Start_date}}</td>
         <td>{{list.End_date}}</td>
         <td>{{list.leave_Type}}</td>
-        <td>{{list.Status}}</td>
+        <td>{{list.Duration}}</td>
         <td>{{list.Reason}}</td>
         <td :class="{'padding':list.Status=='Padding','approve':list.Status=='Approve','reject':list.Status=='Reject'}">{{list.Status}}</td>
       </tr>
@@ -52,7 +52,7 @@ export default {
 
   data() {
     return {
-      URL: "http://127.0.0.1:800/api/request",
+      URL: "http://127.0.0.1:8081/api/request",
       lists: [],
       onStatus: '',
       status: false,
@@ -125,13 +125,15 @@ tr:nth-child(odd) {
   width: 100%;
 }
 .approve{
-  color: green;
+  color: rgb(9, 165, 9);
+  font-weight: bold;
 }
 .padding{
-  color: rgba(0, 119, 255, 0.611);
-  
+  color: rgb(216, 170, 3);
+    font-weight: bold;
 }
 .reject{
-  color: rgba(9, 192, 125, 0.816);
+  color: rgba(192, 21, 9, 0.816);
+    font-weight: bold;
 }
 </style>
