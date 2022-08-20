@@ -8,8 +8,8 @@
         <select class="form-control" v-model="leave_type">
           <option disabled value="">Choose</option>
           <option value="Sick">Sick</option>
-          <option value="Go Home">Go home</option>
-          <option value="Busy">Busy</option>
+          <option value="Go Home">headache</option>
+          <option value="Busy">family's Event</option>
         </select>
       </div>
 
@@ -66,10 +66,8 @@
       </div>
 
       <div class="form-group d-flex card-btn ml-2">
-        <button class=" btn bg-green-600 text-slate-50 " :disabled="validateDate=='false'"  type="submit" >Submit</button>
-        <button class="btn bg-rose-700 text-slate-50 ml-2">Cancel</button>
+        <button class=" btn bg-green-600 text-slate-50 " :disabled="validateDate=='false'"  type="submit"  @click="alertPopUP">Submit</button>
       </div>
-
     </form>
   </div>
 </template>
@@ -77,6 +75,7 @@
 <script>
 import moment from "moment";
 import axios from "axios";
+import Swal from 'sweetalert2'
 export default {
   data() {
     return {
@@ -86,21 +85,42 @@ export default {
       SpecificEndTime: '',
       leave_type:'',
       cause: "",
-      studentid:1,
+      studentid:3,
       isPast:0,
+      duration:1,
       Padding:"Approve",
-      url:'http://127.0.0.1:800/api/request'
+      url:'http://127.0.0.1:8081/api/request'
     };
   },
   methods:{
-    newRequest(){
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,student_id:this.studentid,Status:this.Padding}
-      axios.post(this.url,date).then(response => {
-        return response.data
+    alertPopUP() {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Your data has been saved',
+        showConfirmButton: false,
+        timer: 1500
       })
+    },
+    newRequest(){
+      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
+      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,
+      student_id:this.studentid,Status:this.Padding,Duration:this.differentDate}
+      axios.post(this.url,date).then(response => {
+          return response.data
+        })
 
-    }
-  },
+      if(!notEmptydata){
+       Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Please completed all your date',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      }
+      }
+    },
   computed: {
     differentDate() {
         let notEmpty = this.start !="" && this.end !="" ;
@@ -109,7 +129,6 @@ export default {
         let halfDate = (this.SpecificStartTime !="" && this.SpecificEndTime != "")
         let dateforLeave = moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"));
         let dateTime = 0;
-        // console.log(dateforLeave)
         
         if(dateforLeave <0 || dateforLeave == 0){
           
@@ -133,16 +152,16 @@ export default {
     validateDate(){
       let isValid = 'false';
        let dateforLeave = moment(this.start, "YYYY.MM.DD HH:mm").diff(moment(this.end, "YYYY.MM.DD HH:mm"));
-       if(isNaN(dateforLeave)){
+       if(isNaN(dateforLeave) ){
          isValid = 'not completed';
        }
-
+    
        if(dateforLeave<=0){
-        isValid = 'true'
+         isValid = 'true'
        }
     
-   return isValid;
-    }
+    return isValid;
+    },
   },
 };
 </script>

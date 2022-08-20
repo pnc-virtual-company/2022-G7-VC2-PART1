@@ -1,20 +1,14 @@
 <template>
 <nav class="flex justify-between align-center">
-    <div class="logo my-auto flex">
-      <img :src="require('../assets/logo.png')" alt="" class="ml-5 bg-white rounded-full" width="50">
-      <h2 class="flex items-center ml-2 font-bold text-white " items-center>SLMS</h2>
+    <div class="logo w-1/5">
+      <img :src="require('../assets/logo-en.png')" alt="" class="ml-5 w-1/2">
     </div>
-      <div class="flex justify-start align-center">
-        <router-link class="m-3 text-lg not-italic text-white  text-decoration-none" to="/list">List All Leave</router-link>
-        <router-link class="m-3 text-lg not-italic text-white  text-decoration-none" to="/request">New Request</router-link>
+      <div class="flex justify-center align-center mt-4">
+        <router-link class="m-3 text-white text-decoration-none text-lg" to="/list">List All Leave</router-link>
+        <router-link class="m-3 text-white  text-decoration-none text-lg" to="/request">New Request</router-link>
       </div>
-      <div class="flex justify-between align-center p-2">
-
-        <img :src="require('/src/assets/profile.png')" width="40">
-        <h2 class="m-1 mr-4 font-bold text-white font-mono">Rady Y</h2>
-        <h2 class="m-2 ml-2 text-bold text-indigo-700 font-mono"><a @click="logout" href="#" class="text-decoration-none">Sign out</a></h2>
-        <li @click="logout" class="fa fa-sign-out"></li>
-
+      <div class="flex  align-center">
+        <h2 class="w-full bg-orange-500 text-center p-3 rounded-md outline-none  mr-5 text-white"><a @click="logout" href="#" class="text-decoration-none">Sign out</a></h2>
     </div>
 </nav>
 

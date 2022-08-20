@@ -21,7 +21,7 @@
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-© {{ date('Y') }} {{ config('app.name') }}. @lang('All rights reserved.')
+©  @lang('social affair team at passerellesnumeriques cambodia')
 @endcomponent
 @endslot
 @endcomponent

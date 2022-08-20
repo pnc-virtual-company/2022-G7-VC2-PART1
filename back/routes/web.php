@@ -4,7 +4,7 @@ use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Mailer as MailMailer;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    \Illuminate\Support\Facades\Mail::send(new App\Mail\OrderShipped);
+
     return view('welcome');
 });
+
+Route::get('/request',[MailController::class,'sendMail']);
