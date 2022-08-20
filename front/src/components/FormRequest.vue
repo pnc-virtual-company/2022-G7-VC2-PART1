@@ -8,8 +8,8 @@
         <select class="form-control" v-model="leave_type">
           <option disabled value="">Choose</option>
           <option value="Sick">Sick</option>
-          <option value="Go Home">Go home</option>
-          <option value="Busy">Busy</option>
+          <option value="Go Home">headache</option>
+          <option value="Busy">family's Event</option>
         </select>
       </div>
 
@@ -68,7 +68,6 @@
         <button class="btn btn-info" type="submit">Submit</button>
         <button class="btn btn-danger ml-2">Cancel</button>
       </div>
-
     </form>
   </div>
 </template>
