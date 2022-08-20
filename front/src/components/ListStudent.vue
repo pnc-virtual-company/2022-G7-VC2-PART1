@@ -10,7 +10,7 @@
           <option value="headache">headache</option>
           <option value="family's Event">family's Event</option>
         </select>
-        <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color" v-model="onStatus">
+        <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color text-white" v-model="onStatus">
           <option value="">Show All</option>
           <option value="Approve">Approve</option>
           <option value="Reject">Reject</option>
@@ -45,7 +45,9 @@
     </div>
   </div>
   <Card/>
+ 
 </div>
+
 </template>
 
 <script>
@@ -57,7 +59,7 @@ export default {
   },
   data() {
     return {
-      URL: "http://127.0.0.1:8000/api/request",
+      URL: "http://127.0.0.1:8081/api/request",
       lists: [],
       onStatus: '',
       status: false,
@@ -130,13 +132,15 @@ tr:nth-child(odd) {
   width: 100%;
 }
 .approve{
-  color: green;
+  color: rgb(9, 165, 9);
+  font-weight: bold;
 }
 .padding{
-  color: orange;
-  
+  color: rgb(216, 170, 3);
+    font-weight: bold;
 }
 .reject{
-  color: red;
+  color: rgba(192, 21, 9, 0.816);
+    font-weight: bold;
 }
 </style>

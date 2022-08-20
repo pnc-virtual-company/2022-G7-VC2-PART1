@@ -20,9 +20,11 @@ body{
   padding: 0;
   font-family: "Montserrat", sans-serif;
 }
+
   /* #app {
     background: rgb(118, 109, 109);
   } */
+
 nav{
   position: sticky;
   top: 0;
