@@ -89,7 +89,7 @@ export default {
       isPast:0,
       duration:1,
       Padding:"Approve",
-      url:'http://127.0.0.1:8081/api/request'
+      url:'http://127.0.0.1:8082/api/request'
     };
   },
   methods:{
@@ -104,8 +104,8 @@ export default {
     },
     newRequest(){
       let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,
-      student_id:this.studentid,Status:this.Padding,Duration:this.differentDate}
+      let date = {start_date:this.start,end_date:this.end,reason:this.cause,leave_type:this.leave_type,
+      student_id:this.studentid,status:this.Padding,Duration:this.differentDate}
       axios.post(this.url,date).then(response => {
           return response.data
         })
