@@ -10,12 +10,13 @@ class Student extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'Fist_name',
-        'Last_name',
-        'Gender',
-        'Email',
-        'Password',
-        'Phone_number',
+        'fist_name',
+        'last_name',
+        'gender',
+        'email',
+        'password',
+        'phone_number',
+        'profile'
     ];
     protected $hidden =[
         'updated_at',

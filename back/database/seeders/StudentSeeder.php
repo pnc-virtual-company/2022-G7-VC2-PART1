@@ -17,9 +17,9 @@ class StudentSeeder extends Seeder
     {
         $students=[
             [
-            'First_name'=>"Cham",'Last_name'=>"smey",
-            'Gender'=>'Male','Email'=>'smey@gmail','password'=>"cham23145677",
-            'Phone_number'=>9634521,'class_id'=>1, 'batch_id'=>1, 'admin_id'=>2
+            'first_name'=>"Cham",'last_name'=>"smey",
+            'gender'=>'Male','email'=>'smey@gmail','password'=>"cham23145677",'profile'=>'photo_2021-02-05_05-32-47.jpg',
+            'phone_number'=>9634521,'class_id'=>1, 'batch_id'=>1, 'admin_id'=>1
         ],
         ];
         foreach($students as $student){
