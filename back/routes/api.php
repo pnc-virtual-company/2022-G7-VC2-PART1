@@ -28,3 +28,5 @@ Route::apiResource('request',RequestController::class);
 Route::apiResource('class',ClassesController::class);
 Route::apiResource('batchs',BatchController::class);
 Route::apiResource('admin',AdminController::class);
+
+Route::post('signIn', [StudentController::class,'signIn']);

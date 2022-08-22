@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -86,5 +87,13 @@ class StudentController extends Controller
     public function destroy($id)
     {
         return Student::destroy($id);
+    }
+
+    public function signIn(Request $request){
+        $student = Student::where('Email', $request->email)->first();
+        if(!$student || !Hash::check( $request->password,$student->password)){
+            return response()->json(['message'=>'Invalid password !!'],404);
+        }
+        return response()->json(['message'=>'Scuccfully']);
     }
 }
