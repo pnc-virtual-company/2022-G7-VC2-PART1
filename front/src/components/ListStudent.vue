@@ -33,12 +33,12 @@
        </thead>
         <tbody>
           <tr v-for="list of dataStatus" :key="list">
-            <td>{{list.Start_date}}</td>
-            <td>{{list.End_date}}</td>
+            <td>{{list.start_date}}</td>
+            <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
-            <td>{{list.Status}}</td>
-            <td>{{list.Reason}}</td>
-            <td :class="{'padding':list.Status=='Padding','approve':list.Status=='Approve','reject':list.Status=='Reject'}">{{list.Status}}</td>
+            <td>{{list.duration}}</td>
+            <td>{{list.reason}}</td>
+            <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}">{{list.status}}</td>
           </tr>
         </tbody>
       </table>
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      URL: "http://127.0.0.1:8081/api/request",
+      URL: "http://127.0.0.1:8082/api/request",
       lists: [],
       onStatus: '',
       status: false,

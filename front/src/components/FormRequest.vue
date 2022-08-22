@@ -62,7 +62,7 @@
 
       <label>Cause(Reason)</label>
       <div class="form-group w-100">
-        <textarea id="w3review" name="w3review" rows="2" cols="71" v-model="cause" ></textarea>
+        <textarea id="w3review" name="w3review" class="form-control"  v-model="reason" ></textarea>
       </div>
 
       <div class="form-group d-flex card-btn ml-2">
@@ -81,15 +81,15 @@ export default {
     return {
       start: "",
       end:"",
-      SpecificStartTime: '',
-      SpecificEndTime: '',
-      leave_type:'',
-      cause: "",
-      studentid:3,
+      SpecificStartTime: "",
+      SpecificEndTime:"",
+      leave_type:"",
+      reason: "",
+      studentid:1,
       isPast:0,
-      duration:1,
       Padding:"Approve",
-      url:'http://127.0.0.1:8081/api/request'
+      url:'http://127.0.0.1:8082/api/request/',
+      listDate:[]
     };
   },
   methods:{
@@ -103,12 +103,22 @@ export default {
       })
     },
     newRequest(){
-      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,
-      student_id:this.studentid,Status:this.Padding,Duration:this.differentDate}
-      axios.post(this.url,date).then(response => {
-          return response.data
-        })
+      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
+
+      let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
+      duration:parseInt(this.differentDate),student_id:this.studentid}
+
+      this.listDate.push(list)
+
+      axios.post(this.url,list).then(response => { 
+          console.log('Date:'+ this.listDate,response);
+      })
+      this.start = ''
+      this.end=''
+      this.SpecificEndTime=''
+      this.SpecificStartTime=''
+      this.leave_type =''
+      this.cause=''
 
       if(!notEmptydata){
        Swal.fire({
