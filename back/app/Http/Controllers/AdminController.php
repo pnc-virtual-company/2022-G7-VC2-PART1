@@ -26,18 +26,18 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $admin = new Admin();
-        $admin->First_name = $request->First_name;
-        $admin->Last_name = $request->Last_name;
-        $admin->Email = $request->Email;
-        $admin->Password = bcrypt($request->password);
+        $admin->first_name = $request->first_name;
+        $admin->last_name = $request->last_name;
+        $admin->email = $request->email;
+        $admin->password = bcrypt($request->password);
         
-        $path = public_path('images');
+        $path = public_path('images/Admin');
         if ( ! file_exists($path) ) {
             mkdir($path, 0777, true);
         }
-        $file = $request->file('Profile');
+        $file = $request->file('profile');
         $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
-        $admin->Profile = $fileName;
+        $admin->profile = $fileName;
         $admin->save();
         $file->move($path, $fileName);
 

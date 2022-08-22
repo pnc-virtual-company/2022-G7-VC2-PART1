@@ -10,12 +10,12 @@ class Requests extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'Start_date',
-        'End_date',
+        'start_date',
+        'end_date',
         'leave_Type',
-        'Status',
-        'Reason',
-        'Duration',
+        'status',
+        'reason',
+        'duration',
         'student_id'
     ];
 

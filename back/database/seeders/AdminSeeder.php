@@ -17,9 +17,9 @@ class AdminSeeder extends Seeder
     {
         $admins =[
             [
-                'First_name'=>"Sim",'Last_name'=>"Houl",
-                'Email'=>'sim@gmail','password'=>"sim23145677",
-                'Profile'=>'photo_2021-02-05_05-32-47.jpg',
+                'first_name'=>"Sim",'last_name'=>"Houl",
+                'email'=>'sim@gmail','password'=>"sim23145677",
+                'profile'=>'photo_2021-02-05_05-32-47.jpg',
             ]
         ];
         foreach($admins as $admin){

@@ -26,7 +26,7 @@ class ClassesController extends Controller
     public function store(Request $request)
     {
         $class = new Classes();
-        $class->Class= $request->Class;
+        $class->class= $request->class;
 
         $class->save();
         return response()->json(['message'=>'Successfully for create class']);

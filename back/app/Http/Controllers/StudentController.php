@@ -28,15 +28,24 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $students = new Student();
-        $students->First_name = $request->First_name;
-        $students->Last_name = $request->Last_name;
-        $students->Gender = $request->Gender;
-        $students->Email = $request->Email;
-        $students->Password = bcrypt($request->Password);
-        $students->Phone_number = $request->Phone_number;
+        $students->first_name = $request->first_name;
+        $students->last_name = $request->last_name;
+        $students->gender = $request->gender;
+        $students->email = $request->email;
+        $students->password = bcrypt($request->password);
+        $students->phone_number = $request->phone_number;
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
+        $path = public_path('images/Student');
+        if ( ! file_exists($path) ) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('profile');
+        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+        $students->Profile = $fileName;
+        $students->save();
+        $file->move($path, $fileName);
 
         $students->save();
         return response()->Json(['messsage'=>'Scuccfully for Create Student']);
@@ -63,15 +72,25 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $students = Student::findOrFail($id);
-        $students->First_name = $request->First_name;
-        $students->Last_name = $request->Last_name;
-        $students->Gender = $request->Gender;
-        $students->Email = $request->Email;
-        $students->password = $request->Password;
+        $students->first_name = $request->first_name;
+        $students->last_name = $request->last_name;
+        $students->gender = $request->gender;
+        $students->email = $request->email;
+        $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
+        $students ->profile = $request->profile;
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
+        $path = public_path('images/Student');
+        if ( ! file_exists($path) ) {
+            mkdir($path, 0777, true);
+        }
+        $file = $request->file('profile');
+        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+        $students->Profile = $fileName;
+        $students->save();
+        $file->move($path, $fileName);
 
         $students->save();
         return response()->Json(['messsage'=>'Scuccfully for Update Student']);

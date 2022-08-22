@@ -27,12 +27,12 @@ class RequestController extends Controller
     public function store(Request $request)
     {   
         $offer = $request->validate([
-          'Start_date' => 'required|Date',
-          'End_date' => 'required|Date',
+          'start_date' => 'required|Date',
+          'end_date' => 'required|Date',
           'leave_Type' => 'required|string',
-          'Status' => 'required|string',
-          'Reason' => 'required|string',
-          'Duration'=> 'required|integer',
+          'status' => 'required|string',
+          'reason' => 'required|string',
+          'duration'=> 'required|integer',
           'student_id' => 'required|integer',
         ]);
         
@@ -62,7 +62,7 @@ class RequestController extends Controller
     public function update(Request $request,$id)
     {
         $offer = Requests::findOrFail($id);
-        $offer->Status = $request->Status;
+        $offer->status = $request->status;
         $offer->save();
         return response()->Json(['messsage'=>'Scuccfully for create Request']);
     }
