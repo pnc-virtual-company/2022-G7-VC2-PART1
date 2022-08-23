@@ -107,12 +107,5 @@ class StudentController extends Controller
     {
         return Student::destroy($id);
     }
-
-    public function signIn(Request $request){
-        $student = Student::where('Email', $request->email)->first();
-        if(!$student || !Hash::check( $request->password,$student->password)){
-            return response()->json(['message'=>'Invalid password !!'],404);
-        }
-        return response()->json(['message'=>'Scuccfully']);
-    }
+ 
 }
