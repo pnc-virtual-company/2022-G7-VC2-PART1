@@ -6,9 +6,11 @@ import { loadFonts } from './plugins/webfontloader'
 import './assets/tailwind.css'
 import FormView from './components/FormLogIn.vue';
 import NavView from './components/NavBar.vue';
+import NavbarAdmin from './components/Admin/NavBarAdmin.vue'
 const app = createApp(App);
 app.component('form-view',FormView);
 app.component('navbar-view',NavView);
+app.component('Navbar-Admin',NavbarAdmin)
 loadFonts()
 
 app

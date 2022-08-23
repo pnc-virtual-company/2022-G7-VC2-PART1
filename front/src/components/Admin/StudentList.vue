@@ -1,11 +1,5 @@
 <template>
-
-  <h2>fghj</h2>
-
-  <div class="admin">
-    
-  </div>
-
+  <h1>Student leave</h1>
 </template>
 
 <script>
