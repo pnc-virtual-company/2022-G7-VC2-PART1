@@ -10,14 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data;
     /**
+     * 
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
+        $this->data = $data;
         //
     }
 
@@ -26,17 +28,20 @@ class OrderShipped extends Mailable
      *
      * @return $this
      */
+    // ['name'=>'Cham Smey',
+    // 'class'=>'WEP 2022 B',
+    // 'leave_type'=>'go to wat phnom',
+    // 'reason'=>'visit monkeys',
+    // 'start_date'=>'8-19-2022',
+    // 'end_date'=>'8-22-2022',
+    // 'duration'=>'3 days',
+    // ]
     public function build()
     {
+        // send data to the
         return $this-> subject('Request leave')->markdown('emails.orders.shipped')->with(
-            ['name'=>'Cham Smey',
-            'class'=>'WEP 2022 B',
-            'leave_type'=>'go to wat phnom',
-            'reason'=>'visit monkeys',
-            'start_date'=>'8-19-2022',
-            'end_date'=>'8-22-2022',
-            'duration'=>'3 days',
-            ]
-        );
+            $this->data
+        
+    );
     }
 }

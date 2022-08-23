@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Requests;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderShipped;
 class RequestController extends Controller
 {
     /**
@@ -35,8 +36,14 @@ class RequestController extends Controller
           'Duration'=> 'required|integer',
           'student_id' => 'required|integer',
         ]);
-        
+        // send email to the author
         Requests::create($offer);
+        Mail::to('cham.smey@student.passerellesnumeriques.org')
+        ->cc(['kimky.guinevere@gmail.com', 'loemsophimitstudent@gmail.com'])
+        ->send(new OrderShipped($offer));
+        // send mail notification
+        
+      
         return response()->Json(['messsage'=>'Scuccfully for create Request']);
         
     }
