@@ -37,6 +37,8 @@
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
             <td>{{list.status}}</td>
+            <td>{{list.duration}}</td>
+
             <td>{{list.reason}}</td>
             <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}">{{list.status}}</td>
           </tr>
