@@ -1,7 +1,7 @@
 <template>
 <div class="w-full flex justify-between">
   <div class="w-[80%]">
-    <div class="w-full flex justify-between ml-4 mt-5">
+    <div class="w-full flex justify-between ml-2 mt-5">
       <div class="w-1/4 flex justify-evenly m-2 ">
         <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
           <option value="" disabled>Choose Type</option>
@@ -11,6 +11,7 @@
           <option value="family's Event">family's Event</option>
         </select>
         <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color text-white" v-model="onStatus">
+          <option value="" disabled>Choose</option>
           <option value="">Show All</option>
           <option value="Approve">Approve</option>
           <option value="Reject">Reject</option>
@@ -19,7 +20,7 @@
       </div>
   </div>
 
-  <div class="mt-4 d-flex w-full ml-4">
+  <div class="mt-1 d-flex w-full ml-4">
     <table>
       <thead class="text-center">
         <tr>
@@ -59,7 +60,7 @@ export default {
   },
   data() {
     return {
-      URL: "http://127.0.0.1:8082/api/request",
+      URL: "http://127.0.0.1:8000/api/request",
       lists: [],
       onStatus: '',
       status: false,
@@ -70,11 +71,9 @@ export default {
   computed:{
     dataStatus(){
      let  dataFilter = []
-      if(this.onStatus != '' && this.LeaveType!='' ) {
+      if(this.onStatus != '' && this.LeaveType !='' ) {
        dataFilter=this.lists.filter(value =>(value.Status == this.onStatus )&&(value.leave_Type == this.LeaveType));
-      // }else if(this.LeaveType != '' ) {
-        //   return this.lists.filter(value => value.leave_Type == this.LeaveType);
-      }else if(this.onStatus =='' && this.LeaveType!='') {
+      }else if(this.onStatus =='' && this.LeaveType !='') {
        dataFilter=this.lists.filter(value =>(value.leave_Type == this.LeaveType));
         }
       else if(this.onStatus !='' && this.LeaveType=='') {
