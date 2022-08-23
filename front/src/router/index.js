@@ -2,16 +2,40 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ListView from '../views/ListView.vue'
 import RquestView from '../views/RequestView.vue';
 import StudentView from '../views/StudentView.vue';
-import AdminView from '../views/AdminView.vue';
+import AdminView from '../views/AdminView/AdminView.vue';
 import FormLogIn from '../components/FormLogIn.vue';
+import CheckLeave from '../views/AdminView/CheckLeave.vue'
+// import AdminView from  '../views/AdminView/AdminView.vue'
+import StudentList from '../views/AdminView/StudentList.vue'
 
 const routes = [
+  // {
+  //   path:'admin',
+  //   name:'admin',
+  //   component:AdminView
+  // },
+  {
+    path:'/StudentList',
+    name:'StudentList',
+    component:StudentList
+    
+  },
+  {
+  path:'/checkleave',
+  name: 'checkleave',
+  component: CheckLeave
+  },
+
+  // Student list
   {
     path: '/list',
     name: 'list',
     component: ListView,
     props:true
   },
+ 
+ 
+
   {
     path: '/request',
     name: 'request',
