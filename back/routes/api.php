@@ -19,9 +19,6 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 Route::apiResource("students",StudentController::class);
 Route::apiResource('request',RequestController::class);
