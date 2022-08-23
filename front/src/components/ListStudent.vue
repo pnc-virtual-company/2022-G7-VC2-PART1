@@ -6,7 +6,7 @@
         <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
           <option value="" disabled>Choose Type</option>
           <option value="">Show All</option>
-          <option value="Sick">Sick</option>
+          <option value="sick">Sick</option>
           <option value="headache">headache</option>
           <option value="family's Event">family's Event</option>
         </select>
@@ -36,9 +36,7 @@
             <td>{{list.start_date}}</td>
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
-            <td>{{list.status}}</td>
             <td>{{list.duration}}</td>
-
             <td>{{list.reason}}</td>
             <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}">{{list.status}}</td>
           </tr>
@@ -73,14 +71,14 @@ export default {
     dataStatus(){
      let  dataFilter = []
       if(this.onStatus != '' && this.LeaveType!='' ) {
-       dataFilter=this.lists.filter(value =>(value.Status == this.onStatus )&&(value.leave_Type == this.LeaveType));
+       dataFilter=this.lists.filter(value =>(value.status == this.onStatus )&&(value.leave_Type == this.LeaveType));
       // }else if(this.LeaveType != '' ) {
         //   return this.lists.filter(value => value.leave_Type == this.LeaveType);
       }else if(this.onStatus =='' && this.LeaveType!='') {
        dataFilter=this.lists.filter(value =>(value.leave_Type == this.LeaveType));
         }
       else if(this.onStatus !='' && this.LeaveType=='') {
-        dataFilter= this.lists.filter(value =>(value.Status == this.onStatus ));
+        dataFilter= this.lists.filter(value =>(value.status == this.onStatus ));
         }
         else{
           dataFilter = this.lists;

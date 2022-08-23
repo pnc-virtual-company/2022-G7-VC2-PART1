@@ -7,9 +7,9 @@
         <label>Leave type</label>
         <select class="form-control" v-model="leave_type">
           <option disabled value="">Choose</option>
-          <option value="Sick">Sick</option>
-          <option value="Go Home">headache</option>
-          <option value="Busy">family's Event</option>
+          <option value="sick">Sick</option>
+          <option value="headache">headache</option>
+          <option value="family's Event">family's Event</option>
         </select>
       </div>
 
@@ -85,7 +85,7 @@ export default {
       SpecificEndTime:"",
       leave_type:"",
       reason: "",
-      studentid:1,
+      studentid:3,
       isPast:0,
       Padding:"Approve",
       url:'http://127.0.0.1:8082/api/request/',
@@ -104,12 +104,6 @@ export default {
     },
     newRequest(){
       let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
-      let date = {start_date:this.start,end_date:this.end,reason:this.cause,leave_Type:this.leave_type,
-      student_id:this.studentid,status:this.Padding,duration:this.differentDate}
-      axios.post(this.url,date).then(response => {
-          return response.data
-        })
-
       let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
       duration:parseInt(this.differentDate),student_id:this.studentid}
 
@@ -123,7 +117,7 @@ export default {
       this.SpecificEndTime=''
       this.SpecificStartTime=''
       this.leave_type =''
-      this.cause=''
+      this.reason=''
 
       if(!notEmptydata){
        Swal.fire({
