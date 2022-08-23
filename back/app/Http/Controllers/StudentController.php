@@ -33,6 +33,7 @@ class StudentController extends Controller
         $students->email = $request->email;
         $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
+        $students->role = $request->role;
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
@@ -75,6 +76,7 @@ class StudentController extends Controller
         $students->last_name = $request->last_name;
         $students->gender = $request->gender;
         $students->email = $request->email;
+        $students->role = $request->role;
         $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
         $students ->profile = $request->profile;

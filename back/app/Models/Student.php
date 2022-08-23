@@ -16,7 +16,8 @@ class Student extends Model
         'email',
         'password',
         'phone_number',
-        'profile'
+        'profile',
+        'role'
     ];
     protected $hidden =[
         'updated_at',

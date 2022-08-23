@@ -14,7 +14,8 @@ class Admin extends Model
         'last_name',
         'profile',
         'email',
-        'password'
+        'password',
+        'role'
     ];
     protected $hidden =[
         'updated_at',
