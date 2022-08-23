@@ -6,9 +6,9 @@
         <h2 class="mt-2">Leave Type</h2>
         <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="leave_type">
             <option value="" disabled>Choose type</option>
-            <option value="Sick">Sick</option>
-            <option value="Headache">Headache</option>
-            <option value="Family's Event">Family's Event</option>
+            <option value="sick">Sick</option>
+            <option value="headache">Headache</option>
+            <option value="family's Event">Family's Event</option>
         </select>
         <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -17,7 +17,7 @@
       <h2 class="mt-2">Start Date</h2>
       <div class="flex flex-wrap -mx-3">
         <div class="w-full px-3 flex space-x-4 relative">
-          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" v-model="start">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23" v-model="start">
           <div class="relative w-80">
             <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificStartTime">
                 <option value="" disabled>Choose type</option>
@@ -33,7 +33,7 @@
       <h2>EndData</h2>
          <div class="flex flex-wrap -mx-3">
         <div class="w-full px-3 flex space-x-4 relative">
-          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" v-model="end">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23"  v-model="end">
           <div class="relative w-80">
             <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificEndTime">
                 <option value="" disabled>Choose type</option>
@@ -47,11 +47,10 @@
         </div>
       </div>
         <div class="w-100">
+          <p class="text-red-600 mt-1" v-if="validateDate=='false'">start date isn't greater than and end date</p>
           <label>Duration: </label>
           <span class="p-1.5 text-red font-bold">{{ differentDate }} days</span>
         </div>
-        <p class="text-red-600 mt-1" v-if="validateDate=='true'">corrected</p>
-        <p class="text-red-600 mt-1" v-else-if="validateDate=='false'">start date isn't greater than and end date</p>
       <h2>Cause(Reason)</h2>
       <div class="relative w-100">
         <input class="mb-3 w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Input" v-model="reason">
@@ -76,9 +75,9 @@ export default {
       SpecificEndTime:"",
       leave_type:"",
       reason: "",
-      studentid:1,
+      studentid:2,
       isPast:0,
-      Padding:"Approve",
+      Padding:"Padding",
       url:'http://127.0.0.1:8000/api/request/',
       listDate:[]
     };

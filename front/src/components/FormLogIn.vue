@@ -32,8 +32,8 @@ export default {
       onLog() {
           if (this.email != '' && this.password!='' ) {
             localStorage.setItem('user', 1)
-            // this.$router.push({ name: "student", params: { id: 1 } });
-            this.$router.push({ name: "admin", params: { id: 1 } });
+            this.$router.push({ name: "student", params: { id: 1 } });
+            // this.$router.push({ name: "admin", params: { id: 1 } });
         }
     },
   },

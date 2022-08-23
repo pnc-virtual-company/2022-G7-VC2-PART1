@@ -6,7 +6,7 @@
         <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
           <option value="" disabled>Choose Type</option>
           <option value="">Show All</option>
-          <option value="Sick">Sick</option>
+          <option value="sick">Sick</option>
           <option value="headache">headache</option>
           <option value="family's Event">family's Event</option>
         </select>
@@ -72,12 +72,12 @@ export default {
     dataStatus(){
      let  dataFilter = []
       if(this.onStatus != '' && this.LeaveType !='' ) {
-       dataFilter=this.lists.filter(value =>(value.Status == this.onStatus )&&(value.leave_Type == this.LeaveType));
+       dataFilter=this.lists.filter(value =>(value.status == this.onStatus )&&(value.leave_Type == this.LeaveType));
       }else if(this.onStatus =='' && this.LeaveType !='') {
        dataFilter=this.lists.filter(value =>(value.leave_Type == this.LeaveType));
         }
       else if(this.onStatus !='' && this.LeaveType=='') {
-        dataFilter= this.lists.filter(value =>(value.Status == this.onStatus ));
+        dataFilter= this.lists.filter(value =>(value.status == this.onStatus ));
         }
         else{
           dataFilter = this.lists;
