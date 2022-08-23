@@ -11,6 +11,7 @@
         <h2 class="w-full bg-orange-500 text-center p-3 rounded-md outline-none  mr-5 text-white"><a @click="logout" href="#" class="text-decoration-none">Sign out</a></h2>
     </div>
 </nav>
+
 </template>
 <script>
 export default {

@@ -1,14 +1,29 @@
 <template>
 <div class="app">
-  <router-link to="/list"/>
+  <!-- // navigation bar  -->
+  <navbar-view v-if='isLogin==true || userId!=undefined'/>
+  <main>
+    <!-- view -->
+    <router-view @reqest-login="login"/>
+  </main>
 </div>
-<main><router-view/></main>
 
 </template>
 <script>
 export default {
-  components:{
+  components: {
 
+  },
+  data() {
+    return {
+      isLogin: false,
+      userId: localStorage.userId
+    }
+  },
+  methods: {
+    login(value) {
+      this.isLogin = value.isLogin;
+    }
   }
 }
 </script>
@@ -26,17 +41,31 @@ body{
   } */
 
 nav{
+
   position: sticky;
   top: 0;
   width: 100%;
+
+  background: #22BBEA;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   background: #45b6fe;
   height: 12vh;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 nav a.router-link-exact-active{
+
+  background:#FFAD5C;
+
+  /* border-radius: 5px; */
+  padding: 5px;
+
+  border-radius: 5px;
+
   border-bottom: 2px solid orange;
+
   padding: 2px;
+
 }
 nav a{
   border:none; 
@@ -48,4 +77,5 @@ nav a{
   color:#5579c6;
   cursor: pointer;
 }
+
 </style>

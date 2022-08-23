@@ -1,4 +1,5 @@
 <template>
+
 <div class="w-full flex justify-between">
   <div class="w-[80%]">
     <div class="w-full flex justify-between ml-2 mt-5">
@@ -48,6 +49,9 @@
   <Card/>
  
 </div>
+
+
+
 
 </template>
 
@@ -109,13 +113,19 @@ table {
   border-right: 2px solid white;
   padding: 10px;
 }
+
+/* .table, th {
+  background: #2a2ab9;
+  color: #fff;
+} */
 .table, th {
   background: #6095C9;
   color: #fff;
   border-bottom: no;
 }
+
 tr:hover {
-  background: #45b6fe;
+  background: #fafcff;
 }
 tr:nth-child(even) {
   background: #D9E0ED;
