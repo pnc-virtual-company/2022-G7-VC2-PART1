@@ -1,6 +1,6 @@
 <template>
   <div class="form-login">
-    <form @submit.prevent="onLog">
+    <form @submit.prevent="requestLogin">
       <div>
         <h1 class="text-3xl text-center  text-bold">log In</h1>
       </div>
@@ -41,6 +41,7 @@
       <!-- <p v-if="password.length == 0" class="sms color-red">invalid</p> -->
       <select
         name=""
+        v-model="user"
         class="w-full border px-3 py-2 rounded-sm shadow-sm foucse:outline-none"
       >
         <option value="social affiar">social affiar</option>
@@ -63,15 +64,17 @@ export default {
     return {
       email: "",
       password: "",
+      user:null
     };
   },
   methods: {
-    onLog() {
-      if (this.email != "" && this.password != "") {
-        localStorage.setItem("user", { id: 1 });
-        this.$router.push({ name: "student", params: { id: 1 } });
+    requestLogin() {
+      if (this.email !== '' && this.password !== '' && this.user !== null) {
+        this.$emit('reqest-login', { isLogin: true,user:this.user });
+        localStorage.setItem('userId', 1);
+        this.$router.push({name:'students'})
+        
       }
-
     }
   }
 }

@@ -1,45 +1,90 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import ListView from '../views/ListView.vue'
-import RquestView from '../views/RequestView.vue';
-import StudentView from '../views/StudentView.vue';
-import AdminView from '../views/AdminView.vue';
-import FormLogIn from '../components/FormLogIn.vue';
+import { createRouter, createWebHistory } from "vue-router";
+import ListView from "../views/ListView.vue";
+import RquestView from "../views/RequestView.vue";
+import StudentView from "../views/StudentView.vue";
+import AdminView from "../views/AdminView.vue";
+import FormLogIn from "../components/FormLogIn.vue";
 
 const routes = [
+ 
   {
-    path: '/list',
-    name: 'list',
-    component: ListView,
-    props:true
+    path: "/login",
+    name:'login',
+    component: FormLogIn,
+    meta: {
+      requireAuth: false,
+    },
   },
   {
-    path: '/request',
-    name: 'request',
-    component:RquestView
+    path: "/list",
+    name:'list',
+    component: ListView,
+    props: true,
+    meta: {
+      requireAuth: true,
+    },
+    
+  },
+  {
+    path: "/request",
+    name:'request',
+    component: RquestView,
+    meta: {
+      requireAuth: true,
+    },
   },
   
   {
-    path: '/student/:id/list',
-    name: 'student',
+    path: "/",
+    name:'students',
     component: StudentView,
-    props:true
+    props: true,
+    meta: {
+      requireAuth: true,
+    },
   },
   {
-    path: '/admin/:id',
-    name: 'admin',
+    path: "/admin/:id",
+    name:'admin',
     component: AdminView,
-    props:true
+    props: true,
+    meta: {
+      requireAuth: true,
+    },
   },
-  {
-    path: '/',
-    name: 'FormLogIn',
-    component: FormLogIn
-  },
-]
+ 
+];
 
+let navigationGuid = (to, from, next) => { 
+  if (to.meta.requireAuth) {
+    if (!parseInt(localStorage.userId)) {
+      next({name:'login'})
+      
+    } else {
+      if (to.path === '/login') {
+        next({name:'students'})
+      } else {
+        next()
+      }
+    }
+    
+  } else {
+    if (localStorage.userId) {
+      if (to.name === 'login') {
+        next({name:'students'})
+      } else {
+        next()
+      }
+    } 
+    console.log(to);
+    next()
+  }
+
+};
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
+router.beforeEach(navigationGuid);
 
-export default router
+export default router;

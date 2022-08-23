@@ -1,6 +1,4 @@
 <template>
-  <navbar-view/>
-  <!-- <main><router-view /></main> -->
   <ViewList/>
  <h2></h2>
 </template>

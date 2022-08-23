@@ -1,20 +1,29 @@
 <template>
 <div class="app">
-
-  <router-link to="/"/>
+  <!-- // navigation bar  -->
+  <navbar-view v-if='isLogin==true || userId!=undefined'/>
   <main>
-    <router-view/>
+    <!-- view -->
+    <router-view @reqest-login="login"/>
   </main>
-
-  <router-link to="/list"/>
-
 </div>
 
 </template>
 <script>
 export default {
-  components:{
+  components: {
 
+  },
+  data() {
+    return {
+      isLogin: false,
+      userId: localStorage.userId
+    }
+  },
+  methods: {
+    login(value) {
+      this.isLogin = value.isLogin;
+    }
   }
 }
 </script>
