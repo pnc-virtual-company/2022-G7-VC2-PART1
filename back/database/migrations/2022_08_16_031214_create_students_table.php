@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('First_name');
-            $table->string('Last_name');
-            $table->string('Gender');
-            $table->string('Email');
-            $table->string('Password');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('gender');
+            $table->string('email');
+            $table->string('password');
             $table->string('Phone_number');
+            $table->string('profile');
             $table->foreignId('class_id')->constrained()->onDelete('CASCADE');
             $table->foreignId('batch_id')->constrained()->onDelete('CASCADE');
             $table->foreignId('admin_id')->constrained()->onDelete('CASCADE');

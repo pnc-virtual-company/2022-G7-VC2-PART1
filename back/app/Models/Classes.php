@@ -10,7 +10,7 @@ class Classes extends Model
 {
     use HasFactory;
     protected $fillable =[   
-        'Class',
+        'class',
     ];
     protected $hidden =[
         'updated_at',

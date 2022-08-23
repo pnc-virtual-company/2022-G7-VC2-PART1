@@ -26,7 +26,7 @@ class BatchController extends Controller
     public function store(Request $request)
     {
         $batch = new Batch();
-        $batch->Generation = $request->Generation;
+        $batch->generation = $request->generation;
         
         $batch->save();
         return response()->Json(['messsage'=>'Scuccfully for Batch']);

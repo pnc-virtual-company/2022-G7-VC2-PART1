@@ -1,72 +1,63 @@
 <template>
-  <div class="container mt-5 d-flex justify-content-center">
+  <div class="container mt-5 flex justify-center">
     <form @submit.prevent="newRequest" class="w-50 p-4">
-      <h1 class="text-center p-1">Request to Trainer</h1>
-      <hr />
-      <div class="form-group">
-        <label>Leave type</label>
-        <select class="form-control" v-model="leave_type">
-          <option disabled value="">Choose</option>
-          <option value="Sick">Sick</option>
-          <option value="Go Home">headache</option>
-          <option value="Busy">family's Event</option>
+      <p class="text-center text-blue text-xl p-1">CREATE REQUEST</p><hr />
+      <div class="relative w-100">
+        <h2 class="mt-2">Leave Type</h2>
+        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="leave_type">
+            <option value="" disabled>Choose type</option>
+            <option value="Sick">Sick</option>
+            <option value="Headache">Headache</option>
+            <option value="Family's Event">Family's Event</option>
         </select>
-      </div>
-
-      <label class="mt-1">StartData</label>
-      <div class="w-100 d-flex">
-        <div class="form-group w-100">
-          <input
-            class="form-control"
-            type="date"
-            placeholder="Input data"
-            v-model="start"
-          />
-        </div>
-
-        <div class="form-group w-100 ml-2">
-          <select class="form-control" v-model="SpecificStartTime">
-            <option value="Morning">Morning</option>
-            <option value="Afternoon">Afternoon</option>
-          </select>
+        <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+          <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
         </div>
       </div>
-
-      <label>EndData</label>
-      <div class="w-100 d-flex">
-        <div class="form-group w-100">
-          <input
-            type="date"
-            placeholder="Input data"
-            class="form-control"
-            v-model="end"
-          />
-          <p class="text-red-600 mt-1" v-if="validateDate=='true'">corrected</p>
-          <p class="text-red-600 mt-1" v-else-if="validateDate=='false'">start date isn't greater than and end date</p>
-        </div>
-
-        <div class="form-group w-100 ml-2">
-          <select class="form-control" v-model="SpecificEndTime">
-            <option value="Morning">Morning</option>
-            <option value="Afternoon">Afternoon</option>
-          </select>
+      <h2 class="mt-2">Start Date</h2>
+      <div class="flex flex-wrap -mx-3">
+        <div class="w-full px-3 flex space-x-4 relative">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" v-model="start">
+          <div class="relative w-80">
+            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificStartTime">
+                <option value="" disabled>Choose type</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+            </select>
+            <div class="mb-3 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="w-100 d-flex">
-        <div class="form-group w-100 mt-4">
+      <h2>EndData</h2>
+         <div class="flex flex-wrap -mx-3">
+        <div class="w-full px-3 flex space-x-4 relative">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" v-model="end">
+          <div class="relative w-80">
+            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificEndTime">
+                <option value="" disabled>Choose type</option>
+                <option>Morning</option>
+                <option>Afternoon</option>
+            </select>
+            <div class="mb-3 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg class="fill-current h-4 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="w-100">
           <label>Duration: </label>
           <span class="p-1.5 text-red font-bold">{{ differentDate }} days</span>
         </div>
+        <p class="text-red-600 mt-1" v-if="validateDate=='true'">corrected</p>
+        <p class="text-red-600 mt-1" v-else-if="validateDate=='false'">start date isn't greater than and end date</p>
+      <h2>Cause(Reason)</h2>
+      <div class="relative w-100">
+        <input class="mb-3 w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Input" v-model="reason">
       </div>
-
-      <label>Cause(Reason)</label>
-      <div class="form-group w-100">
-        <textarea id="w3review" name="w3review" rows="2" cols="71" v-model="cause" ></textarea>
-      </div>
-
-      <div class="form-group d-flex card-btn ml-2">
-        <button class=" btn bg-green-600 text-slate-50 " :disabled="validateDate=='false'"  type="submit"  @click="alertPopUP">Submit</button>
+      <div class="w-full">
+        <button @click="alertPopUP" :disabled="validateDate=='false'" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Request</button>
       </div>
     </form>
   </div>
@@ -81,15 +72,15 @@ export default {
     return {
       start: "",
       end:"",
-      SpecificStartTime: '',
-      SpecificEndTime: '',
-      leave_type:'',
-      cause: "",
-      studentid:3,
+      SpecificStartTime: "",
+      SpecificEndTime:"",
+      leave_type:"",
+      reason: "",
+      studentid:1,
       isPast:0,
-      duration:1,
       Padding:"Approve",
-      url:'http://127.0.0.1:8081/api/request'
+      url:'http://127.0.0.1:8000/api/request/',
+      listDate:[]
     };
   },
   methods:{
@@ -103,12 +94,22 @@ export default {
       })
     },
     newRequest(){
-      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
-      let date = {Start_date:this.start,End_date:this.end,Reason:this.cause,leave_Type:this.leave_type,
-      student_id:this.studentid,Status:this.Padding,Duration:this.differentDate}
-      axios.post(this.url,date).then(response => {
-          return response.data
-        })
+      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
+
+      let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
+      duration:parseInt(this.differentDate),student_id:this.studentid}
+
+      this.listDate.push(list)
+
+      axios.post(this.url,list).then(response => { 
+          console.log('Date:'+ this.listDate,response);
+      })
+      this.start = ''
+      this.end=''
+      this.SpecificEndTime=''
+      this.SpecificStartTime=''
+      this.leave_type =''
+      this.cause=''
 
       if(!notEmptydata){
        Swal.fire({
@@ -168,8 +169,6 @@ export default {
 
 <style scoped>
 form {
-  border-top: 5px solid orange;
-  border-radius: 5px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -177,18 +176,18 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
-.card-btn {
+/* .card-btn {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin: 0 auto;
   margin-top: 15px;
-}
+} */
 
-textarea,select,input {
+/* textarea,select,input {
   border: 3px solid rgb(123, 140, 233);
   background: rgb(240, 240, 240);
   border-radius: 5px;
-}
+} */
 </style>

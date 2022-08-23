@@ -10,11 +10,11 @@ class Admin extends Model
 {
     use HasFactory;
     protected $fillable =[
-        'First_name',
-        'Last_name',
-        'Profile',
-        'Email',
-        'Password'
+        'first_name',
+        'last_name',
+        'profile',
+        'email',
+        'password'
     ];
     protected $hidden =[
         'updated_at',
