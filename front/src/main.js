@@ -4,7 +4,7 @@ import router from './router'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import './assets/tailwind.css'
-import FormView from './components/FormLogIn.vue';
+import FormView from './components/ui/FormLogIn.vue';
 import NavView from './components/NavBar.vue';
 import NavbarAdmin from './components/Admin/NavBarAdmin.vue'
 const app = createApp(App);

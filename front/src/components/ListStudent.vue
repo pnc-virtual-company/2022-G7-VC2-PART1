@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Card from "./CardView.vue";
+import Card from "./ui/CardView.vue";
 import axios from 'axios';
 export default {
   components:{

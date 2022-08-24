@@ -1,5 +1,5 @@
 <template>
-<div class="app">
+<div class="app h-screen">
   <!-- // navigation bar  -->
   <navbar-view v-if='isLogin==true || userId!=undefined'/>
   <main>
@@ -39,6 +39,7 @@ body{
   /* #app {
     background: rgb(118, 109, 109);
   } */
+
 
 nav{
 
