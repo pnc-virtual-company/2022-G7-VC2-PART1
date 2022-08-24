@@ -33,9 +33,9 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     //Admin
     Route::post('/admin',[AdminController::class,'store']);
     Route::get('/admin',[AdminController::class,'index']);
-    Route::get('/admin',[AdminController::class,'show']);
-    Route::put('/admin',[AdminController::class,'update']);
-    Route::delete('/admin',[AdminController::class,'destroy']);
+    Route::get('/admin/{id}',[AdminController::class,'show']);
+    Route::put('/admin/{id}',[AdminController::class,'update']);
+    Route::delete('/admin/{id}',[AdminController::class,'destroy']);
 
     //student
     Route::post("/students",[StudentController::class,'store']);
@@ -47,9 +47,9 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     //Request
     Route::post('/request',[RequestController::class , 'store']);
     Route::get('/request',[RequestController::class , 'index']);
-    Route::get('/request',[RequestController::class , 'store']);
-    Route::put('/request',[RequestController::class , 'update']);
-    Route::delete('/request',[RequestController::class , 'destroy']);
+    Route::get('/request/{id}',[RequestController::class , 'show']);
+    Route::put('/request/{id}',[RequestController::class , 'update']);
+    Route::delete('/request/{id}',[RequestController::class , 'destroy']);
 
     //Class
     Route::post('/class',[ClassesController::class ,'store']);
