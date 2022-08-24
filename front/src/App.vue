@@ -55,7 +55,7 @@ nav{
 
 nav a.router-link-exact-active{
 
-  background:#FFAD5C;
+  /* background:#FFAD5C; */
 
   /* border-radius: 5px; */
   padding: 5px;

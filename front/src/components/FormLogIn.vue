@@ -68,28 +68,22 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
     requestLogin() {
       if (this.email !== '' && this.password !== '' && this.user !== null) {
         this.$emit('reqest-login', { isLogin: true,user:this.user });
         localStorage.setItem('userId', 1);
         this.$router.push({name:'students'})
-        
       }
     }
-  }
-}
-=======
-      onLog() {
+  },
+onLog() {
           if (this.email != '' && this.password!='' ) {
             localStorage.setItem('user', 1)
             this.$router.push({ name: "student", params: { id: 1 } });
             // this.$router.push({ name: "admin", params: { id: 1 } });
         }
-    },
-  },
-};
->>>>>>> 66d1bfa116fea9cbbd5cc8942d33f5cee96cc342
+    }
+}
 </script>
 
 <style scoped>
