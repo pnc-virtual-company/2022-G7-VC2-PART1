@@ -18,7 +18,8 @@ class Student extends Authenticatable
         'email',
         'password',
         'phone_number',
-        'profile'
+        'profile',
+        'role'
     ];
     protected $hidden =[
         'updated_at',
