@@ -58,4 +58,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     //Batch
     Route::post('/batchs',[BatchController::class, 'store']);
     Route::get('/batchs',[BatchController::class, 'index']);
+
+    Route::post('/signOut',[UserController::class,'signOut']);
 });
