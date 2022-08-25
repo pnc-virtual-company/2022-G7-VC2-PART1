@@ -6,7 +6,7 @@ dear teacher I would like to ask permission
 ------------------------------------------------
 | Name    | Class     | Leave type             | 
 |:------- |:----------|:------------------------
-|{{$Start_date}}|{{$End_date}} |{{$leave_Type}}|
+|{{$start_date}}|{{$end_date}} |{{$leave_Type}}|
 -----------------------------------------------
 @component('mail::button', ['url' => 'www.google.com','color' => 'success'])
 accept

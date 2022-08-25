@@ -9,23 +9,26 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // User login
+    //=========================== User login========================
     public function signIn(Request $request){
         $user = Student::Where('email',$request->email)->first();
-        if ($user==null){
+        if ($user == null){
             $user = Admin::Where('email',$request->email)->first();
         }
-        if (Hash::check($request->password,$user->password)&& $user){
+        if ($user && Hash::check($request->password,$user->password)&& $user){
             return[
                 'token'=>$user->createToken(time())->plainTextToken,'user'=>$user
             ];
+        }
+        else if(!$user){
+            return ['sms'=>'wrong email'];
         }
         else{
             return ['mas'=>'Invalid password'];
         }
     }
 
-    // user sign out
+    //========================== user sign out========================
     public function signOut(){
         Auth()->user()->tokens()->delete();
         return Response()->json(['message'=>'has been left succesfully']);
