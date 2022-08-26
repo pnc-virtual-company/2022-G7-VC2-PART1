@@ -1,6 +1,5 @@
 <template>
   <div class="admin">
-     <Navbar-Admin/>
     <StudentList/>
 
   </div>

@@ -7,7 +7,7 @@
         <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
           <option value="" disabled>Choose Type</option>
           <option value="">Show All</option>
-          <option value="Sick">Sick</option>
+          <option value="sick">Sick</option>
           <option value="headache">headache</option>
           <option value="family's Event">family's Event</option>
         </select>
@@ -34,7 +34,7 @@
         </tr>
        </thead>
         <tbody>
-          <tr v-for="list of dataStatus" :key="list">
+          <tr v-for="list of lists" :key="list">
             <td>{{list.start_date}}</td>
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
@@ -46,63 +46,50 @@
       </table>
     </div>
   </div>
-  <Card/>
- 
 </div>
-
-
-
-
 </template>
-
 <script>
-import Card from "./ui/CardView.vue";
-import axios from 'axios';
+
+import axios  from "../http.js";
 export default {
-  components:{
-    Card,
-  },
+
   data() {
     return {
-      URL: "http://127.0.0.1:8000/api/request",
       lists: [],
       onStatus: '',
       status: false,
       color:'',
-      LeaveType:''
+      LeaveType: ''
     }
   },
-  computed:{
+  computed: {
     dataStatus(){
      let  dataFilter = []
-      if(this.onStatus != '' && this.LeaveType !='' ) {
-       dataFilter=this.lists.filter(value =>(value.Status == this.onStatus )&&(value.leave_Type == this.LeaveType));
-      }else if(this.onStatus =='' && this.LeaveType !='') {
-       dataFilter=this.lists.filter(value =>(value.leave_Type == this.LeaveType));
-        }
+      if(this.onStatus != '' && this.LeaveType!='' ) {
+       dataFilter=this.lists.filter(value =>(value.status == this.onStatus )&&(value.leave_Type == this.LeaveType));
+      }
       else if(this.onStatus !='' && this.LeaveType=='') {
-        dataFilter= this.lists.filter(value =>(value.Status == this.onStatus ));
+        dataFilter= this.lists.filter(value =>(value.status == this.onStatus ));
         }
         else{
           dataFilter = this.lists;
         }
-
         return dataFilter ;
     }
   },
   methods: {
       getData() {
-        axios.get(this.URL).then((res) => {
-          this.lists = res.data
-        })  
+      axios.get('/request', {
+        headers: {
+          Authorization: 'Bearer' + localStorage.getItem('token'),
+          }
+        }).then((res) => {
+          this.lists = res.data;
+        console.log(this.lists)
+        }).catch((err) => err)
       }
     },
-    mounted() {
-      return this.getData()
-    },
 }
-
-
 </script>
 
 <style scoped>

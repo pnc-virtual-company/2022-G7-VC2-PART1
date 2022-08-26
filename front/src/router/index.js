@@ -3,40 +3,53 @@ import { createRouter, createWebHistory } from "vue-router";
 import ListView from "../views/ListView.vue";
 import RquestView from "../views/RequestView.vue";
 import StudentView from "../views/StudentView.vue";
-import FormLogIn from "../components/ui/FormLogIn.vue";
+import FormLogIn from "../components/FormLogIn.vue";
 
 import CheckLeave from '../views/AdminView/CheckLeave.vue'
 import AdminView from  '../views/AdminView/AdminView.vue'
 import StudentList from '../views/AdminView/StudentList.vue'
 
 const routes = [
-  // {
-  //   path:'admin',
-  //   name:'admin',
-  //   component:AdminView
-  // },
+  
   {
-    path:'/StudentList',
-    name:'StudentList',
+    path: "/",
+    name:'user',
+    component: StudentView,
+    props: true,
+    meta: {
+      requireAuth: true,
+      requireAdmin : true,
+    },
+  },
+  {
+    path: "/admin",
+    name:'admin',
+    component: AdminView,
+    props: true,
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path:'/studentList',
+    name:'studentList',
+    props: true,
     component:StudentList
     
   },
   {
-  path:'/checkleave',
-  name: 'checkleave',
+    path:'/admin',
+    name: 'checkleave',
+    props: true,
   component: CheckLeave
-  },
+},
 
-  // Student list
-  {
-    path: "/login",
-    name:'login',
-    component: FormLogIn,
-    meta: {
-      requireAuth: false,
-    },
+// Student list
+{
+  path: "/login",
+  name:'login',
+  component: FormLogIn,
   },
- 
  
 
   {
@@ -46,69 +59,51 @@ const routes = [
     props: true,
     meta: {
       requireAuth: true,
+      requireAdmin: true
     },
     
   },
   {
     path: "/request",
-    name:'request',
+    name: 'request',
+    props: true,
     component: RquestView,
     meta: {
       requireAuth: true,
     },
   },
   
-  {
-    path: "/",
-    name:'students',
-    component: StudentView,
-    props: true,
-    meta: {
-      requireAuth: true,
-    },
-  },
-  {
-    path: "/admin/:id",
-    name:'admin',
-    component: AdminView,
-    props: true,
-    meta: {
-      requireAuth: true,
-    },
-  },
  
 ];
 
-let navigationGuid = (to, from, next) => { 
-  if (to.meta.requireAuth) {
-    if (!parseInt(localStorage.userId)) {
-      next({name:'login'})
-      
-    } else {
-      if (to.path === '/login') {
-        next({name:'students'})
-      } else {
-        next()
-      }
-    }
-    
-  } else {
-    if (localStorage.userId) {
-      if (to.name === 'login') {
-        next({name:'students'})
-      } else {
-        next()
-      }
-    } 
-    console.log(to);
-    next()
-  }
-
-};
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-router.beforeEach(navigationGuid);
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (!localStorage.token) {
+      next('/login')
+    }
+    else {
+      if (to.path == '/login') {
+        next('/')
+      }
+      else {
+        next()
+      }
+    }
+  } 
+  else {
+    if (localStorage.token) {
+      if (to.path == '/login') {
+        next('/')  
+      } 
+    }
+    
+  }
+  next()
+  
+});
 
 export default router;

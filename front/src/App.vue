@@ -1,62 +1,89 @@
 <template>
-<div class="app h-screen">
-  <!-- // navigation bar  -->
-  <navbar-view v-if='isLogin==true || userId!=undefined'/>
-  <main>
-    <!-- view -->
-    <router-view @reqest-login="login"/>
-  </main>
-</div>
-
+  <div class="app h-screen">
+    <!-- // navigation bar  -->
+    <navbar-view v-if="isLogin || userId!=null" :role="user.user.role"/>
+    <main>
+      <!-- view -->
+      <router-view @request-login="login" />
+    </main>
+  </div>
 </template>
 <script>
+import axios from './http';
 export default {
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       isLogin: false,
-      userId: localStorage.userId
-    }
+      user: null,
+      requests: null,
+      userData: null,
+      userId : localStorage.getItem('userId')
+    };
   },
   methods: {
     login(value) {
       this.isLogin = value.isLogin;
+      this.user = value.user;
+      this.requests = value.request;
+    },
+
+    // =================get data from api =================
+    getData() {
+      if (localStorage.token!=undefined) {
+        axios.get('request', {
+          headers: {Authorization:'Bearer' + localStorage.token}
+        }
+        ).
+          then((response) => {
+            this.userData = response.data;
+            console.log(response.data);
+          })
+      }
+   console.log(localStorage.token)
+        
     }
+  },
+  mounted() {
+    this.getData()
+  },
+  updated() {
+    this.getData()
+    console.log("updated");
+  },
+  after() {
+    
   }
-}
+};
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,500;1,200;1,400;1,500&display=swap");
-body{
+body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
 }
 
-  /* #app {
+/* #app {
     background: rgb(118, 109, 109);
   } */
 
-
-nav{
-
+nav {
   position: sticky;
   top: 0;
   width: 100%;
 
-  background: #22BBEA;
+  background: #22bbea;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   background: #45b6fe;
   height: 12vh;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
-nav a.router-link-exact-active{
-
-  background:#FFAD5C;
+nav a.router-link-exact-active {
+  /* background:#FFAD5C; */
 
   /* border-radius: 5px; */
   padding: 5px;
@@ -66,17 +93,15 @@ nav a.router-link-exact-active{
   border-bottom: 2px solid orange;
 
   padding: 2px;
-
 }
-nav a{
-  border:none; 
+nav a {
+  border: none;
   text-decoration: none;
 }
 
 .fa-sign-out {
   font-size: 25px;
-  color:#5579c6;
+  color: #5579c6;
   cursor: pointer;
 }
-
 </style>

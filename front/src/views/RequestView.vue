@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FormView from "@/components/ui/FormRequest.vue";
+import FormView from "@/components/FormRequest.vue";
 export default {
     components: {
         FormView
