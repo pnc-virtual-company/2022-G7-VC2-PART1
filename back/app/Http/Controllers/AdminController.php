@@ -37,8 +37,7 @@ class AdminController extends Controller
         $file->move($path, $fileName);
 
         $admin->save();
-        $token = $admin->createToken('mytoken')->plainTextToken;
-        return Response()->json(['Admin'=>$admin,'token'=>$token]);
+        return('sucessfully');
         
     }
 

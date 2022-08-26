@@ -44,8 +44,6 @@ class StudentController extends Controller
         $file->move($path, $fileName);
 
         $students->save();
-        $token = $students->createToken('mytoken')->plainTextToken;
-        return Response()->json(['student'=>$students,'token'=>$token]);
     }
 
     /**
