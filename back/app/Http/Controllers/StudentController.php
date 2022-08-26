@@ -5,12 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
+
 class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,9 +19,6 @@ class StudentController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -33,6 +29,7 @@ class StudentController extends Controller
         $students->email = $request->email;
         $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
+        $students->role = $request->role;
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
@@ -47,14 +44,12 @@ class StudentController extends Controller
         $file->move($path, $fileName);
 
         $students->save();
-        return response()->Json(['messsage'=>'Scuccfully for Create Student']);
+        $token = $students->createToken('mytoken')->plainTextToken;
+        return Response()->json(['student'=>$students,'token'=>$token]);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -63,10 +58,6 @@ class StudentController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
@@ -75,6 +66,7 @@ class StudentController extends Controller
         $students->last_name = $request->last_name;
         $students->gender = $request->gender;
         $students->email = $request->email;
+        $students->role = $request->role;
         $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
         $students ->profile = $request->profile;
@@ -90,20 +82,18 @@ class StudentController extends Controller
         $students->Profile = $fileName;
         $students->save();
         $file->move($path, $fileName);
-
         $students->save();
+        
         return response()->Json(['messsage'=>'Scuccfully for Update Student']);
 
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         return Student::destroy($id);
     }
+ 
 }

@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('gender');
             $table->string('email');
             $table->string('password');
-            $table->string('Phone_number');
+            $table->string('phone_number');
             $table->string('profile');
+            $table->string('role');
             $table->foreignId('class_id')->constrained()->onDelete('CASCADE');
             $table->foreignId('batch_id')->constrained()->onDelete('CASCADE');
             $table->foreignId('admin_id')->constrained()->onDelete('CASCADE');
