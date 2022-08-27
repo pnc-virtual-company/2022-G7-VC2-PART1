@@ -168,7 +168,6 @@ import axios from "../http.js";
 let email = ref("");
 let password = ref("");
 let user = ref({});
-let requests = ref([]);
 
 let emit = defineEmits(["request-login"]);
 
@@ -181,14 +180,15 @@ function requestLogin() {
       .post("login", { email: email.value, password: password.value })
       .then((response) => {
         if (response.data.token != undefined) {
+          // ============ set token =================
           localStorage.setItem("token", response.data.token);
-          user.value = response.data;
           localStorage.setItem("userId", response.data.user.id);
+          localStorage.setItem("role", response.data.user.role);
+          user.value = response.data;
+
             // ======== passed data to app ========
           emit("request-login", {
             isLogin: true,
-            user: user.value,
-            request: requests.value,
           });
           console.log(response.data);
           router.push({ name: "user" });

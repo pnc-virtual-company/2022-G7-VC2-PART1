@@ -1,7 +1,6 @@
 <template>
   <div class="container mt-5 flex justify-center">
     <form @submit.prevent="newRequest" class="w-50 p-4">
-        
       <p class="text-center text-blue text-xl p-1">CREATE REQUEST</p><hr />
       <div class="relative w-100">
         <h2 class="mt-2">Leave Type</h2>
@@ -79,7 +78,6 @@ export default {
       studentid:1,
       isPast:0,
       Padding:"Padding",
-      url:'http://127.0.0.1:8082/api/request/',
       listDate:[]
     };
   },
@@ -100,10 +98,7 @@ export default {
 
       this.listDate.push(list)
   // =============request new leave =====================
-      axios.post('request', list, {
-        headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token')
-      }}).then(response => { 
+      axios.post('request', list).then(response => { 
           console.log('Date:'+ this.listDate,response);
       })
       this.start = ''

@@ -1,7 +1,7 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=null" :role="user.user.role"/>
+    <navbar-view v-if="isLogin || userId!=null" :role="'student'"/>
     <main>
       <!-- view -->
       <router-view @request-login="login" />
@@ -29,11 +29,10 @@ export default {
     },
 
     // =================get data from api =================
-    getData() {
-      if (localStorage.token!=undefined) {
-        axios.get('request', {
-          headers: {Authorization:'Bearer' + localStorage.token}
-        }
+    getData() {   
+      if (localStorage.token) {
+        // ============= get all user's request ============
+        axios.get('request'
         ).
           then((response) => {
             this.userData = response.data;
@@ -42,14 +41,26 @@ export default {
       }
    console.log(localStorage.token)
         
+    },
+    // ============== get specific user ============
+    getSpecificUser() {
+      if (localStorage.userId) {
+        axios.get('student/' + localStorage.userId).
+          then((response) => {
+          this.user = response.data;
+        })
+        
+      }
     }
   },
   mounted() {
-    this.getData()
+    this.getData();
+    this.getSpecificUser();
   },
   updated() {
-    this.getData()
+    this.getData();
     console.log("updated");
+    this.getSpecificUser();
   },
   after() {
     

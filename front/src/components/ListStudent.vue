@@ -79,16 +79,16 @@ export default {
   },
   methods: {
       getData() {
-      axios.get('/request', {
-        headers: {
-          Authorization: 'Bearer' + localStorage.getItem('token'),
-          }
-        }).then((res) => {
+      axios.get('/request'
+        ).then((res) => {
           this.lists = res.data;
         console.log(this.lists)
         }).catch((err) => err)
       }
-    },
+  },
+  mounted() {
+      this.getData();
+    }
 }
 </script>
 
