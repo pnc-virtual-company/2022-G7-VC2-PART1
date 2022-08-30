@@ -1,13 +1,13 @@
 <template>
   <nav class="flex justify-between align-center">
-    <div class="logo w-1/5">
+    <div class="logo flex justify-center align-center">
       <img
         :src="require('../../assets/logo-en.png')"
         alt=""
         class="ml-5 w-1/2"
       />
     </div>
-    <div class="flex justify-center align-center mt-4">
+    <div class="flex justify-center align-center">
       <router-link
         class="m-3 text-white text-decoration-none text-lg"
         to="/StudentList"
@@ -15,16 +15,16 @@
       >
       <router-link
         class="m-3 text-white text-decoration-none text-lg"
-        to="/checkleave"
+        to="/CheckLeave"
         >check leave</router-link
       >
     </div>
-    <div class="flex align-center">
-      <h2
-        class="w-full bg-orange-500 text-center p-3 rounded-md outline-none mr-5 text-white"
+    <div class="flex justify-center">
+      <div
+        class="bg-orange-500 text-center rounded-md outline-none text-white p"
       >
         <a @click="logout" href="#" class="text-decoration-none">Sign out</a>
-      </h2>
+      </div>
     </div>
   </nav>
 </template>
@@ -33,11 +33,13 @@ export default {
  
   methods: {
     logout() {
-      localStorage.removeItem("user");
+      localStorage.removeItem("userId");
       this.$router.push({ name: "FormLogIn" });
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+
+</style>

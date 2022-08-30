@@ -4,7 +4,7 @@
       <p class="text-center text-blue text-xl p-1">CREATE REQUEST</p><hr />
       <div class="relative w-100">
         <h2 class="mt-2">Leave Type</h2>
-        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="leave_type">
+        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="leave_type">
             <option value="" disabled>Choose type</option>
             <option value="sick">Sick</option>
             <option value="headache">Headache</option>
@@ -17,9 +17,9 @@
       <h2 class="mt-2">Start Date</h2>
       <div class="flex flex-wrap -mx-3">
         <div class="w-full px-3 flex space-x-4 relative">
-          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23" v-model="start">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23" v-model="start">
           <div class="relative w-80">
-            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificStartTime">
+            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="SpecificStartTime">
                 <option value="" disabled>Choose type</option>
                 <option>Morning</option>
                 <option>Afternoon</option>
@@ -33,9 +33,9 @@
       <h2>EndData</h2>
          <div class="flex flex-wrap -mx-3">
         <div class="w-full px-3 flex space-x-4 relative">
-          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23"  v-model="end">
+          <input class="w-80 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="date" min="2022-08-23"  v-model="end">
           <div class="relative w-80">
-            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="SpecificEndTime">
+            <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="SpecificEndTime">
                 <option value="" disabled>Choose type</option>
                 <option>Morning</option>
                 <option>Afternoon</option>
@@ -53,7 +53,7 @@
         </div>
       <h2>Cause(Reason)</h2>
       <div class="relative w-100">
-        <input class="mb-3 w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" placeholder="Input" v-model="reason">
+        <input class="mb-3 w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" placeholder="Input" v-model="reason">
       </div>
       <div class="w-full">
         <button @click="alertPopUP" :disabled="validateDate=='false'" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Request</button>
@@ -67,6 +67,7 @@ import moment from "moment";
 import axios from "../http.js";
 import Swal from 'sweetalert2'
 export default {
+  inject:['userId'],
   data() {
     return {
       start: "",
@@ -75,7 +76,7 @@ export default {
       SpecificEndTime:"",
       leave_type:"",
       reason: "",
-      studentid:1,
+    
       isPast:0,
       Padding:"Padding",
       listDate:[]
@@ -92,9 +93,9 @@ export default {
       })
     },
     newRequest(){
-      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.cause !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
+      let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
       let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
-      duration:parseInt(this.differentDate),student_id:this.studentid}
+      duration:parseInt(this.differentDate),student_id:this.userId}
 
       this.listDate.push(list)
   // =============request new leave =====================

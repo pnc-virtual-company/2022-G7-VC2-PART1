@@ -7,7 +7,7 @@
       <div v-if="role=='student'" class="flex justify-center align-center mt-4">
         <router-link class="m-3 text-white text-decoration-none text-lg" :to="items.student.studentList.to">{{items.student.studentList.title}}</router-link>
         <router-link class="m-3 text-white  text-decoration-none text-lg" :to="items.student.listOfLeave.to">{{items.student.listOfLeave.title}}</router-link>
-        </div>
+      </div>
 <!-- =================admin nav ================== -->
       <div v-else class="flex justify-center align-center mt-4">
         <router-link class="m-3 text-white text-decoration-none text-lg" :to="items.admin.studentList.to">{{items.admin.studentList.title}}</router-link>
@@ -41,7 +41,7 @@ export default {
             title:'Student lists'
           },
           listOfLeave: {
-               to: '/checkleave',
+               to: '/CheckLeave',
             title:'Check Leave'
           }
         }

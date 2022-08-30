@@ -1,10 +1,10 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=null" :role="'student'"/>
+    <navbar-view v-if="isLogin || userId!=null" />
     <main>
       <!-- view -->
-      <router-view @request-login="login" />
+      <router-view @request-login="login" :role="role"/>
     </main>
   </div>
 </template>
@@ -18,6 +18,7 @@ export default {
       user: null,
       requests: null,
       userData: null,
+      role:localStorage.getItem('role'),
       userId : localStorage.getItem('userId')
     };
   },
@@ -44,13 +45,23 @@ export default {
     },
     // ============== get specific user ============
     getSpecificUser() {
+      let path = "students//";
+      if(localStorage.role === 'admin'){
+        path = 'admin/';
+      }
       if (localStorage.userId) {
-        axios.get('student/' + localStorage.userId).
+        axios.get(path + localStorage.userId).
           then((response) => {
           this.user = response.data;
+          console.log(response)
         })
         
       }
+    },
+  },
+  provide(){
+    return {
+      userId:this.userId
     }
   },
   mounted() {
@@ -75,44 +86,27 @@ body {
   padding: 0;
   font-family: "Montserrat", sans-serif;
 }
-
-/* #app {
-    background: rgb(118, 109, 109);
-  } */
-
 nav {
   position: sticky;
+  z-index: 5;
   top: 0;
   width: 100%;
-
   background: #22bbea;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   background: #45b6fe;
-  height: 12vh;
+  /* height: 12vh; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 nav a.router-link-exact-active {
-  /* background:#FFAD5C; */
-
-  /* border-radius: 5px; */
   padding: 5px;
-
   border-radius: 5px;
-
-  border-bottom: 2px solid orange;
-
-  padding: 2px;
+  background: orangered;
 }
 nav a {
   border: none;
   text-decoration: none;
 }
 
-.fa-sign-out {
-  font-size: 25px;
-  color: #5579c6;
-  cursor: pointer;
-}
 </style>
