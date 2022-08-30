@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
     emits: ['add-data'],
     data(){
@@ -54,11 +55,22 @@ export default {
         }
     },
     methods:{
+        alertPopUP() {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your data has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        },
         addStudent(){
+            let notEmptydata = this.firstName !='' && this.lastName !='' && this.password !='' && this.gender !='' && this.email !='';
             this.$emit('add-data',  
                 this.firstName, this.lastName,
                 this.gender, this.email, this.password, this.profile,
                 this.phoneNumber,this.class_id,this.batch_id,this.admin_id,this.role,
+                this.alertPopUP()
             )
             this.firstName = '',
             this.lastName = '',
@@ -67,6 +79,15 @@ export default {
             this.profile = '',
             this.phoneNumber = ''
             this.togle()
+            if(!notEmptydata){
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: 'Please completed all your date',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
         },
         togle(){
             this.showModal = !this.showModal

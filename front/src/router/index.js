@@ -1,9 +1,9 @@
 
 import { createRouter, createWebHistory } from "vue-router";
-import ListView from "../views/ListView.vue";
+import ListView from "../views/LeaveView.vue";
 import RquestView from "../views/RequestView.vue";
 import StudentView from "../views/StudentView.vue";
-import FormLogIn from "../components/FormLogIn.vue";
+import FormLogIn from "../components/UI/FormLogIn.vue";
 
 import CheckLeave from '../views/AdminView/CheckLeave.vue'
 import AdminView from  '../views/AdminView/AdminView.vue'

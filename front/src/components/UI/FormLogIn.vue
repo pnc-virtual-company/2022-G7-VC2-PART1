@@ -162,7 +162,7 @@ export default {
 // =======module imported =============
 import { ref, defineEmits } from "vue";
 import { useRouter } from "vue-router";
-import axios from "../http.js";
+import axios from "../../http.js";
 
 // ===========user's information================================
 let email = ref("");

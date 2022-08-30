@@ -64,7 +64,7 @@
 
 <script>
 import moment from "moment";
-import axios from "../http.js";
+import axios from "../../http.js";
 import Swal from 'sweetalert2'
 export default {
   inject:['userId'],
@@ -110,15 +110,15 @@ export default {
       this.reason=''
 
       if(!notEmptydata){
-       Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Please completed all your date',
-        showConfirmButton: false,
-        timer: 1500
-      })
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Please completed all your date',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
-      }
+    }
     },
   computed: {
     differentDate() {

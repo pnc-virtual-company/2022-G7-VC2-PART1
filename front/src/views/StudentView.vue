@@ -6,8 +6,8 @@
 
 </template>
 <script>
-import listView  from './ListView.vue'
-import Card from "@/components/CardView.vue";
+import listView  from './LeaveView.vue'
+import Card from "@/components/UI/CardDetail.vue";
 export default {
   components:{
     listView,

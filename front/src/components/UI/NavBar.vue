@@ -1,7 +1,7 @@
 <template>
 <nav class="flex justify-between align-center">
     <div class="logo w-1/5">
-      <img :src="require('../assets/logo-en.png')" alt="" class="ml-5 w-1/2">
+      <img :src="require('../../assets/logo-en.png')" alt="" class="ml-5 w-1/2">
     </div>
 <!-- =================student nav ================== -->
       <div v-if="role=='student'" class="flex justify-center align-center mt-4">

@@ -11,8 +11,38 @@
                 </div>
                 </div>
                 <div class="flex justify-center justify-items-center p-2">
-                <li class="fa fa-edit text-blue-500 text-3xl mr-2 py-0.5"></li>
-                <li class="fa fa-trash text-red-500 text-3xl"></li>
+                <li @click="editData(data.id)" class="fa fa-edit text-blue-500 text-3xl py-0.5 mr-2"></li>
+                <div class="modal-mask" v-if="showModal==true">
+                <div class="modal-wrapper">
+                    <div class="modal-container rounded">
+                        <form @submit.prevent="updateData(data.id)">
+                            <div class="flex justify-center">
+                                <img :src="data.profile" width="110">
+                            </div>
+                            <p class="mb-2"></p><hr>
+                            <div class="w-100 flex justify-between space-x-4 mt-5">
+                                <input type="text" class="w-full appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="First Name" v-model="firstName">
+                                <input type="text" class="w-full appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Last Name" v-model="lastName">
+                            </div>
+                            <div class="flex mt-4">     
+                                <input type="radio" class="radio" value="Male" v-model="gender">
+                                <h2 class="ml-1">Male</h2>
+                                <input type="radio" class="radio ml-1" value="Female" v-model="gender">
+                                <h2 class="ml-1">Female</h2>
+                            </div>
+                            <input type="text" class="w-full mt-3 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Email" v-model="email">
+                            <input type="password" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Password" v-model="password">
+                            <input type="number" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Phone Number" v-model="phoneNumber">
+                            <input type="file" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Choose file">
+                            <div class="flex justify-center mt-5 mb-4">
+                                <button  type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded focus:outline-none focus:shadow-outline">Edit</button>
+                                <button  @click="togle" class="bg-red-500 ml-3 hover:bg-red-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                </div>
+                <li @click="removeList(data.id)" class="fa fa-trash text-red-500 text-3xl"></li>
                 </div>
             </div>
         </div>
@@ -33,6 +63,7 @@
 </template>
 
 <script>
+import axios from "../../http.js";
 export default {
     props: {data: Object},
     data() {
@@ -53,7 +84,29 @@ export default {
       }
     },
     methods: {
-    }
+      removeList(id) {
+        alert('are you sure to delete')
+        this.$emit('remove-list', id)
+      },
+      editData(id){
+        this.showModal=!this.showModal
+        this.firstName = this.data.first_name , this.lastName = this.data.last_name,
+        this.gender = this.data.gender, this.email = this.data.email, this.password = this.data.password, this.profile=this.data.profile,
+        this.phoneNumber=this.data.phone_number,this.class_id,this.batch_id,this.admin_id,this.role,
+        id
+      },
+      updateData(id) {
+        axios.put('students/' + id, {first_name:this.firstName, last_name:this.lastName,
+          gender:this.gender,email:this.email, password:this.password,profile:this.profile,
+          phone_number:this.phoneNumber,class_id:this.class_id,batch_id:this.batch_id,admin_id:this.admin_id,role:this.role})
+          .then(() => {
+            this.togle()
+        })
+      },
+      togle(){
+          this.showModal = !this.showModal
+      },
+    },
 }
 </script>
 

@@ -1,16 +1,4 @@
 <template>
-<!-- <FormView/> -->
-  <!-- <form>
-    <div class="relative w-100 flex justify-center">
-      <select class="w-50 block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" v-model="leave_type">
-          <option value="" disabled>Choose type</option>
-          <option value="Sick">2022WEB A</option>
-          <option value="Headache">2022WEB B</option>
-          <option value="Family's Event">2022SNA</option>
-      </select>
-      <button class="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 rounded focus:outline-none focus:shadow-outline" type="submit">Search</button>
-    </div>
-  </form> -->
   <div class="flex mt-3 space-x-3 mb-0">
     <div class="card">
       <div class="flex">
