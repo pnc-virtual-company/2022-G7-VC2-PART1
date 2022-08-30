@@ -10,23 +10,21 @@ import AdminView from  '../views/AdminView/AdminView.vue'
 import StudentList from '../views/AdminView/StudentList.vue'
 
 const routes = [
-  
+//  ======= public router =========
   {
-    path: "/",
-    name:'user',
-    component: StudentView,
-    props: true,
-    meta: {
-      requireAuth: true,
-      requireAdmin : true,
+    path: "/login",
+    name:'login',
+    component: FormLogIn,
     },
-  },
+   
+// ========= admin route =========================
   {
     path: "/admin",
     name:'admin',
     component: AdminView,
     props: true,
     meta: {
+      requireAdmin : true,
       requireAuth: true,
     },
   },
@@ -34,23 +32,35 @@ const routes = [
     path:'/studentList',
     name:'studentList',
     props: true,
+    meta: {
+      requireAdmin : true,
+      requireAuth: true,
+    },
     component:StudentList
     
   },
   {
-    path:'/admin',
+    path:'/check',
     name: 'checkleave',
     props: true,
-  component: CheckLeave
+    component: CheckLeave,
+    meta: {
+      requireAdmin : true,
+      requireAuth: true,
+    },
+    
 },
 
 // Student list
 {
-  path: "/login",
-  name:'login',
-  component: FormLogIn,
+  path: "/",
+  name:'student',
+  component: StudentView,
+  props: true,
+  meta: {
+    requireAuth: true,
   },
- 
+},
 
   {
     path: "/list",
@@ -59,7 +69,7 @@ const routes = [
     props: true,
     meta: {
       requireAuth: true,
-      requireAdmin: true
+  
     },
     
   },
@@ -67,7 +77,7 @@ const routes = [
     path: "/request",
     name: 'request',
     props: true,
-    component: RquestView,
+    component: RquestView,                                                
     meta: {
       requireAuth: true,
     },
@@ -87,7 +97,7 @@ router.beforeEach((to, from, next) => {
     }
     else {
       if (to.path == '/login') {
-        next('/')
+          next('/')
       }
       else {
         next()
@@ -97,8 +107,11 @@ router.beforeEach((to, from, next) => {
   else {
     if (localStorage.token) {
       if (to.path == '/login') {
-        next('/')  
+          next('/') 
       } 
+      else {
+        next()
+      }
     }
     
   }

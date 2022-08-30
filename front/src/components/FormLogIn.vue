@@ -187,11 +187,11 @@ function requestLogin() {
           user.value = response.data;
 
             // ======== passed data to app ========
+            router.push({name:'student'})
           emit("request-login", {
             isLogin: true,
           });
           console.log(response.data);
-          router.push({ name: "user" });
         }
       });
 

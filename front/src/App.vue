@@ -1,7 +1,7 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=null" :role="'student'"/>
+    <navbar-view v-if="isLogin || userId!=null" :role="userRole"/>
     <main>
       <!-- view -->
       <router-view @request-login="login" />
@@ -18,7 +18,8 @@ export default {
       user: null,
       requests: null,
       userData: null,
-      userId : localStorage.getItem('userId')
+      userId: localStorage.getItem('userId'),
+      userRole: localStorage.getItem('role')
     };
   },
   methods: {
