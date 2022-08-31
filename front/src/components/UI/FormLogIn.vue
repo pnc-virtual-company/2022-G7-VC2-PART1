@@ -172,7 +172,17 @@ let user = ref({});
 let emit = defineEmits(["request-login"]);
 
 const router = useRouter();
-
+// let currentRouter =ref({});
+// function nextRouter (){
+//   if (localStorage.role == "admin") {
+//     currentRouter.value = { name: 'student-list' };
+    
+//   }
+//   else {
+//     currentRouter.value= { name: 'list' };
+//   }
+//   router.push(currentRouter);
+// }
 // =======user login =================
 function requestLogin() {
   if (email.value !== "" && password.value !== "") {
@@ -187,11 +197,11 @@ function requestLogin() {
           user.value = response.data;
 
             // ======== passed data to app ========
-          emit("request-login", {
-            isLogin: true,
-          });
+            router.push({name:'home'})
+            emit("request-login", {
+              isLogin: true,
+            });
           console.log(response.data);
-          router.push({ name: "user" });
         }
       });
 

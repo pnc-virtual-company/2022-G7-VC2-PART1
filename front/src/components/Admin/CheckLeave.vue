@@ -1,41 +1,92 @@
 <template>
-  <div class="w-full flex justify-between">
-      <div v-for="items of listCheck" :key="items" >
-        <img :src="items.profile" :alt="items.profile">
-        <div class="infor ">
-          <h3>{{items.first_name}}</h3>
-          <h3>{{items.last_name}}</h3>
-          <h3>{{items.email}}</h3>
+  <div class="contianer">  
+    <div class="w-[75%] bg-gray-300 m-auto rounded-t-lg mt-5">
+        <div class="title text-white bg-sky-600 p-[10px] text-xl font-bold rounded-t-lg">
+          <h2 class="mt-[15px]">CheckLeave</h2>
         </div>
-      </div>
-  </div>
-</template>
+        <div class="contain text-center p-[8px] w-[80%] m-auto" v-for="list of listStudent" :key="list">
+          <div class="flex items-center p-[10px] bg-white ">
+               <div class="w-[80px] h-[80px] ml-[5%]">
+                 <img :src="require('../../assets/profile.png')" class="w-[80px] h-[80px] rounded-full">
+               </div>
+               <div class="w-[45%] text-left ml-[2%]">
+                <div class="">
+                  <p class="text-[20px] font-bold">{{list.student.first_name}} {{list.student.last_name}}</p>
+                  <p class="text-[20px]"> class_id : {{list.student.class_id}}</p>
+                </div>
+                <div class="flex ">
+                  <p class="text-[20px]">Leave type :</p>
+                  <p class="text-[20px] text-lime-600 ml-[3%]">{{list.leave_Type}}</p>
+                </div>
+                <div class="flex">
+                  <p class="text-[20px]">Duration :</p>
+                  <p class="text-[20px] text-rose-500 ml-[3%]"> {{list.duration}} day</p>
+                </div>
+              </div> 
+               <div class="butto mt-0 w-[30%] flex justify-center ">
+                 <button v-if="list.status=='Padding'" class="w-[100px] m-3 bg-blue-500 bg-green-600 text-white font-bold py-2 px-4 rounded" value="Approve" @click="onApprove(list.id,'Approve')">Approve</button>
+                 <button v-if="list.status=='Padding'" class="w-[100px] m-3 bg-blue-500 bg-red-700 text-white font-bold py-2 px-4 rounded" value ='Reject' @click="onReject(list.id,'Reject')">
+                   Reject
+                 </button>
+                 <p v-else :class="{'approve':list.status=='Approve','reject':list.status=='Reject'}" class="font-bold text-xl">{{list.status}}</p>
+               </div>
+          </div>
+        </div>
+    </div>
+  </div> 
+  </template>
+  
+  
+  <script setup>
+  // =======Module imported ===========
+  import {ref,onMounted} from 'vue'
+  import axios from "../../http";
+  
+  // ===========check leave information =============================
+  
+  let listStudent = ref();
 
-<script>
-import axios from 'axios';
-export default {
-data(){
-  return {
-    url:'http://127.0.0.1:8082/api/students',
-    listCheck:[],
+  // ======== Get Data from url ========
+  
+  function getData(){
+    axios.get("request").then(response =>{
+      listStudent.value = response.data
+        console.log(listStudent.value);
+      })
   }
-},
-methods:{
-  getDate(){
-    axios.get(this.url).then(response =>{
-      this.listCheck = response.data
-      // return this.listCheck;
-      console.log(this.listCheck);
-    }
-    )
+      onMounted(()=>getData());
+  
+  // ======== On Approve --=======
+  function onApprove(request_Id,status){
+      axios.put('leave/'+request_Id,{status:status}).then(response =>{
+        console.log(status,request_Id,response);
+        getData();
+        // hiden.value=false;
+      });
   }
-},
-mounted(){
-  return this.getDate();
-}
-}
-</script>
-
-<style>
-
-</style>
+  
+  function onReject(request_Id,status){
+      axios.put('leave/'+request_Id,{status:status}).then(response =>{
+        console.log(status,request_Id,response);
+        getData();
+        // hiden.value=false;
+      });
+  }
+  
+  </script>
+  
+  
+  
+  <style>
+  :disabled{
+    background-color: #cccccc;
+    color: #666666;
+  }
+  .approve{
+    color: rgb(55, 223, 4);
+  }
+  .reject{
+    color: red;
+  }
+  </style>
+  

@@ -18,7 +18,7 @@ class AdminSeeder extends Seeder
         $admins =[
             [
                 'first_name'=>"Sim",'last_name'=>"Houl",
-                'email'=>'sim@gmail','password'=>Hash::make("sim23145677"),
+                'email'=>'admin@gmail.com','password'=>Hash::make("1234"),
                 'profile'=>'photo_2021-02-05_05-32-47.jpg',
                 'role'=>'admin'
             ]

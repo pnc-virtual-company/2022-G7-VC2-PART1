@@ -1,7 +1,9 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin && userId!=null" />
+
+    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole"/>
+
     <main>
       <!-- view -->
       <router-view @request-login="login" :role="role"/>
@@ -16,21 +18,22 @@ export default {
     return {
       isLogin: false,
       user: null,
-      requests: null,
-      userData: null,
-      role:localStorage.getItem('role'),
-      userId : localStorage.getItem('userId')
+      listOfLeave: null,
+      userId:'',
+      userRole: ''
+
     };
   },
   methods: {
     login(value) {
       this.isLogin = value.isLogin;
       this.user = value.user;
-      this.requests = value.request;
+      this.listOfLeave = value.request;
+     
     },
 
     // =================get data from api =================
-    getData() {   
+    getListOfLeave() {   
       if (localStorage.token) {
         // ============= get all user's request ============
         axios.get('request'
@@ -57,7 +60,15 @@ export default {
         })
         
       }
+     
+      this.userRole = localStorage.role;
+      this.userId = localStorage.userId;
     },
+    userRefresh() {
+      this.userId = localStorage.userId;
+      this.userRole = localStorage.role;
+      
+    }
   },
   provide(){
     return {
@@ -65,17 +76,13 @@ export default {
     }
   },
   mounted() {
-    this.getData();
-    this.getSpecificUser();
+    this.userRefresh();
   },
   updated() {
-    this.getData();
-    console.log("updated");
+    this.getListOfLeave();
     this.getSpecificUser();
   },
-  after() {
-    
-  }
+ 
 };
 </script>
 

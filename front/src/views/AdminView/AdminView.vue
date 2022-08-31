@@ -1,17 +1,15 @@
 <template>
   <div class="admin">
-    <StudentList/>
+    <router-view></router-view>
 
   </div>
 
 </template>
 
 <script>
-
-import StudentList from '../../components/Admin/StudentList.vue'
 export default {
   components:{
-    StudentList,
+  
    
   }
 }
