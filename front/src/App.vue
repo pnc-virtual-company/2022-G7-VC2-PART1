@@ -72,6 +72,8 @@ export default {
       localStorage.removeItem('userId');
       localStorage.removeItem('role');
       this.isLogin = false;
+      this.userRole = null;
+      this.userId = null;
     }
   },
   provide(){

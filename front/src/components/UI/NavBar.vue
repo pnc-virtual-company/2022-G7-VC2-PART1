@@ -10,10 +10,10 @@
       <router-link class="m-3 text-white  text-decoration-none text-lg" :to="{name:'request'}">Request</router-link>
     </div>
     <!-- =================admin nav ================== -->
-    <div v-else class="flex justify-center align-center">
-        <router-link class=" text-white text-decoration-none text-lg" :to="{name:'home'}">Home</router-link>
-        <router-link class=" text-white text-decoration-none text-lg" :to="{name:'student-list'}">List Of Students</router-link>
-        <router-link class=" text-white  text-decoration-none text-lg" :to="{name:'check-leave'}">Check Leave</router-link>
+    <div v-else class="flex justify-center align-center mt-4 w-[70%]r">
+        <router-link class="m-3 text-white text-decoration-none text-lg" :to="{name:'home'}">Home</router-link>
+        <router-link class="m-3 text-white text-decoration-none text-lg" :to="{name:'student-list'}">List Of Students</router-link>
+        <router-link class="m-3 text-white text-decoration-none text-lg" :to="{name:'check-leave'}">Check Leave</router-link>
       </div>
       <div class="flex  align-center w-[20%] items-center justify-center">
         <img :src="require('../../assets/user_female.png')" alt="" class=" w-[20%]  rounded-full ml-[25%]">
