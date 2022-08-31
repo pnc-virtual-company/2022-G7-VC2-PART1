@@ -1,20 +1,16 @@
 <template>
-  <div class="student">
-    <listView/>
-    <Card/>
+  <div>
+    <h1>This student view</h1>
+    <router-view></router-view>
   </div>
 
 </template>
 <script>
-import listView  from './ListView.vue'
-import Card from "../components/CardView.vue";
+
 export default {
-  components:{
-    listView,
-    Card,
-}
+
 }
 </script>
 
 <style>
-</style>
+</style>  

@@ -50,7 +50,7 @@
 </template>
 <script>
 
-import axios  from "../http.js";
+import axios  from "../../http.js";
 export default {
 
   data() {

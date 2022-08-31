@@ -162,7 +162,7 @@ export default {
 // =======module imported =============
 import { ref, defineEmits } from "vue";
 import { useRouter } from "vue-router";
-import axios from "../http.js";
+import axios from "../../http.js";
 
 // ===========user's information================================
 let email = ref("");
@@ -172,7 +172,17 @@ let user = ref({});
 let emit = defineEmits(["request-login"]);
 
 const router = useRouter();
-
+// let currentRouter =ref({});
+// function nextRouter (){
+//   if (localStorage.role == "admin") {
+//     currentRouter.value = { name: 'student-list' };
+    
+//   }
+//   else {
+//     currentRouter.value= { name: 'list' };
+//   }
+//   router.push(currentRouter);
+// }
 // =======user login =================
 function requestLogin() {
   if (email.value !== "" && password.value !== "") {
@@ -187,10 +197,10 @@ function requestLogin() {
           user.value = response.data;
 
             // ======== passed data to app ========
-            router.push({name:'student'})
-          emit("request-login", {
-            isLogin: true,
-          });
+            router.push({name:'home'})
+            emit("request-login", {
+              isLogin: true,
+            });
           console.log(response.data);
         }
       });
