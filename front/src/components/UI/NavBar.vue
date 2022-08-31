@@ -56,9 +56,12 @@ export default {
   },
   methods:{
     logout(){
-       localStorage.removeItem('user')
-        this.$router.push({name:"FormLogIn"})
+      this.$emit('request-logout')
     }
+    // logout(){
+    //    localStorage.removeItem('user')
+    //     this.$router.push({name:"FormLogIn"})
+    // }
   }
 }
 </script>
