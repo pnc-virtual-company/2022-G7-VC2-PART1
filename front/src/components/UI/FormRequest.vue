@@ -95,7 +95,7 @@ export default {
     newRequest(){
       let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
       let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
-      duration:parseInt(this.differentDate),student_id:this.userId}
+      duration:parseInt(this.differentDate),student_id:localStorage.userId}
 
       this.listDate.push(list)
   // =============request new leave =====================

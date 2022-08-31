@@ -2,7 +2,7 @@
   <nav class="flex justify-between align-center">
     <div class="logo flex justify-center align-center">
       <img
-        :src="require('../../assets/logo-en.png')"
+        :src="require('../../assets/logo.png')"
         alt=""
         class="ml-5 w-1/2"
       />

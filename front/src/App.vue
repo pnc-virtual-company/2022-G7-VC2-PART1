@@ -97,9 +97,8 @@ nav {
   z-index: 5;
   top: 0;
   width: 100%;
-  background: #22bbea;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  background: #45b6fe;
+  background: #22BBEA;
   /* height: 12vh; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -107,8 +106,7 @@ nav {
 
 nav a.router-link-exact-active {
   padding: 5px;
-  border-radius: 5px;
-  background: orangered;
+  background:#FDBA74;
 }
 nav a {
   border: none;
