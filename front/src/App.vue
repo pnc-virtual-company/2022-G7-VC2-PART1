@@ -1,7 +1,7 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=null" />
+    <navbar-view v-if="isLogin && userId!=null" />
     <main>
       <!-- view -->
       <router-view @request-login="login" :role="role"/>
@@ -45,7 +45,7 @@ export default {
     },
     // ============== get specific user ============
     getSpecificUser() {
-      let path = "students//";
+      let path = "students/";
       if(localStorage.role === 'admin'){
         path = 'admin/';
       }
