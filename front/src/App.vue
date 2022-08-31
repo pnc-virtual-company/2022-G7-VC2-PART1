@@ -1,8 +1,7 @@
 <template>
   <div class="app h-screen">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole"/>
-
+    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole" @request-logout="logout"/>
     <main>
       <!-- view -->
       <router-view @request-login="login" :role="role"/>
@@ -67,6 +66,12 @@ export default {
       this.userId = localStorage.userId;
       this.userRole = localStorage.role;
       
+    },
+    logout(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('role');
+      this.isLogin = false;
     }
   },
   provide(){
@@ -81,7 +86,7 @@ export default {
     this.getListOfLeave();
     this.getSpecificUser();
   },
- 
+
 };
 </script>
 
