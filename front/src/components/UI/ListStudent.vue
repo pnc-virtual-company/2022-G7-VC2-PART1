@@ -34,7 +34,7 @@
         </tr>
        </thead>
         <tbody>
-          <tr v-for="list of lists" :key="list">
+          <tr v-for="list of dataStatus" :key="list">
             <td>{{list.start_date}}</td>
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
@@ -52,7 +52,6 @@
 
 import axios  from "../../http.js";
 export default {
-
   data() {
     return {
       lists: [],
@@ -78,17 +77,15 @@ export default {
     }
   },
   methods: {
-      getData() {
-      axios.get('/request'
-        ).then((res) => {
-          this.lists = res.data;
-        console.log(this.lists)
-        }).catch((err) => err)
-      }
+    getData() {
+      axios.get('/request').then((res) => {
+        this.lists = res.data;
+      })
+    }
   },
   mounted() {
-      this.getData();
-    }
+    this.getData();
+  }
 }
 </script>
 

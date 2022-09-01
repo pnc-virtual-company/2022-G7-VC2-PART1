@@ -76,7 +76,6 @@ export default {
       SpecificEndTime:"",
       leave_type:"",
       reason: "",
-    
       isPast:0,
       Padding:"Padding",
       listDate:[]
@@ -95,7 +94,7 @@ export default {
     newRequest(){
       let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
       let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
-      duration:parseInt(this.differentDate),student_id:this.userId}
+      duration:parseInt(this.differentDate),student_id:localStorage.userId}
 
       this.listDate.push(list)
   // =============request new leave =====================
@@ -172,18 +171,5 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
-/* .card-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 15px;
-} */
 
-/* textarea,select,input {
-  border: 3px solid rgb(123, 140, 233);
-  background: rgb(240, 240, 240);
-  border-radius: 5px;
-} */
 </style>

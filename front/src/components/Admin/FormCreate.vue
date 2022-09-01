@@ -23,7 +23,33 @@
                 <input type="text" class="w-full mt-4 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Email" v-model="email">
                 <input type="password" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Password" v-model="password">
                 <input type="number" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Phone Number" v-model="phoneNumber">
-                <input type="file" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Choose file">
+                <!-- <input type="file" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="choose img"> -->
+                <!-- <div class="flex justify-between w-full space-x-4">
+                    <div class="relative w-full">
+                        <h2>Generation</h2>
+                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="generation">
+                            <option value="" disabled>Choose</option>
+                            <option value="2023">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2023">2024</option>
+                        </select>
+                        <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                    <div class="relative w-full">
+                        <h2>Class</h2>
+                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="classes">
+                            <option value="" disabled>Choose</option>
+                            <option value="2023">WEB-A</option>
+                            <option value="2023">WEB-B</option>
+                            <option value="2023">SNA</option>
+                        </select>
+                        <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="flex justify-center mt-5 mb-4">
                     <button  type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Submit</button>
                     <button  @click="togle" class="bg-red-500 ml-3 hover:bg-red-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Cancel</button>
@@ -37,6 +63,7 @@
 <script>
 import Swal from 'sweetalert2'
 export default {
+    inject: ['userId'],
     emits: ['add-data'],
     data(){
         return {
@@ -47,10 +74,10 @@ export default {
             email:"",
             password:"",
             phoneNumber:"",
-            profile: null,
-            class_id:1,
+            profile: "",
+            class_id: 1,
             batch_id:1,
-            admin_id:1,
+            admin_id: localStorage.getItem('userId'),
             role:"student",
         }
     },
@@ -69,15 +96,16 @@ export default {
             this.$emit('add-data',  
                 this.firstName, this.lastName,
                 this.gender, this.email, this.password, this.profile,
-                this.phoneNumber,this.class_id,this.batch_id,this.admin_id,this.role,
-                this.alertPopUP()
+                this.phoneNumber,this.class_id,this.batch_id,this.role,
+                this.alertPopUP(),
+                this.firstName = '',
+                this.lastName = '',
+                this.password = '',
+                this.email = '',
+                this.gender = '',
+                this.profile = '',
+                this.phoneNumber = ''
             )
-            this.firstName = '',
-            this.lastName = '',
-            this.password = '',
-            this.gender = ''
-            this.profile = '',
-            this.phoneNumber = ''
             this.togle()
             if(!notEmptydata){
                 Swal.fire({

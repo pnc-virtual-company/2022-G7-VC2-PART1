@@ -1,21 +1,26 @@
 <template >
-  <CardBody>
+  <CardSlot>
     <FormInput @add-data="createNewStudent"/>
     <h1 class="text-center text-2xl mb-3">List all of the students</h1><hr>
     <CardList/>
     <CardDetail v-for="student of students" :key="student" :data="student"
       @remove-list="removeListStudent">
     </CardDetail>
-  </CardBody>
+  </CardSlot>
 </template>
 <script>
 import axios from "../../http.js";
-import CardBody from './MenuSlot.vue'
+import CardSlot from './CardSlot.vue'
 import CardDetail from './CardDetail.vue'
 import CardList from './ViewList.vue'
 import FormInput from './FormCreate.vue'
   export default {
-    components: { CardDetail, CardList, CardBody, FormInput},
+    provide() {
+      return {
+        displayData: this.getDataOfStudent
+      }
+    },
+    components: { CardDetail, CardList, CardSlot, FormInput},
     data() {
       return {
         students: [],
@@ -37,6 +42,8 @@ import FormInput from './FormCreate.vue'
         }).then((res) => {
           this.getDataOfStudent();
           console.log(res.data);
+        }).catch((error)=>{
+          console.log(error.response.data)
         })
       },
       removeListStudent(id) {
