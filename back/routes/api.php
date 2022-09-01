@@ -25,40 +25,45 @@ Route::middleware('auth:sanctum')->get('/users', function (Request $request) {
     return $request->user();
 });
 
-//SignIn api
+//====================== SignIn api =====================
 Route::post('/login', [UserController::class,'signIn']);
-// private route
-Route::post('/admin',[AdminController::class,'store']);
-Route::get('/admin',[AdminController::class,'index']);
+
+// ===================== private route ===================
 Route::group(['middleware'=>['auth:sanctum']],function(){
-    //Admin
+
+    //========================= Admin ====================
+    Route::post('/admin',[AdminController::class,'store']);
+    Route::get('/admin',[AdminController::class,'index']);
     Route::get('/admin/{id}',[AdminController::class,'show']);
     Route::put('/admin/{id}',[AdminController::class,'update']);
     Route::delete('/admin/{id}',[AdminController::class,'destroy']);
     
-    //student
-    Route::post("/students",[StudentController::class,'store']);
+    //====================== student =======================
     Route::get("/students",[StudentController::class,'index']);
-   
+    Route::post("/students",[StudentController::class,'store']);
     Route::get("students/{id}",[StudentController::class,'show']);
     Route::put("students/{id}",[StudentController::class,'update']);
     Route::delete("students/{id}",[StudentController::class,'destroy']);
 
-    //Request
-   
+    //======================= Request ======================
     Route::post('/request',[RequestController::class , 'store']);
     Route::get('/request',[RequestController::class , 'index']);
-    Route::get('/request/{id}',[RequestController::class , 'show']);
-    Route::put('/request/{id}',[RequestController::class , 'update']);
-    Route::delete('/request/{id}',[RequestController::class , 'destroy']);
+    Route::get('/requests/{id}',[RequestController::class , 'show']);
+    Route::put('/requests/{id}',[RequestController::class , 'update']);
+    Route::delete('/requests/{id}',[RequestController::class , 'destroy']);
 
-    //Class
+    //====================== Class =========================
     Route::post('/class',[ClassesController::class ,'store']);
     Route::get('/class',[ClassesController::class ,'index']);
 
-    //Batch
+    //====================== Batch =========================
     Route::post('/batchs',[BatchController::class, 'store']);
-    Route::get('/batchs',[BatchController::class, 'index']);
+    Route::get('/batches',[BatchController::class, 'index']);
 
+    //====================== user signOut ==================
     Route::post('/signOut',[UserController::class,'signOut']);
+
+    //====================== user Reset Password ============
+    Route::patch('/adminResetPassword/{id}',[AdminController::class, 'adminResetPassword']);
+    Route::patch('/studentResetPassword/{id}',[StudentController::class, 'StudentResetPassword']);
 });

@@ -8,19 +8,14 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderShipped;
 class RequestController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   //====================== show all request ==================
     public function index()
     {
         // return Requests::all();
         return Requests::with('student')->get();
     }
-    /**
-     * Store a newly created resource in storage​.
-     */
+
+   //====================== add new request ===================
     public function store(Request $request)
     {   
         $offer = $request->validate([
@@ -43,17 +38,13 @@ class RequestController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //====================== show one request ===================
     public function show($id)
     {
         return Requests::findOrFail($id);
     }
 
-    /*
-     Update the specified resource in storage
-     */
+    //====================== update request ===================
     public function update(Request $request,$id)
     {
         $offer = Requests::findOrFail($id);
@@ -62,9 +53,7 @@ class RequestController extends Controller
         return response()->Json(['messsage'=>'Scuccfully for create Request']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    //===================== delete request ======================
     public function destroy($id)
     {
         return Requests::destroy($id);
