@@ -51,7 +51,7 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        return Student::findOrFail($id);
+        return Student::with(['class','batch','admin'])->findOrFail($id);
     }
 
     /**

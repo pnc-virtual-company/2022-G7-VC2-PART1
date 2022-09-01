@@ -1,10 +1,10 @@
 <template>
-  <div class="flex mt-3 space-x-3 mb-0">
+  <div class="flex mt-3 space-x-3 mb-0" >
     <div class="card">
       <div class="flex">
-        <li class="fa fa-graduation-cap text-4xl text-blue"></li>
+        <li class="fa fa-graduation-cap text-4xl text-blue-500"></li>
         <div class="flex justify-center mt-1">
-          <p class="ml-2"><span class="text-orange">12</span> students</p>
+          <p class="ml-2"><span class="text-orange"></span> students</p>
         </div>
       </div>
     </div>
@@ -36,37 +36,26 @@
 </template>
 
 <script>
-// import axios from 'axios'
-// import FormView from '@/components/Admin/FormCreate.vue'
+import axios from "../../http.js";
   export default {
-    // props: {data: Object},
-    // components: { FormView },
-    // data() {
-    //   return {
-    //     url: "http://127.0.0.1:8082/api/students/",
-    //     students: []
-    //   }
-    // },
-    // methods: {
-    //   getDataOfStudent() {
-    //     axios.get(this.url, this.image).then((res) => {
-    //       let students = res.data;
-    //       for(let student of students){
-    //         student.show = false;
-    //       }
-    //       this.students = students;
-    //       console.log(this.students);
-    //     })
-    //   },   
-    //   showDetail(id) {
-    //     let index = this.students.findIndex(student => student.id ==id);
-    //     this.students[index].show =!this.students[index].show
-    //     console.log(id)
-    //   }
-    // },
-    // mounted() {
-    //   return this.getDataOfStudent()
-    // }
+    data() {
+      return {
+        students: [],
+      }
+    },
+    methods: {
+      getDataOfStudent() {
+        axios.get('students').then((res) => {
+          this.students = res.data;
+          console.log(res.data);
+        })
+      },   
+      // showDetail(id) {
+      //   let index = this.students.findIndex(student => student.id ==id);
+      //   this.students[index].show =!this.students[index].show
+      //   console.log(id)
+      // }
+    }
   }
 </script>
 
@@ -77,7 +66,7 @@
 }
 /* card */
 .card {
-    width: 24%;
+    width: 26%;
     margin: 0 auto;
     padding: 0.9rem;
     border-radius: 0.5rem;

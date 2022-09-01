@@ -1,13 +1,46 @@
 <template>
   <div class="contianer">  
     <div class="w-[75%] bg-gray-300 m-auto rounded-t-lg mt-5">
-        <div class="title text-white bg-sky-600 p-[10px] text-xl font-bold rounded-t-lg">
-          <h2 class="mt-[15px]">CheckLeave</h2>
+        <div class="title bg-gray-400 p-[10px] text-xl font-bold rounded-t-lg">
+
+          <div class="flex mt-3 space-x-4 mb-0 text-center" >
+            <div class="card">
+              <div class="flex">
+                <div class="flex justify-center mt-2">
+                  <p class="ml-10 text-black">See All<span class="text-orange"></span> </p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex ml-7">
+                <img :src="require('../../assets/padding.png')" alt="" class="w-[20%]">
+                <div class="flex justify-center mt-3">
+                  <p class="ml-2 text-black">Approve<span class="text-orange ml-2">12</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex ml-7">
+                <img :src="require('../../assets/approve.png')" alt="" class="w-[20%]">
+                <div class="flex justify-center mt-3 ">
+                  <p class="ml-2 text-black">Padding<span class="text-orange ml-2">12</span></p>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="flex ml-7">
+                <img :src="require('../../assets/reject.png')" alt="" class="w-[20%]">
+                <div class="flex justify-center mt-3 ml-2">
+                  <p class="text-black">Reject<span class="text-orange ml-2">12</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="contain text-center p-[8px] w-[80%] m-auto" v-for="list of listStudent" :key="list">
           <div class="flex items-center p-[10px] bg-white ">
                <div class="w-[80px] h-[80px] ml-[5%]">
-                 <img :src="require('../../assets/profile.png')" class="w-[80px] h-[80px] rounded-full">
+                 <img :src="require('../../assets/profile.png')" class="w-[80px] h-[80px] rounded-full border-slate-700">
                </div>
                <div class="w-[45%] text-left ml-[2%]">
                 <div class="">
@@ -82,6 +115,14 @@
   
   
   <style>
+    .card {
+    width: 26%;
+    margin: 0 auto;
+    padding: 0.9rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    border-top: 3px solid #0be858 ;
+}
   :disabled{
     background-color: #cccccc;
     color: #666666;

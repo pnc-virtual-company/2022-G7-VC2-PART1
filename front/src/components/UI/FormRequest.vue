@@ -172,18 +172,5 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
 }
-/* .card-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 15px;
-} */
 
-/* textarea,select,input {
-  border: 3px solid rgb(123, 140, 233);
-  background: rgb(240, 240, 240);
-  border-radius: 5px;
-} */
 </style>
