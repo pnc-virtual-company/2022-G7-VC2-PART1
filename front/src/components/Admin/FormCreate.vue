@@ -23,15 +23,14 @@
                 <input type="text" class="w-full mt-4 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Email" v-model="email">
                 <input type="password" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Password" v-model="password">
                 <input type="number" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="Phone Number" v-model="phoneNumber">
-                <!-- <input type="file" class="w-full mt-5 appearance-none block bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" placeholder="choose img"> -->
-                <!-- <div class="flex justify-between w-full space-x-4">
+                <div class="flex justify-between w-full space-x-4">
                     <div class="relative w-full">
                         <h2>Generation</h2>
-                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="generation">
+                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="batch_id">
                             <option value="" disabled>Choose</option>
-                            <option value="2023">2022</option>
-                            <option value="2023">2023</option>
-                            <option value="2023">2024</option>
+                            <option value="1">2022</option>
+                            <option value="2">2023</option>
+                            <option value="3">2024</option>
                         </select>
                         <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -39,17 +38,17 @@
                     </div>
                     <div class="relative w-full">
                         <h2>Class</h2>
-                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="classes">
+                        <select class="w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" v-model="class_id">
                             <option value="" disabled>Choose</option>
-                            <option value="2023">WEB-A</option>
-                            <option value="2023">WEB-B</option>
-                            <option value="2023">SNA</option>
+                            <option value="1">WEB-A</option>
+                            <option value="2">WEB-B</option>
+                            <option value="3">SNA</option>
                         </select>
                         <div class="mt-1 pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                             <svg class="fill-current h-4 w-5 mt-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="flex justify-center mt-5 mb-4">
                     <button  type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Submit</button>
                     <button  @click="togle" class="bg-red-500 ml-3 hover:bg-red-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Cancel</button>
@@ -75,8 +74,8 @@ export default {
             password:"",
             phoneNumber:"",
             profile: "",
-            class_id: 1,
-            batch_id:1,
+            class_id: 0,
+            batch_id: 0,
             admin_id: localStorage.getItem('userId'),
             role:"student",
         }
@@ -96,7 +95,7 @@ export default {
             this.$emit('add-data',  
                 this.firstName, this.lastName,
                 this.gender, this.email, this.password, this.profile,
-                this.phoneNumber,this.class_id,this.batch_id,this.role,
+                this.phoneNumber,this.class_id,this.batch_id,this.admin_id,this.role,
                 this.alertPopUP(),
                 this.firstName = '',
                 this.lastName = '',

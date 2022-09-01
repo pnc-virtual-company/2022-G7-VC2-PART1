@@ -2,7 +2,7 @@
   <div class="flex mt-3 space-x-3 mb-0" >
     <div class="card">
       <div class="flex">
-        <li class="fa fa-graduation-cap text-4xl text-blue"></li>
+        <li class="fa fa-graduation-cap text-4xl text-blue-500"></li>
         <div class="flex justify-center mt-1">
           <p class="ml-2"><span class="text-orange"></span> students</p>
         </div>

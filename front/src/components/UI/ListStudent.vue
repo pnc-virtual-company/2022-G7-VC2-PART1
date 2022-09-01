@@ -12,7 +12,7 @@
           <option value="family's Event">family's Event</option>
         </select>
         <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color text-white" v-model="onStatus">
-          <option value="" disabled>Choose</option>
+          <option value="" disabled>Choose Status</option>
           <option value="">Show All</option>
           <option value="Approve">Approve</option>
           <option value="Reject">Reject</option>

@@ -60,11 +60,3 @@ import FormInput from './FormCreate.vue'
 
 <style scoped>
 </style>>
-
-
-<!-- axios.put('students/' + id, {first_name:this.firstName, last_name:this.lastName,
-  gender:this.gender,email:this.email, password:this.password,profile:this.profile,
-  phone_number:this.phoneNumber,class_id:this.class_id,batch_id:this.batch_id,admin_id:this.admin_id,role:this.role})
-  .then((res) => {
-    console.log(res.data);
-  }) -->
