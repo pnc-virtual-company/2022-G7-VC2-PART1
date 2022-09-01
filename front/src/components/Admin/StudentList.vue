@@ -1,8 +1,8 @@
 <template >
   <CardSlot>
     <FormInput @add-data="createNewStudent"/>
-    <h1 class="text-center text-2xl mb-3">List all of the students</h1><hr>
     <CardList/>
+    <h1 class="text-center text-2xl mb-2">List all of the students</h1><hr>
     <CardDetail v-for="student of students" :key="student" :data="student"
       @remove-list="removeListStudent">
     </CardDetail>
@@ -17,7 +17,8 @@ import FormInput from './FormCreate.vue'
   export default {
     provide() {
       return {
-        displayData: this.getDataOfStudent
+        displayData: this.getDataOfStudent,
+        listStudents :this.students
       }
     },
     components: { CardDetail, CardList, CardSlot, FormInput},
@@ -57,6 +58,11 @@ import FormInput from './FormCreate.vue'
     }
   }
 </script>
-
 <style scoped>
+  h1 {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  hr {
+    border: 1px solid #FDBA74;
+  }
 </style>>

@@ -1,6 +1,6 @@
 <template>
 <div class="container">
-    <div class="card-detail w-full p-3 mt-3 rounded">
+    <div class="card-detail w-full p-3 mt-2 rounded">
         <div class="flex">
             <img :src="require('../../assets/profile.png')" width="80">
             <div class="w-full flex justify-between">
@@ -169,7 +169,7 @@ export default {
 
 <style scoped>
 .card-detail {
-  background-color: #fff;
+  /* background-color: rgb(199, 186, 186); */
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .card-detail:hover {
