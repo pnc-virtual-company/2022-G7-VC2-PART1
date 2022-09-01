@@ -45,6 +45,7 @@
   // ===========check leave information =============================
   
   let listStudent = ref();
+  // let url = 'http://localhost:8082/api/leave/'
 
   // ======== Get Data from url ========
   
@@ -58,15 +59,18 @@
   
   // ======== On Approve --=======
   function onApprove(request_Id,status){
-      axios.put('leave/'+request_Id,{status:status}).then(response =>{
-        console.log(status,request_Id,response);
+      axios.put('request/'+request_Id,{status:status}).then(response =>{
         getData();
         // hiden.value=false;
+        console.log(response);
+      }).catch(error =>{
+        console.log(error.request);
       });
+      console.log('Data user is here: '+status,request_Id);
   }
   
   function onReject(request_Id,status){
-      axios.put('leave/'+request_Id,{status:status}).then(response =>{
+      axios.put('request/'+request_Id,{status:status}).then(response =>{
         console.log(status,request_Id,response);
         getData();
         // hiden.value=false;

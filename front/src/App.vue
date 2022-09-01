@@ -2,7 +2,7 @@
   <div class="app h-screen">
     <!-- // navigation bar  -->
 
-    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole"/>
+    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole" @request-logout="logout"/>
 
     <main>
       <!-- view -->
@@ -68,6 +68,14 @@ export default {
       this.userId = localStorage.userId;
       this.userRole = localStorage.role;
       
+    },
+    logout(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('role');
+      this.isLogin = false;
+      this.userRole = null;
+      this.userId = null;
     }
   },
   provide(){
@@ -82,7 +90,7 @@ export default {
     this.getListOfLeave();
     this.getSpecificUser();
   },
- 
+
 };
 </script>
 
@@ -98,9 +106,8 @@ nav {
   z-index: 5;
   top: 0;
   width: 100%;
-  background: #22bbea;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  background: #45b6fe;
+  background: #22BBEA;
   /* height: 12vh; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
@@ -108,8 +115,7 @@ nav {
 
 nav a.router-link-exact-active {
   padding: 5px;
-  border-radius: 5px;
-  background: orangered;
+  background:#FDBA74;
 }
 nav a {
   border: none;

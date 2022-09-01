@@ -10,7 +10,7 @@
 </template>
 <script>
 import axios from "../../http.js";
-import CardBody from './MenuSlot.vue'
+import CardBody from './CardSlot.vue'
 import CardDetail from './CardDetail.vue'
 import CardList from './ViewList.vue'
 import FormInput from './FormCreate.vue'
