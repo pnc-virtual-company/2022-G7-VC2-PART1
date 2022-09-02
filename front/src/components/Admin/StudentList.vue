@@ -30,7 +30,7 @@
               <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">ACTIONS</th>
           </tr>
       </thead>
-        <CardDetail v-for="student of students"
+        <CardDetail v-for="student of filterByName"
             :key="student" :data="student"
             @remove-list="removeListStudent">
           </CardDetail>
@@ -83,6 +83,13 @@ import FormInput from './FormCreate.vue'
       }
     },    
     computed: {
+      filterByName() {
+        if(!this.search) {
+          return this.students
+        }else {
+          return  this.students.filter(student => student.first_name.toLowerCase().includes(this.search.toLowerCase()))
+        }
+      },
       countNumberStudent() {
         return this.students.length
       }
