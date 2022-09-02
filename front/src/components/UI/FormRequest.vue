@@ -55,9 +55,7 @@
       <div class="relative w-100">
         <input class="mb-3 w-full block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white" placeholder="Input" v-model="reason">
       </div>
-      <div class="w-full">
-        <button @click="alertPopUP" :disabled="validateDate=='false'" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Request</button>
-      </div>
+      <button @click="alertPopUP" :disabled="validateDate=='false'" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-4 rounded focus:outline-none focus:shadow-outline p-4" type="submit">Request</button>
     </form>
   </div>
 </template>

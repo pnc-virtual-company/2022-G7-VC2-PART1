@@ -1,5 +1,5 @@
 <template>
-<div class="w-full flex justify-center mt-5">
+<div class="w-full flex justify-center mt-4">
     <div class="container m-auto rounded">
          <div class="card-body w-full p-5 rounded">
             <slot></slot>
@@ -16,6 +16,6 @@ export default {
 
 <style scoped>
 .container {
-    width: 80%;
+    width: 90%;
 }
 </style>

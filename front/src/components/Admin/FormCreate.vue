@@ -1,8 +1,4 @@
 <template>
-    <div class="w-full position flex justify-center space-x-2">
-        <input type="text" placeholder="search" class="w-96 block text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-        <button  type="submit" class="btn hover:bg-orange-500 text-white px-4 rounded focus:outline-none focus:shadow-outline">Search</button>
-    </div>
 <div class="container flex justify-end mt-0 mr-2">
     <button id="show_modal" @click="togle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded focus:outline-none focus:shadow-outline">Add+</button>
 </div>
@@ -53,9 +49,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center mt-5 mb-4">
-                    <button  type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Submit</button>
+                <div class="flex justify-center space-x-3 mt-5 mb-4">
                     <button  @click="togle" class="bg-red-500 ml-3 hover:bg-red-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Cancel</button>
+                    <button  type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline">Submit</button>
                 </div>
             </form>
         </div>
@@ -176,12 +172,5 @@ form {
 }
 .radio {
     width: 4%;
-}
-.btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #FDBA74;
-    height: 7vh;
 }
 </style>
