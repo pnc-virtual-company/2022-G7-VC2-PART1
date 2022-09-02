@@ -8,8 +8,10 @@
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
-      <div class="flex justify-center">
-        <div class="text" v-for = "items in datalist" :key="items">
+      
+      <!-- student profile  -->
+      <div class="flex justify-center" v-if="role == 'student'">
+        <div  class="text" v-for = "items in datalist" :key="items">
           <div class="text-center ml-5">
             <img :src="require('../../assets/user_female.png')" class='w-28 h-28 rounded-full object-cover text-center'>
             <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
@@ -23,8 +25,25 @@
           </div>
         </div>
       </div>
-    </div>
+
+       <!-- admin profile  -->
+       
+       <div class="flex justify-center" v-if="role == 'admin' ">
+        <div  class="text" v-for = "items in datalist" :key="items">
+          <div class="text-center ml-5">
+            <img :src="require('../../assets/user_female.png')" class='w-28 h-28 rounded-full object-cover text-center'>
+            <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
+          </div>
+          <div class="p-0 text-left mr-7">
+            <h3>admin_id: {{items.id}}</h3>
+            <h3>Class: {{items.email}}</h3>
+          </div>
+        </div>
+      </div>
+
+      </div>
   </div>
+
 </div>
   <!----------------------end-popup--------------------------->
 <nav class="flex justify-between align-center w-full">
@@ -89,19 +108,30 @@ export default {
   },
   methods:{
     information(){
-      axios.get('students/'+localStorage.userId).then(response => {
-        this.datalist.push(response.data)
-        // console.log(response.data); 
-        console.log('user_Id'+localStorage.userId);
-        console.log('data-information'+response.data);
-      })
-    },
-    viewProfile(){
-      this.showModal = !this.showModal
-    },  
-    logout(){
-      this.$emit('request-logout')
-    }
+      console.log('user_Id'+localStorage.userId)
+      console.log('role-data'+localStorage.role)
+      if(localStorage.role =="admin"){
+          axios.get('admin/'+localStorage.userId).then(response => {
+            this.datalist.push(response.data)
+            console.log('data-information'+this.datalist)
+          })
+      }
+      else if(localStorage.role =="student"){
+        axios.get('students/'+localStorage.userId).then(response => {
+            this.datalist.push(response.data)
+            console.log('user_Id'+localStorage.userId)
+            console.log('data-information'+this.datalist)
+          })
+        }
+
+      },
+    
+      viewProfile(){
+        this.showModal = !this.showModal
+      },  
+      logout(){
+        this.$emit('request-logout')
+      }
 },
   mounted(){
     this.information()

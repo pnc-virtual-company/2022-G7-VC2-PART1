@@ -1,10 +1,16 @@
 <template>
 
-    <div class="container flex justify-end mt-0 mr-2">
-        <button id="show_modal" @click="togle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded focus:outline-none focus:shadow-outline" type="submit">Add+</button>
+   
+    <div class="w-full position flex justify-center space-x-2">
+        <input type="text" placeholder="search" class="w-96 block text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+        <button  type="submit" class="btn hover:bg-orange-500 text-white px-4 rounded focus:outline-none focus:shadow-outline">Search</button>
+
     </div>
-    <div class="modal-mask" v-if="showModal==true">
-      <div class="modal-wrapper">
+<div class="container flex justify-end mt-0 mr-2">
+    <button id="show_modal" @click="togle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded focus:outline-none focus:shadow-outline">Add+</button>
+</div>
+<div class="modal-mask" v-if="showModal==true">
+    <div class="modal-wrapper">
         <div class="modal-container rounded">
             <form @submit.prevent="addStudent">
                 <div class="flex justify-center">
@@ -123,55 +129,62 @@ export default {
     },
 }
 </script>
-<style>
-    .modal-mask {
-        position: fixed;
-        z-index: 10;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: table;
-        transition: opacity 0.3s ease;
-    }
+<style scoped>
+.modal-mask {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
 
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-    .modal-container {
-        width: 35%;
-        height: auto;
-        margin: 0px auto;
-        padding: 15px 28px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-        transition: all 0.3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-    }
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-container {
+    width: 35%;
+    height: auto;
+    margin: 0px auto;
+    padding: 15px 28px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
-    .modal-body {
-        margin: 20px 0;
-    }
+.modal-body {
+    margin: 20px 0;
+}
 
-    .modal-default-button {
-        float: right;
-    }
-    .modal-enter-from, .modal-leave-to {
-        opacity: 0;
-    }
+.modal-default-button {
+    float: right;
+}
+.modal-enter-from, .modal-leave-to {
+    opacity: 0;
+}
 
-    .modal-enter-active .modal-container,
-    .modal-leave-active .modal-container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    };
-    form {
-        width: 95%;
-    }
-    .radio {
-        width: 4%;
-    }
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+};
+form {
+    width: 95%;
+}
+.radio {
+    width: 4%;
+}
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FDBA74;
+    height: 7vh;
+}
 </style>

@@ -4,18 +4,18 @@
         <div class="title bg-gray-400 p-[10px] text-xl font-bold rounded-t-lg">
 
           <div class="flex mt-3 space-x-4 mb-0 text-center" >
-            <div class="card">
+            <div class="card bg-blue-300">
               <div class="flex">
                 <div class="flex justify-center mt-2">
-                  <p class="ml-10 text-black">See All<span class="text-orange"></span> </p>
+                  <p class="ml-10 text-black">checkLeave<span class="text-orange"></span> </p>
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" >
               <div class="flex ml-7">
                 <img :src="require('../../assets/padding.png')" alt="" class="w-[20%]">
                 <div class="flex justify-center mt-3">
-                  <p class="ml-2 text-black">Approve<span class="text-orange ml-2">12</span></p>
+                  <p class="ml-2 text-black">Padding: <span class="text-orange ml-2 padding">{{filterPadding}}</span></p>
                 </div>
               </div>
             </div>
@@ -23,15 +23,15 @@
               <div class="flex ml-7">
                 <img :src="require('../../assets/approve.png')" alt="" class="w-[20%]">
                 <div class="flex justify-center mt-3 ">
-                  <p class="ml-2 text-black">Padding<span class="text-orange ml-2">12</span></p>
+                  <p class="ml-2 text-black">Approve: <span class="text-orange ml-2 approve">{{filterApprove}}</span></p>
                 </div>
               </div>
             </div>
-            <div class="card">
+            <div class="card" >
               <div class="flex ml-7">
                 <img :src="require('../../assets/reject.png')" alt="" class="w-[20%]">
                 <div class="flex justify-center mt-3 ml-2">
-                  <p class="text-black">Reject<span class="text-orange ml-2">12</span></p>
+                  <p class="text-black">Reject: <span class="text-orange ml-2 reject">{{filterReject}}</span></p>
                 </div>
               </div>
             </div>
@@ -72,12 +72,12 @@
   
   <script setup>
   // =======Module imported ===========
-  import {ref,onMounted} from 'vue'
+  import {ref,onMounted,computed} from 'vue'
   import axios from "../../http";
   
   // ===========check leave information =============================
   
-  let listStudent = ref();
+  let listStudent = ref([]);
   // let url = 'http://localhost:8082/api/leave/'
 
   // ======== Get Data from url ========
@@ -92,7 +92,7 @@
   
   // ======== On Approve --=======
   function onApprove(request_Id,status){
-      axios.put('request/'+request_Id,{status:status}).then(response =>{
+      axios.put('requests/'+request_Id,{status:status}).then(response =>{
         getData();
         // hiden.value=false;
         console.log(response);
@@ -103,13 +103,26 @@
   }
   
   function onReject(request_Id,status){
-      axios.put('request/'+request_Id,{status:status}).then(response =>{
+      axios.put('requests/'+request_Id,{status:status}).then(response =>{
         console.log(status,request_Id,response);
         getData();
         // hiden.value=false;
       });
   }
   
+  let filterPadding =computed (()=>{
+    return listStudent.value.filter(student =>student.status == 'Padding').length;})
+  let filterReject = computed (()=>{
+    return listStudent.value.filter(student =>student.status == 'Reject').length
+  });
+  let  filterApprove= computed (()=>{
+    return listStudent.value.filter(student =>student.status == 'Approve').length
+  });
+
+  // onUpdated(()=>{
+  //   getData()
+  // })
+
   </script>
   
   
@@ -127,8 +140,11 @@
     background-color: #cccccc;
     color: #666666;
   }
+  .padding{
+    color:orange;
+  }
   .approve{
-    color: rgb(55, 223, 4);
+    color: rgb(36, 145, 2);
   }
   .reject{
     color: red;

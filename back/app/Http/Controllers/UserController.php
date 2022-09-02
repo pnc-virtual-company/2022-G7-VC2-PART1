@@ -1,12 +1,9 @@
 <?php
 namespace App\Http\Controllers;
-
 use App\Models\Student;
 use App\Models\Admin;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-
 class UserController extends Controller
 {
     //=========================== User login========================
@@ -33,4 +30,5 @@ class UserController extends Controller
         Auth()->user()->tokens()->delete();
         return Response()->json(['message'=>'has been left succesfully']);
     }
+
 }
