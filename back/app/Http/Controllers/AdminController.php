@@ -25,17 +25,7 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->role = $request->role;
         $admin->password = bcrypt($request->password);
-        
-        $path = public_path('images/Admin');
-        if ( ! file_exists($path) ) {
-            mkdir($path, 0777, true);
-        }
-        $file = $request->file('profile');
-        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
-        $admin->profile = $fileName;
-        $admin->save();
-        $file->move($path, $fileName);
-
+        $admin->profile = $request->profile;
         $admin->save();
         return('sucessfully');
         

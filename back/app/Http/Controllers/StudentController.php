@@ -30,19 +30,10 @@ class StudentController extends Controller
         $students->password = bcrypt($request->password);
         $students->phone_number = $request->phone_number;
         $students->role = $request->role;
+        $students->profile = $request->profile;
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
-        $path = public_path('images/Student');
-        if ( ! file_exists($path) ) {
-            mkdir($path, 0777, true);
-        }
-        $file = $request->file('profile');
-        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
-        $students->Profile = $fileName;
-        $students->save();
-        $file->move($path, $fileName);
-
         $students->save();
     }
 
@@ -71,15 +62,6 @@ class StudentController extends Controller
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
-        $path = public_path('images/Student');
-        if ( ! file_exists($path) ) {
-            mkdir($path, 0777, true);
-        }
-        $file = $request->file('profile');
-        $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
-        $students->Profile = $fileName;
-        $students->save();
-        $file->move($path, $fileName);
         $students->save();
         
         return response()->Json(['messsage'=>'Scuccfully for Update Student']);
