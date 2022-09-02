@@ -10,7 +10,11 @@ class AdminController extends Controller
     {
         return Admin::all();
     }
-
+    // ================show spcific admin =================
+    public function show($id)
+    {
+        return Admin::findOrFail($id);
+    }
     //====================== add new admin ===================
     public function store(Request $request)
     {
