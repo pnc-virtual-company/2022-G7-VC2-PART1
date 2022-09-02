@@ -1,22 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\Admin;
 use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //====================== show all admin ===================
     public function index()
     {
         return Admin::all();
     }
-    /**
-     * Store a newly created resource in storage.
-     */
+    // ================show spcific admin =================
+    public function show($id)
+    {
+        return Admin::findOrFail($id);
+    }
+    //====================== add new admin ===================
     public function store(Request $request)
     {
         $admin = new Admin();
@@ -31,27 +30,14 @@ class AdminController extends Controller
         
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Admin $admin)
-    {
-        //
+   //========================== Reset password ==================
+    public function adminResetPassword(Request $request, $adminId){
+        $admin = Admin::find($adminId);
+        if(Hash::check($request->oldpassword, $admin->password)){
+            $admin->password = bcrypt($request->newPassword);
+        }
+        $admin->save();
+        return Response()->json($admin);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Admin $admin)
-    {
-        //
-    }
 }

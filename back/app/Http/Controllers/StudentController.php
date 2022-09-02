@@ -1,25 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Student;
 use Illuminate\Http\Request;
-
-
+use Illuminate\Support\Facades\Hash;
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    //========================= show all students ========================
     public function index()
     {
-        // return Student::all();
         return Student::with(['class','batch','admin'])->get();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    //========================== add new student ========================
     public function store(Request $request)
     {
         $students = new Student();
@@ -37,17 +29,13 @@ class StudentController extends Controller
         $students->save();
     }
 
-    /**
-     * Display the specified resource.
-     */
+    //========================== show one student ========================
     public function show($id)
     {
-        return Student::findOrFail($id);
+        return Student::with(['class','batch','admin'])->findOrFail($id);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    //========================== update student ========================
     public function update(Request $request, $id)
     {
         $students = Student::findOrFail($id);
@@ -68,12 +56,19 @@ class StudentController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+   //========================== delete student ==================
     public function destroy($id)
     {
         return Student::destroy($id);
     }
- 
+    
+    //========================= Reset password ===================
+    public function StudentResetPassword(Request $request, $studentId){
+        $student = Student::find($studentId);
+        if(Hash::check($request->oldpassword,$student->password)){
+            $student->password = bcrypt($request->newPassword);
+        }
+        $student->save();
+        return Response()->json($student);
+    }
 }

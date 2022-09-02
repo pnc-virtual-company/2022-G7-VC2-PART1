@@ -1,7 +1,7 @@
 <template>
 
 <div class="w-full flex justify-between">
-  <div class="w-[80%]">
+  <div class="w-[80%] m-auto">
     <div class="w-full flex justify-between ml-2 mt-5">
       <div class="w-1/4 flex justify-evenly m-2 ">
         <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
@@ -38,7 +38,7 @@
             <td>{{list.start_date}}</td>
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
-            <td>{{list.duration}}</td>
+            <td>{{list.duration}} day</td>
             <td>{{list.reason}}</td>
             <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}">{{list.status}}</td>
           </tr>
