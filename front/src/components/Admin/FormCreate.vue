@@ -1,6 +1,6 @@
 <template>
-<div class="container flex justify-end mt-0 mr-2">
-    <button id="show_modal" @click="togle" class="bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 py-2.5 rounded focus:outline-none focus:shadow-outline">Add+</button>
+<div class="container flex justify-end mt-0">
+    <button id="show_modal" @click="togle" class="bg-blue-500 hover:bg-blue-700 text-white px-5 py-2.5 rounded focus:outline-none focus:shadow-outline">Add+</button>
 </div>
 <div class="modal-mask" v-if="showModal==true">
     <div class="modal-wrapper">
@@ -103,7 +103,9 @@ export default {
                 this.email = '',
                 this.gender = '',
                 this.profile = '',
-                this.phoneNumber = ''
+                this.phoneNumber = '',
+                this.class_id = '',
+                this.batch_id = ''
             )
             this.togle()
             if(!notEmptydata){
@@ -149,6 +151,7 @@ export default {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
+    z-index: 10;
 }
 
 .modal-body {

@@ -2,16 +2,16 @@
 <!---------------------------------table-view-student------------------------->
 <tbody>
     <tr>
-        <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.id}}</span></td>
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span class="flex justify-center"><img :src="require('../../assets/user_male.png')" width="54"></span></td>
+        <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.id}}</span></td>
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.first_name}} {{data.last_name}}</span></td>
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.gender}}</span></td>
-        <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.class.class}}</span></td>
+        <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.batch.generation}} {{data.class.class}}</span></td>
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.phone_number}}</span></td>
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.email}}</span></td>
-        <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.password}}</span></td>
+        <!-- <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all"><span>{{data.password}}</span></td> -->
         <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all text-white justify-center">
-            <span class="flex justify-evenly space-x-0">
+            <span class="flex justify-center space-x-2">
                 <li @click="editData(data.id)" class="fa fa-edit text-blue-500 text-3xl py-0.5"></li>
                 <li @click="removeList(data.id)" class="fa fa-trash-o text-red-500 text-3xl"></li>
             </span>
@@ -121,15 +121,10 @@ export default {
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Yes, delete it!',
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.$emit('remove-list', id)
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
                 }
             })
         },
@@ -163,54 +158,57 @@ export default {
   cursor: pointer;
 }
 /* form */
-   .modal-mask {
-        position: fixed;
-        z-index: 999;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: table;
-        transition: opacity 0.3s ease;
-    }
+.modal-mask {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+}
 
-    .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-    .modal-container {
-        width: 35%;
-        height: auto;
-        margin: 0px auto;
-        padding: 15px 28px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-        transition: all 0.3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-    }
+.modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-container {
+    width: 35%;
+    height: auto;
+    margin: 0px auto;
+    padding: 15px 28px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+}
 
-    .modal-body {
-        margin: 20px 0;
-    }
+.modal-body {
+    margin: 20px 0;
+}
 
-    .modal-default-button {
-        float: right;
-    }
-    .modal-enter-from, .modal-leave-to {
-        opacity: 0;
-    }
+.modal-default-button {
+    float: right;
+}
+.modal-enter-from, .modal-leave-to {
+    opacity: 0;
+}
 
-    .modal-enter-active .modal-container,
-    .modal-leave-active .modal-container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    };
-    form {
-        width: 95%;
-    }
-    .radio {
-        width: 4%;
-    }
+.modal-enter-active .modal-container,
+.modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+};
+form {
+    width: 95%;
+}
+.radio {
+    width: 4%;
+}
+tr:hover {
+  background: gainsboro;
+}
 </style>

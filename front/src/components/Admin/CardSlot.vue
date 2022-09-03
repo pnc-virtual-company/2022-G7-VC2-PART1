@@ -1,9 +1,7 @@
 <template>
-<div class="w-full flex justify-center mt-4">
-    <div class="container m-auto rounded">
-         <div class="card-body w-full p-5 rounded">
-            <slot></slot>
-        </div>
+<div class="w-full flex justify-center margin-top">
+    <div class="card-body p-5 rounded">
+        <slot></slot>
     </div>
 </div>
 </template>
@@ -15,7 +13,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.card-body {
     width: 90%;
+}
+.margin-top {
+    margin-top: 5rem;
 }
 </style>

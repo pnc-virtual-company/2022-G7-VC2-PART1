@@ -8,42 +8,37 @@
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
-      
       <!-- student profile  -->
       <div class="flex justify-center" v-if="role == 'student'">
         <div  class="text" v-for = "items in datalist" :key="items">
           <div class="text-center ml-5">
-            <img :src="require('../../assets/user_female.png')" class='w-28 h-28 rounded-full object-cover text-center'>
+            <img :src="require('../../assets/user_male.png')" class='w-28 h-28 rounded-full object-cover text-center'>
             <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
           </div>
           <div class="p-0 text-left mr-7">
             <h3>student_id: {{items.id}}</h3>
-            <h3>Class: {{items.class.class}}</h3>
-            <h3>Gender: {{items.batch.generation}}</h3>
+            <h3>Class: {{items.batch.generation}} {{items.class.class}}</h3>
+            <h3>Gender: {{items.gender}}</h3>
             <h3>phone_number: {{items.phone_number}}</h3>
             <h3>email: {{items.email}}</h3>
           </div>
         </div>
       </div>
-
        <!-- admin profile  -->
-       
        <div class="flex justify-center" v-if="role == 'admin' ">
         <div  class="text" v-for = "items in datalist" :key="items">
-          <div class="text-center ml-5">
-            <img :src="require('../../assets/user_female.png')" class='w-28 h-28 rounded-full object-cover text-center'>
+          <div class="text-center ml-5 cusor-pointer">
+            <img :src="require('../../assets/user_male.png')" class='w-28 h-28 rounded-full object-cover text-center'>
             <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
           </div>
           <div class="p-0 text-left mr-7">
-            <h3>admin_id: {{items.id}}</h3>
-            <h3>Class: {{items.email}}</h3>
+            <h3>Admin ID: {{items.id}}</h3>
+            <h3>Email: {{items.email}}</h3>
           </div>
         </div>
       </div>
-
-      </div>
+    </div>
   </div>
-
 </div>
   <!----------------------end-popup--------------------------->
 <nav class="flex justify-between align-center w-full">
@@ -63,7 +58,7 @@
         <router-link class="m-3 text-white text-decoration-none text-lg" :to="{name:'check-leave'}">Check Leave</router-link>
       </div>
       <div class="flex  align-center w-[20%] items-center justify-center">
-        <img :src="require('../../assets/user_female.png')" alt="" class=" w-[20%]  rounded-full ml-[25%]" @click="viewProfile">
+        <img :src="require('../../assets/user_male.png')" class="w-[20%] rounded-full ml-[25%]" @click="viewProfile">
         <h2 class="w-[35%] bg-orange-300 text-center flex  items-center justify-center ml-[5%] outline-none  text-white h-[7vh]"><a @click="logout" href="#" class="text-decoration-none">Sign out</a></h2>
     </div>
   </nav>
@@ -135,10 +130,6 @@ export default {
   mounted(){
     this.information()
   },
-// logout(){
-//    localStorage.removeItem('user')
-//     this.$router.push({name:"FormLogIn"})
-// }
 }
 </script>
 
@@ -187,7 +178,4 @@ export default {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 };
-.fa-cross {
-  cursor: pointer;
-}
 </style>

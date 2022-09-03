@@ -1,153 +1,152 @@
 <template>
-  <div class="contianer">  
-    <div class="w-[75%] bg-gray-300 m-auto rounded-t-lg mt-5">
-        <div class="title bg-gray-400 p-[10px] text-xl font-bold rounded-t-lg">
-
-          <div class="flex mt-3 space-x-4 mb-0 text-center" >
-            <div class="card bg-blue-300">
-              <div class="flex">
-                <div class="flex justify-center mt-2">
-                  <p class="ml-10 text-black">checkLeave<span class="text-orange"></span> </p>
-                </div>
-              </div>
-            </div>
-            <div class="card" >
-              <div class="flex ml-7">
-                <img :src="require('../../assets/padding.png')" alt="" class="w-[20%]">
-                <div class="flex justify-center mt-3">
-                  <p class="ml-2 text-black">Padding: <span class="text-orange ml-2 padding">{{filterPadding}}</span></p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="flex ml-7">
-                <img :src="require('../../assets/approve.png')" alt="" class="w-[20%]">
-                <div class="flex justify-center mt-3 ">
-                  <p class="ml-2 text-black">Approve: <span class="text-orange ml-2 approve">{{filterApprove}}</span></p>
-                </div>
-              </div>
-            </div>
-            <div class="card" >
-              <div class="flex ml-7">
-                <img :src="require('../../assets/reject.png')" alt="" class="w-[20%]">
-                <div class="flex justify-center mt-3 ml-2">
-                  <p class="text-black">Reject: <span class="text-orange ml-2 reject">{{filterReject}}</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="contain text-center p-[8px] w-[80%] m-auto" v-for="list of listStudent" :key="list">
-          <div class="flex items-center p-[10px] bg-white ">
-               <div class="w-[80px] h-[80px] ml-[5%]">
-                 <img :src="require('../../assets/profile.png')" class="w-[80px] h-[80px] rounded-full border-slate-700">
-               </div>
-               <div class="w-[45%] text-left ml-[2%]">
-                <div class="">
-                  <p class="text-[20px] font-bold">{{list.student.first_name}} {{list.student.last_name}}</p>
-                  <p class="text-[20px]"> class_id : {{list.student.class_id}}</p>
-                </div>
-                <div class="flex ">
-                  <p class="text-[20px]">Leave type :</p>
-                  <p class="text-[20px] text-lime-600 ml-[3%]">{{list.leave_Type}}</p>
-                </div>
-                <div class="flex">
-                  <p class="text-[20px]">Duration :</p>
-                  <p class="text-[20px] text-rose-500 ml-[3%]"> {{list.duration}} day</p>
-                </div>
-              </div> 
-               <div class="butto mt-0 w-[30%] flex justify-center ">
-                 <button v-if="list.status=='Padding'" class="w-[100px] m-3 bg-blue-500 bg-green-600 text-white font-bold py-2 px-4 rounded" value="Approve" @click="onApprove(list.id,'Approve')">Approve</button>
-                 <button v-if="list.status=='Padding'" class="w-[100px] m-3 bg-blue-500 bg-red-700 text-white font-bold py-2 px-4 rounded" value ='Reject' @click="onReject(list.id,'Reject')">
-                   Reject
-                 </button>
-                 <p v-else :class="{'approve':list.status=='Approve','reject':list.status=='Reject'}" class="font-bold text-xl">{{list.status}}</p>
-               </div>
-          </div>
-        </div>
+<div class="w-full position flex justify-center bg-gray-200 space-x-2 p-5 space-x-3">
+  <div class="card">
+    <div class="flex">
+      <img :src="require('../../assets/padding.png')" width="35">
+      <div class="flex justify-center align-center mt-2">
+        <p class="ml-2 text-black">Padding: <span class="text-orange-500 ml-1">{{filterPadding}}</span></p>
+      </div>
     </div>
-  </div> 
-  </template>
+  </div>
+  <div class="card">
+    <div class="flex">
+      <img :src="require('../../assets/approve.png')" width="35">
+      <div class="flex justify-center align-center mt-2">
+        <p class="ml-2 text-black">Approve: <span class="text-green-500 ml-1">{{filterApprove}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="card" >
+    <div class="flex">
+      <img :src="require('../../assets/reject.png')" width="35">
+      <div class="flex justify-center align-center mt-2 ml-2">
+        <p class="text-black">Reject: <span class="text-red-500 ml-1">{{filterReject}}</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="w-full flex justify-center mt-4">
+  <div class="card-body w-full p-5 mt-5">
+  <!-----------------------------table-display-request-------------------------->
+    <table class="bg-white m-auto w-full lg:my-4 box-border border-collapse border border-slate-100">
+      <thead>
+        <tr class="box-border">
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">ID</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">FIRST NAME</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">LAST NAME</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">GENDER</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">LEAVE TYPE</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">DURATION</th>
+          <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="list of listStudent" :key="list">
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.class_id}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.first_name}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.last_name}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.gender}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.leave_Type}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.duration}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all text-white space-x-3">
+              <button v-if="list.status=='Padding'" class="w-[100px]  bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded" value="Approve" @click="onApprove(list.id,'Approve')">Approve</button>
+              <button v-if="list.status=='Padding'" class="w-[100px]  bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" value ='Reject' @click="onReject(list.id,'Reject')">
+                Reject
+              </button>
+              <span v-if="list.status == 'Approve'" class="p-2 rounded-2xl" :class="{'approve':list.status=='Approve'}">{{list.status}}d</span>
+              <span v-else-if="list.status == 'Reject'" class="p-2 rounded-2xl" :class="{'reject':list.status=='Reject'}">{{list.status}}ed</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-----------------------------end-table-display-request---------------------->
+  </div>
+</div>
+</template>
   
-  
-  <script setup>
-  // =======Module imported ===========
-  import {ref,onMounted,computed} from 'vue'
-  import axios from "../../http";
-  
-  // ===========check leave information =============================
-  
-  let listStudent = ref([]);
-  // let url = 'http://localhost:8082/api/leave/'
+<script setup>
+// =======Module imported ===========
+import {ref,onMounted,computed} from 'vue'
+import axios from "../../http";
 
-  // ======== Get Data from url ========
-  
-  function getData(){
-    axios.get("request").then(response =>{
-      listStudent.value = response.data
-        console.log(listStudent.value);
-      })
-  }
-      onMounted(()=>getData());
-  
-  // ======== On Approve --=======
-  function onApprove(request_Id,status){
-      axios.put('requests/'+request_Id,{status:status}).then(response =>{
-        getData();
-        // hiden.value=false;
-        console.log(response);
-      }).catch(error =>{
-        console.log(error.request);
-      });
-      console.log('Data user is here: '+status,request_Id);
-  }
-  
-  function onReject(request_Id,status){
-      axios.put('requests/'+request_Id,{status:status}).then(response =>{
-        console.log(status,request_Id,response);
-        getData();
-        // hiden.value=false;
-      });
-  }
-  
-  let filterPadding =computed (()=>{
-    return listStudent.value.filter(student =>student.status == 'Padding').length;})
-  let filterReject = computed (()=>{
-    return listStudent.value.filter(student =>student.status == 'Reject').length
-  });
-  let  filterApprove= computed (()=>{
-    return listStudent.value.filter(student =>student.status == 'Approve').length
-  });
+// ===========check leave information =============================
 
-  // onUpdated(()=>{
-  //   getData()
-  // })
+let listStudent = ref([]);
 
-  </script>
-  
-  
-  
-  <style>
-    .card {
-    width: 26%;
-    margin: 0 auto;
-    padding: 0.9rem;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    border-top: 3px solid #0be858 ;
+// ======== Get Data from url ========
+
+function getData(){
+  axios.get("request").then(response =>{
+    listStudent.value = response.data
+      console.log(listStudent.value);
+    })
 }
-  :disabled{
-    background-color: #cccccc;
-    color: #666666;
-  }
-  .padding{
-    color:orange;
-  }
-  .approve{
-    color: rgb(36, 145, 2);
-  }
-  .reject{
-    color: red;
-  }
-  </style>
-  
+    onMounted(()=>getData());
+
+// ======== On Approve --=======
+function onApprove(request_Id,status){
+    axios.put('requests/'+request_Id,{status:status}).then(response =>{
+      getData();
+      // hiden.value=false;
+      console.log(response);
+    }).catch(error =>{
+      console.log(error.request);
+    });
+    console.log('Data user is here: '+status,request_Id);
+}
+
+function onReject(request_Id,status){
+    axios.put('requests/'+request_Id,{status:status}).then(response =>{
+      console.log(status,request_Id,response);
+      getData();
+      // hiden.value=false;
+    });
+}
+
+let filterPadding =computed (()=>{
+  return listStudent.value.filter(student =>student.status == 'Padding').length;})
+let filterReject = computed (()=>{
+  return listStudent.value.filter(student =>student.status == 'Reject').length
+});
+let  filterApprove= computed (()=>{
+  return listStudent.value.filter(student =>student.status == 'Approve').length
+});
+</script>
+
+<style scoped>
+.card-body {
+  width: 90%;
+  margin-top: 4rem;
+}
+.card {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+:disabled{
+  background-color: #cccccc;
+  color: #666666;
+}
+.approve{
+  color: #fff;
+  background: green;
+}
+.reject{
+  color: #fff;
+  background: red;
+}
+/* table */
+.table, th {
+  border: none;
+}
+tr:hover {
+  background: gainsboro;
+}
+.position {
+  position: fixed;
+  top: 0;
+  margin-top: 4.9rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+</style>
