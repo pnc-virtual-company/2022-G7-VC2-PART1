@@ -68,3 +68,6 @@ Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::patch('/adminResetPassword/{id}',[AdminController::class, 'adminResetPassword']);
     Route::patch('/studentResetPassword/{id}',[StudentController::class, 'StudentResetPassword']);
 });
+Route::post('/class',[ClassesController::class ,'store']);
+Route::post('/batchs',[BatchController::class, 'store']);
+Route::post('/request',[RequestController::class , 'store']);

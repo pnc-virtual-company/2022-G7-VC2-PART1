@@ -12,7 +12,7 @@ class UserController extends Controller
         if ($user == null){
             $user = Admin::Where('email',$request->email)->first();
         }
-        if ($user && Hash::check($request->password,$user->password) && $user){
+        if ($user && Hash::check($request->password,$user->password)){
             return[
                 'token'=>$user->createToken(time())->plainTextToken,'user'=>$user
             ];
@@ -24,8 +24,13 @@ class UserController extends Controller
             return ['mas'=>'Invalid password'];
         }
     }
+<<<<<<< HEAD
     
     //========================== user sign out========================
+=======
+
+    //========================== user Log Out========================
+>>>>>>> fb1f846b525343b193f9e88758de0c67b4611621
     public function signOut(){
         Auth()->user()->tokens()->delete();
         return Response()->json(['message'=>'has been left succesfully']);

@@ -24,20 +24,30 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->role = $request->role;
         $admin->password = bcrypt($request->password);
-        $admin->profile = $request->profile;
-        $admin->save();
-        return('sucessfully');
         
+        // $path = public_path('images/Admin');
+        // if ( ! file_exists($path) ) {
+        //     mkdir($path, 0777, true);
+        // }
+        // $file = $request->file('profile');
+        // $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+        // $admin->profile = $fileName;
+        // $admin->save();
+        // $file->move($path, $fileName);
+
+        $admin->save();
+        return('sucessfully'); 
     }
 
    //========================== Reset password ==================
     public function adminResetPassword(Request $request, $adminId){
         $admin = Admin::find($adminId);
         if(Hash::check($request->oldpassword, $admin->password)){
-            $admin->password = bcrypt($request->newPassword);
+            $admin->password = Hash::make($request->newpassword);
+            $admin->save();
+            return Response()->json(['massage'=>'admin password have been change!']);
+        }else {
+            return Response()->json(['sms'=>"old password is not correct"]);
         }
-        $admin->save();
-        return Response()->json($admin);
     }
-
 }
