@@ -1,9 +1,7 @@
 <template>
-<div class="w-full flex justify-center">
-    <div class="container snap-y m-auto bg-gray-300">
-         <div class="card-body w-full p-4 rounded">
-            <slot></slot>
-        </div>
+<div class="w-full flex justify-center margin-top">
+    <div class="card-body p-5 rounded">
+        <slot></slot>
     </div>
 </div>
 </template>
@@ -15,9 +13,10 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    /* position: relative; */
-    width: 80%;
-    margin-top: 190px;
+.card-body {
+    width: 90%;
+}
+.margin-top {
+    margin-top: 5rem;
 }
 </style>

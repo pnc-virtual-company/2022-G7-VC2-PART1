@@ -197,13 +197,13 @@ function requestLogin() {
           user.value = response.data;
 
             // ======== passed data to app ========
-            router.push({name:'home'})
+            router.push({name:'home'}).catch((error) => {error})
             emit("request-login", {
-              isLogin: true,
+              isLogin: true,user:response.data
             });
           console.log(response.data);
         }
-      });
+      }).catch((error) => {error})
 
   }
 }

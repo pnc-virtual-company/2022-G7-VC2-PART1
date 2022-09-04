@@ -19,6 +19,9 @@ const routes = [
     path: "/login",
     name:'login',
     component: FormLogIn,
+    meta: {
+      requireAuth: false,
+    },
     
   },
   {
@@ -121,33 +124,33 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+let entryUrl = null;
 router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
-    if (!localStorage.token) {
-      next('/login')
-    }
-    else {
-      if (to.path == '/login') {
-          next({name:'user'})
-      }
-      else {
-        next()
-      }
-    }
-  } 
-  else {
-    if (localStorage.token) {
-      if (to.path == '/login') {
-          next({name:'user'}) 
+
+  let userToken = localStorage.getItem('token');
+  let authenticated = userToken != undefined && userToken != null;
+
+  if (to.matched.some((record) => record.meta.requireAuth)) {
+    if (!authenticated) {
+      if (to.name !== 'login' && to.name !== 'home'){
+        entryUrl = to.fullPath;
       } 
-      else {
-        next()
+        
+        next({ name: 'login' })
+
       }
+    else if (entryUrl!==null ) {
+      let url = entryUrl;
+      entryUrl = null;
+      next(url);
+    } else {
+      next()
     }
-    
   }
-  next()
-  
+  else {
+    next()
+  }
+  console.log(to.fullPath)
 });
 
 export default router;

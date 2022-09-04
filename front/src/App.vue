@@ -1,7 +1,8 @@
 <template>
   <div class="app h-screen bg-gray-100">
     <!-- // navigation bar  -->
-    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole"/>
+
+    <navbar-view v-if="isLogin || userId!=undefined" :role="userRole" @request-logout="logout"/>
 
     <main>
       <!-- view -->
@@ -24,11 +25,10 @@ export default {
     };
   },
   methods: {
-    login(value) {
-      this.isLogin = value.isLogin;
-      this.user = value.user;
-      this.listOfLeave = value.request;
-     
+    login(userData) {
+      this.isLogin = userData.isLogin;
+      this.user = userData.user;
+
     },
 
     // =================get data from api =================
@@ -40,15 +40,13 @@ export default {
           then((response) => {
             this.userData = response.data;
             console.log(response.data);
-          })
+          }).catch((error) => {error})
       }
-   console.log(localStorage.token)
-        
     },
     // ============== get specific user ============
    async getSpecificUser() {
       let path = "students/";
-      if(localStorage.role === 'admin'){
+      if(localStorage.getItem("role") == 'admin'){
         path = 'admin/';
       }
       if (localStorage.userId) {
@@ -69,21 +67,22 @@ export default {
   },
  provide(){
     return {
-      userId:this.userId
+      userId:this.userId,
     }
   },
   mounted() {
     this.userRefresh();
-  },
-  updated() {
-    this.userRefresh();
     this.getListOfLeave();
     this.getSpecificUser();
   },
- 
+  updated() {
+    this.userRefresh();
+    this.getSpecificUser();
+    this.getListOfLeave();
+  }
 };
 </script>
-
+  
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,500;1,200;1,400;1,500&display=swap");
 body {
@@ -96,18 +95,13 @@ nav {
   z-index: 5;
   top: 0;
   width: 100%;
-  background: #22bbea;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-  background: #45b6fe;
-  /* height: 12vh; */
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
-    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  background: #22BBEA;
 }
 
 nav a.router-link-exact-active {
   padding: 5px;
-  border-radius: 5px;
-  background: orangered;
+  background:#FDBA74;
 }
 nav a {
   border: none;
