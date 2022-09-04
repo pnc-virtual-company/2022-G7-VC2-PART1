@@ -10,16 +10,18 @@ use Illuminate\Queue\SerializesModels;
 class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    private $data=[];
+    private $user=[];
     /**
      * 
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$user)
     {
         $this->data = $data;
+        $this->user=$user;
         //
     }
 
@@ -39,8 +41,8 @@ class OrderShipped extends Mailable
     public function build()
     {
         // send data to the
-        return $this-> subject('Request leave')->markdown('emails.orders.shipped')->with(
-            $this->data
+        return $this-> from('malwareattacker2022@gmail.com','user')-> subject('Request leave')->markdown('emails.orders.shipped')->with(
+           ['request'=> $this->data,'user'=>$this->user]
         
     );
     }

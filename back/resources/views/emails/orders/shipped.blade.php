@@ -1,13 +1,12 @@
 @component('mail::message')
 dear teacher I would like to ask permission 
 
-
 @component('mail::table') 
-------------------------------------------------
-| Name    | Class     | Leave type             | 
-|:------- |:----------|:------------------------
-|{{$start_date}}|{{$end_date}} |{{$leave_Type}}|
------------------------------------------------
+
+| student     | start date     | end date        | duration    | reason    | leave type      |
+|----------------|:---------------|:---------------:|:-----------:|:---------:|------------------
+|{{$user}}| {{$request}}
+
 @component('mail::button', ['url' => 'www.google.com','color' => 'success'])
 accept
 @endcomponent
@@ -16,7 +15,6 @@ Reject
 @endcomponent
 
 @endcomponent
-
 
 thank you !
 @endcomponent

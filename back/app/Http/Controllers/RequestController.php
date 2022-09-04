@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Student;
 use App\Models\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -33,13 +33,21 @@ class RequestController extends Controller
           'student_id' => 'required|integer',
         ]);
         // send email to the author
-        Requests::create($offer);
+
+
+    try{
+        $user = Student::findOrFail($request->student_id);
+        Requests::create($offer);   
         Mail::to('cham.smey@student.passerellesnumeriques.org')
         ->cc(['kimky.guinevere@gmail.com', 'loemsophimitstudent@gmail.com'])
-        ->send(new OrderShipped($offer));
-
         // send mail notification
-        return response()->Json(['messsage'=>'Scuccfully for create Request']);
+        ->send(new OrderShipped($offer,$user));
+        return response()->Json(['messsage'=>'your request succesfully']);
+
+    }
+   catch (\Exception $e){
+    return response()->Json(['messsage'=>'Sorry please try again later !']);
+   }
         
     }
 
