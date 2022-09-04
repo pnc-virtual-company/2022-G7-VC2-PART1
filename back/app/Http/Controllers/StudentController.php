@@ -26,6 +26,16 @@ class StudentController extends Controller
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
+        // $path = public_path('images/Student');
+        // if ( ! file_exists($path) ) {
+        //     mkdir($path, 0777, true);
+        // }
+        // $file = $request->file('profile');
+        // $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+        // $students->Profile = $fileName;
+        // $students->save();
+        // $file->move($path, $fileName);
+
         $students->save();
     }
 
@@ -50,6 +60,15 @@ class StudentController extends Controller
         $students->class_id = $request->class_id;
         $students->batch_id = $request->batch_id;
         $students->admin_id = $request->admin_id;
+        // $path = public_path('images/Student');
+        // if ( ! file_exists($path) ) {
+        //     mkdir($path, 0777, true);
+        // }
+        // $file = $request->file('profile');
+        // $fileName = uniqid() . '_' . trim($file->getClientOriginalName());
+        // $students->Profile = $fileName;
+        // $students->save();
+        // $file->move($path, $fileName);
         $students->save();
         
         return response()->Json(['messsage'=>'Scuccfully for Update Student']);
@@ -66,9 +85,11 @@ class StudentController extends Controller
     public function StudentResetPassword(Request $request, $studentId){
         $student = Student::find($studentId);
         if(Hash::check($request->oldpassword,$student->password)){
-            $student->password = bcrypt($request->newPassword);
+            $student->password = Hash::make($request->newPassword);
+            $student->save();
+            return response()->json(['sms'=>'student password have been change!']);
+        }else {
+            return response()->json(['sms'=>"old password is not correct"]);
         }
-        $student->save();
-        return Response()->json($student);
     }
 }
