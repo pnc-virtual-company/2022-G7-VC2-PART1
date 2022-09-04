@@ -1,5 +1,5 @@
 <template>
-  <div class="app h-screen">
+  <div class="app h-screen bg-gray-100">
     <!-- // navigation bar  -->
     <navbar-view v-if="isLogin || userId!=undefined" :role="userRole"/>
 
@@ -18,7 +18,7 @@ export default {
       isLogin: false,
       user: null,
       listOfLeave: null,
-      userId:'',
+      userId:'6',
       userRole: ''
 
     };
@@ -32,10 +32,10 @@ export default {
     },
 
     // =================get data from api =================
-    getListOfLeave() {   
+   async getListOfLeave() {   
       if (localStorage.token) {
         // ============= get all user's request ============
-        axios.get('request'
+     await  axios.get('request'
         ).
           then((response) => {
             this.userData = response.data;
@@ -46,30 +46,28 @@ export default {
         
     },
     // ============== get specific user ============
-    getSpecificUser() {
+   async getSpecificUser() {
       let path = "students/";
       if(localStorage.role === 'admin'){
         path = 'admin/';
       }
       if (localStorage.userId) {
-        axios.get(path + localStorage.userId).
+      await  axios.get(path + localStorage.userId).
           then((response) => {
           this.user = response.data;
           console.log(response)
         })
         
       }
-     
       this.userRole = localStorage.role;
       this.userId = localStorage.userId;
     },
-    userRefresh() {
+   async userRefresh() {
       this.userId = localStorage.userId;
       this.userRole = localStorage.role;
-      
     }
   },
-  provide(){
+ provide(){
     return {
       userId:this.userId
     }
@@ -78,6 +76,7 @@ export default {
     this.userRefresh();
   },
   updated() {
+    this.userRefresh();
     this.getListOfLeave();
     this.getSpecificUser();
   },

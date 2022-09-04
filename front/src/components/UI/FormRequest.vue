@@ -92,14 +92,14 @@ export default {
         timer: 1500
       })
     },
-    newRequest(){
+   async newRequest(){
       let notEmptydata = this.start !="" && this.end !="" && this.leave_type !="" && this.reason !="" && this.SpecificStartTime !="" && this.SpecificEndTime !="";
       let list = {start_date:this.start ,end_date:this.end, leave_Type:this.leave_type, status:this.Padding, reason:this.reason,
       duration:parseInt(this.differentDate),student_id:this.userId}
 
       this.listDate.push(list)
   // =============request new leave =====================
-      axios.post('request', list).then(response => { 
+   await axios.post('request', list).then(response => { 
           console.log('Date:'+ this.listDate,response);
       })
       this.start = ''

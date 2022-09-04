@@ -1,5 +1,26 @@
 <template>
-
+<div class=" lg:w-3/4 m-auto">
+  <div class="w-[80%]">
+    <div class="w-full flex justify-between ml-2 mt-5">
+      <div class="w-1/4 flex justify-evenly m-2 ">
+        <select class="w-1/2 bg-blue-500 text-center p-3 rounded-md outline-none text-white" v-model="LeaveType">
+          <option value="" disabled>Choose Type</option>
+          <option value="">Show All</option>
+          <option value="sick">Sick</option>
+          <option value="headache">headache</option>
+          <option value="family's Event">family's Event</option>
+        </select>
+        <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color text-white" v-model="onStatus">
+          <option value="" disabled>Choose</option>
+          <option value="">Show All</option>
+          <option value="Approve">Approve</option>
+          <option value="Reject">Reject</option>
+          <option value="Padding">Padding</option>
+        </select>
+      </div>
+  </div>
+  </div>
+    </div>
 <div class="w-full flex justify-between">
   <div class="w-[80%]">
     <div class="w-full flex justify-between ml-2 mt-5">
@@ -93,19 +114,19 @@ export default {
 </script>
 
 <style scoped>
-table {
+/* table {
   width: 90%;
 }
 .table, th, td {
   border-right: 2px solid white;
   padding: 10px;
-}
+} */
 
 /* .table, th {
   background: #2a2ab9;
   color: #fff;
 } */
-.table, th {
+/* .table, th {
   background: #6095C9;
   color: #fff;
   border-bottom: no;
@@ -138,5 +159,5 @@ tr:nth-child(odd) {
 .reject{
   color: rgba(192, 21, 9, 0.816);
     font-weight: bold;
-}
+} */
 </style>
