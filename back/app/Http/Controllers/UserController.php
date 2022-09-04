@@ -12,7 +12,7 @@ class UserController extends Controller
         if ($user == null){
             $user = Admin::Where('email',$request->email)->first();
         }
-        if ($user && Hash::check($request->password,$user->password)&& $user){
+        if ($user && Hash::check($request->password,$user->password) && $user){
             return[
                 'token'=>$user->createToken(time())->plainTextToken,'user'=>$user
             ];

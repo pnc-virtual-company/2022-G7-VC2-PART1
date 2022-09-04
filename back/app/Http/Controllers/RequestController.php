@@ -43,7 +43,11 @@ class RequestController extends Controller
     {
         return Requests::findOrFail($id);
     }
-
+    // ======================get student leave by id
+    public function getStudentLeave($student_id)
+    {
+        return Requests::where('student_id', $student_id)->get();
+    }
     //====================== update request ===================
     public function update(Request $request,$id)
     {

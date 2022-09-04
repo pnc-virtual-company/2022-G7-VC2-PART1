@@ -19,7 +19,7 @@ class StudentSeeder extends Seeder
         $students=[
             [
             'first_name'=>"Cham",'last_name'=>"smey",
-            'gender'=>'Male','email'=>'test@gmail.com','password'=>Hash::make("1234"),'profile'=>'require(../public/images/Student/student.jpg)',
+            'gender'=>'Male','email'=>'test@gmail.com','password'=>Hash::make("1234"),'profile'=>'require(../../public/images/Student/student.jpg)',
             'phone_number'=>9634521,'class_id'=>1, 'batch_id'=>1, 'admin_id'=>1,
             'role'=>'student',
         ],
