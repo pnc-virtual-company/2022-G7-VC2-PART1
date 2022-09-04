@@ -33,15 +33,17 @@ class RequestController extends Controller
     try{
         $user = Student::findOrFail($request->student_id);
         Requests::create($offer);   
+        $new_request = ['user'=>$user, 'request'=>$offer];
+
         Mail::to('cham.smey@student.passerellesnumeriques.org')
         ->cc(['kimky.guinevere@gmail.com', 'loemsophimitstudent@gmail.com'])
         // send mail notification
-        ->send(new OrderShipped($offer,$user));
+        ->send(new OrderShipped($new_request));
         return response()->Json(['messsage'=>'your request succesfully']);
 
     }
    catch (\Exception $e){
-    return response()->Json(['messsage'=>'Sorry please try again later !']);
+    return response()->Json(['messsage'=>$new_request]);
    }
         
     }

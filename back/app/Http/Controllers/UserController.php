@@ -24,7 +24,7 @@ class UserController extends Controller
             return ['mas'=>'Invalid password'];
         }
     }
-
+    
     //========================== user sign out========================
     public function signOut(){
         Auth()->user()->tokens()->delete();

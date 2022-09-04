@@ -1,5 +1,5 @@
 <template>
-<div class="w-full position flex justify-center bg-gray-200 space-x-2 p-5 space-x-3">
+<div class="w-full position flex justify-center bg-gray-200 p-5 space-x-3">
   <div class="card">
     <div class="flex">
       <img :src="require('../../assets/padding.png')" width="35">

@@ -5,14 +5,11 @@ dear teacher I would like to ask permission
 
 | student     | start date     | end date        | duration    | reason    | leave type      |
 |----------------|:---------------|:---------------:|:-----------:|:---------:|------------------
-|{{$user}}| {{$request}}
+|{{$requested}}|
+@component('mail::button', ['url' => 'http://localhost:8080/admin','color' => 'success'])
+visit app
+@endcomponent
 
-@component('mail::button', ['url' => 'www.google.com','color' => 'success'])
-accept
-@endcomponent
-@component('mail::button', ['url' => 'www.google.com','color'=>'red'])
-Reject 
-@endcomponent
 
 @endcomponent
 

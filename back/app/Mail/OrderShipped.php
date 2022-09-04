@@ -10,18 +10,18 @@ use Illuminate\Queue\SerializesModels;
 class OrderShipped extends Mailable
 {
     use Queueable, SerializesModels;
-    private $data=[];
-    private $user=[];
+    private $new_request = [];
+ 
     /**
      * 
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data,$user)
+    public function __construct($request)
     {
-        $this->data = $data;
-        $this->user=$user;
+        $this->new_request = $request;
+  
         //
     }
 
@@ -41,9 +41,13 @@ class OrderShipped extends Mailable
     public function build()
     {
         // send data to the
-        return $this-> from('malwareattacker2022@gmail.com','user')-> subject('Request leave')->markdown('emails.orders.shipped')->with(
-           ['request'=> $this->data,'user'=>$this->user]
-        
-    );
+        $user_name = $this->new_request->user->first_name ." ". $this->user->last_name;
+        // which user send from 
+        $from= "kimky.guinevere@gmail.com";
+
+        return $this->from( $from , $user_name)->subject('Request leave')->markdown('emails.orders.shipped')->with(
+           ['requested'=> $this->new_request ]
+
+        );
     }
 }
