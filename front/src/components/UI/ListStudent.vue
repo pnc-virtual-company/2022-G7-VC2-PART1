@@ -1,54 +1,48 @@
 <template>
-<div class="w-full flex justify-between">
-  <div class="w-[80%] m-auto">
-    <div class="w-full flex justify-between ml-2 mt-5">
-      <div class="w-1/4 flex justify-evenly m-2 ">
-        <select class="w-1/2 bg-blue-500 text-center p-2 rounded-md outline-none text-white" v-model="LeaveType">
-          <option value="" disabled>Choose Type</option>
-          <option value="">Show All</option>
-          <option value="sick">Sick</option>
-          <option value="headache">headache</option>
-          <option value="family's Event">family's Event</option>
-        </select>
-        <select class="w-1/2 bg-orange-500 ml-4 text-center p-2 rounded-md outline-none text-color text-white" v-model="onStatus">
-          <option value="" disabled>Choose Status</option>
-          <option value="">Show All</option>
-          <option value="Approve">Approve</option>
-          <option value="Reject">Reject</option>
-          <option value="Padding">Padding</option>
-        </select>
-      </div>
+  <div class="flex w-full mt-5 mb-3 justify-center space-x-4">
+    <select class="bg-blue-400 text-center py-2 rounded-md outline-none text-white" v-model="LeaveType">
+      <option value="" disabled>Leave type</option>
+      <option value="">Show All</option>
+      <option value="sick">Sick</option>
+      <option value="headache">headache</option>
+      <option value="family's Event">family's Event</option>
+    </select>
+    <select class="bg-orange-300 text-center py-2 px-2 rounded-md outline-none text-white" v-model="onStatus">
+      <option value="" disabled>Status type</option>
+      <option value="">Show All</option>
+      <option value="Approve">Approve</option>
+      <option value="Reject">Reject</option>
+      <option value="Padding">Padding</option>
+    </select>
   </div>
-
-  <div class="mt-1 d-flex w-full ml-4">
-    <table>
+  <div class="flex justify-center">
+    <table class="w-[86%]">
       <thead class="text-center">
         <tr>
-          <th>START DATE</th>
-          <th>END DATA</th>
-          <th>LEAVE TYPE</th>
-          <th>DURATION</th>
-          <th>REASON</th>
-          <th>STATUS</th>
+          <th class="bg-blue-400">ID</th>
+          <th class="bg-blue-400">START DATE</th>
+          <th class="bg-blue-400">END DATA</th>
+          <th class="bg-blue-400">LEAVE TYPE</th>
+          <th class="bg-blue-400">DURATION</th>
+          <th class="bg-blue-400">REASON</th>
+          <th class="bg-blue-400">STATUS</th>
         </tr>
        </thead>
         <tbody>
           <tr v-for="list of dataStatus" :key="list">
+            <td><span class="flex justify-center">{{list.id}}</span></td>
             <td>{{list.start_date}}</td>
             <td>{{list.end_date}}</td>
             <td>{{list.leave_Type}}</td>
             <td>{{list.duration}} day</td>
             <td>{{list.reason}}</td>
-            <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}">{{list.status}}</td>
+            <td :class="{'padding':list.status=='Padding','approve':list.status=='Approve','reject':list.status=='Reject'}"><span class="flex justify-center">{{list.status}}</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-</div>
 </template>
 <script>
-
 import axios  from "../../http.js";
 export default {
   data() {
@@ -56,8 +50,8 @@ export default {
       lists: [],
       onStatus: '',
       status: false,
-      color:'',
-      LeaveType: ''
+      LeaveType: '',
+      studentId: localStorage.getItem('userId')
     }
   },
   computed: {
@@ -77,7 +71,7 @@ export default {
   },
   methods: {
     getData() {
-      axios.get('/request').then((res) => {
+      axios.get('getStudentLeave/' + this.studentId).then((res) => {
         this.lists = res.data;
       })
     }
@@ -89,15 +83,11 @@ export default {
 </script>
 
 <style scoped>
-table {
-  width: 90%;
-}
 .table, th, td {
   border-right: 2px solid white;
-  padding: 10px;
+  padding: 8px;
 }
 .table, th {
-  background: #6095C9;
   color: #fff;
   border-bottom: no;
 }
@@ -119,7 +109,7 @@ tr:nth-child(odd) {
   width: 100%;
 }
 .approve{
-  color: rgb(9, 165, 9);
+  color: rgb(25, 213, 25);
   font-weight: bold;
 }
 .padding{
@@ -127,7 +117,10 @@ tr:nth-child(odd) {
     font-weight: bold;
 }
 .reject{
-  color: rgba(192, 21, 9, 0.816);
+  color: red;
     font-weight: bold;
+}
+select {
+  cursor: pointer;
 }
 </style>

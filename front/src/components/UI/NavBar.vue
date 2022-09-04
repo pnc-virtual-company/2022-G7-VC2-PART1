@@ -2,20 +2,20 @@
   <!----------------------popup------------------------------->
 <div class="modal-mask" v-if="showModal==true">
   <div class="modal-wrapper">
-    <div class="modal-container rounded bg-current">
+    <div class="w-[40%] modal-container rounded bg-current">
       <div class="flex justify-end">
-        <svg @click="viewProfile" class="fa-cross" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" width="5%">
+        <svg @click="viewProfile" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="mr-2 mt-2" strokeWidth={1.5} stroke="currentColor" width="5%">
           <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </div>
       <!-- student profile  -->
       <div class="flex justify-center" v-if="role == 'student'">
-        <div  class="text" v-for = "items in datalist" :key="items">
-          <div class="text-center ml-5">
-            <img :src="require('../../assets/user_male.png')" class='w-28 h-28 rounded-full object-cover text-center'>
-            <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
+        <div  class="text" v-for="items in datalist" :key="items">
+          <div class="flex justify-center">
+            <img :src="require('../../assets/user_male.png')" class='rounded-full'>
           </div>
-          <div class="p-0 text-left mr-7">
+          <h3 class="flex justify-center text-2xl"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
+          <div class="mb-3">
             <h3>student_id: {{items.id}}</h3>
             <h3>Class: {{items.batch.generation}} {{items.class.class}}</h3>
             <h3>Gender: {{items.gender}}</h3>
@@ -27,11 +27,11 @@
        <!-- admin profile  -->
        <div class="flex justify-center" v-if="role == 'admin' ">
         <div  class="text" v-for = "items in datalist" :key="items">
-          <div class="text-center ml-5 cusor-pointer">
-            <img :src="require('../../assets/user_male.png')" class='w-28 h-28 rounded-full object-cover text-center'>
-            <h3 class="mr-12 text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
+          <div class="flex justify-center cusor-pointer">
+            <img :src="require('../../assets/user_male.png')" class='rounded-full object-cover text-center'>
           </div>
-          <div class="p-0 text-left mr-7">
+          <h3 class="flex justify-center text-2xl mt-2"> <strong>{{items.first_name}} {{items.last_name}} </strong> </h3>
+          <div class="text-left mb-3">
             <h3>Admin ID: {{items.id}}</h3>
             <h3>Email: {{items.email}}</h3>
           </div>
@@ -151,12 +151,9 @@ export default {
     vertical-align: middle;
 }
 .modal-container {
-    width: 35%;
     height: auto;
     margin: 0px auto;
-    padding: 15px 28px;
     background-color: #fff;
-    border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;

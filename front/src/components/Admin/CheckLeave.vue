@@ -4,7 +4,7 @@
     <div class="flex">
       <img :src="require('../../assets/padding.png')" width="35">
       <div class="flex justify-center align-center mt-2">
-        <p class="ml-2 text-black">Padding: <span class="text-orange-500 ml-1">{{filterPadding}}</span></p>
+        <p class="ml-2 text-black">Padding: <span class="ml-1">{{filterPadding}}</span></p>
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
     <div class="flex">
       <img :src="require('../../assets/approve.png')" width="35">
       <div class="flex justify-center align-center mt-2">
-        <p class="ml-2 text-black">Approve: <span class="text-green-500 ml-1">{{filterApprove}}</span></p>
+        <p class="ml-2 text-black">Approve: <span class="ml-1">{{filterApprove}}</span></p>
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
       </thead>
       <tbody>
         <tr v-for="list of listStudent" :key="list">
-          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.class_id}}</td>
+          <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.id}}</td>
           <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.first_name}}</td>
           <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.last_name}}</td>
           <td class=" border-b-2 py-4 text-center lg:text-sm text-xs break-all">{{list.student.gender}}</td>

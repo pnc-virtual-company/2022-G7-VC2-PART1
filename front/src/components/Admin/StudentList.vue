@@ -26,7 +26,6 @@
               <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">CLASS</th>
               <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">TEL</th>
               <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">EMAIL</th>
-              <!-- <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">PASSWORD</th> -->
               <th class="lg:text-md text-sm border-b-2 lg:p-5 p-0 bg-gray-100 border text-blue-500 border-slate-100">ACTIONS</th>
           </tr>
       </thead>
